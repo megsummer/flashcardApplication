@@ -18,7 +18,7 @@ public class JdbcDeckDao {
     public JdbcDeckDao(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
-
+    //TODO: incorporate the get tags method so list of tags is added to deck object before it is returned
     public Deck getDeckByDeckId(int deckId){
         Deck deck = null;
         String sql = "SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval, " +
@@ -32,7 +32,7 @@ public class JdbcDeckDao {
             throw new DaoException("Unable to connect to server or database", e);
         }return deck;
     }
-
+    //TODO: incorporate the get tags method so list of tags is added to each deck object before list is returned
     public List<Deck> getAllDecks() {
         List<Deck> decks = new ArrayList<>();
         String sql = "SELECT SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval," +
@@ -48,6 +48,8 @@ public class JdbcDeckDao {
         }
         return decks;
     }
+
+    //TODO: incorporate the get tags method so list of tags is added to each deck object before list is returned
 
     public List<Deck> geAllDecksByUserId(int userId) {
         List<Deck> decks = new ArrayList<>();
@@ -65,6 +67,7 @@ public class JdbcDeckDao {
         return decks;
     }
 
+    //TODO: add code to add new tags from deck object to the database
     public Deck createDeck(Deck deckToCreate){
         Deck newDeck = null;
         String sql = "INSERT INTO decks (user_id, deck_title, cover_img, deck_description, pending_approval, " +
@@ -83,12 +86,13 @@ public class JdbcDeckDao {
         return newDeck;
     }
 
+    //TODO: Add sql to delete rows from tags before deleting deck
     public void deleteDeck(int deckId){
         String sql = "DELETE FROM deck WHERE deck_id = ?";
         jdbcTemplate.update(sql, deckId);
 
     }
-
+//TODO: add sql to add tags from updated deck to the database
     public void updateDeck(Deck updateDeck){
 
         String sql = "UPDATE decks " +

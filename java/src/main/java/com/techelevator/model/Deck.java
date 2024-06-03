@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public class Deck {
     private int deckId;
     private int userId;
@@ -9,6 +11,16 @@ public class Deck {
     private boolean pendingApproval;
     private boolean isApproved;
     private int adminId;
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    private List<String> tags;
 
     public String getDeckDescription() {
         return deckDescription;
