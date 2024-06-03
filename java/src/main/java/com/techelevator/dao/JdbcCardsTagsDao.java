@@ -9,7 +9,11 @@ import javax.sql.DataSource;
 
 
 public class JdbcCardsTagsDao {
-    private JdbcTemplate template;
+    private final JdbcTemplate jdbcTemplate;
+
+    public JdbcCardsTagsDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
     private CardsTags mapRowtoCards(SqlRowSet rowSet) {
         CardsTags cardsTags = new CardsTags();
 
