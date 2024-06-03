@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.util.List;
 public class Cards {
 
     private int cardId;
@@ -11,6 +12,8 @@ public class Cards {
     private String cardImg;
 
     private int userId;
+
+    private List<String> tags;
 
     public int getCardId() {
         return cardId;
@@ -50,6 +53,14 @@ public class Cards {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }
 
