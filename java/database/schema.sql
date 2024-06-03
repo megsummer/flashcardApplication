@@ -48,5 +48,11 @@ CREATE TABLE cards_tags (
     CONSTRAINT FK_card_id FOREIGN KEY (card_id) REFERENCES cards(card_id)
 );
 
+CREATE TABLE deck_tags (
+    deck_id int,
+    tag varchar(30) NOT NULL,
+    CONSTRAINT FK_deck_id FOREIGN KEY (deck_id) REFERENCES decks(deck_id)
+);
+
 
 COMMIT TRANSACTION;
