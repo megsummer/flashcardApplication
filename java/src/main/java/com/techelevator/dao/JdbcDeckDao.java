@@ -21,7 +21,7 @@ public class JdbcDeckDao {
 
     public Deck getDeckByDeckId(int deckId){
         Deck deck = null;
-        String sql = "SELECT deck_id, user_id, deck_name, deck_description, cover_img, pending_approval, " +
+        String sql = "SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval, " +
                 "is_approved, admin_id FROM decks WHERE deck_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, deckId);
@@ -35,7 +35,7 @@ public class JdbcDeckDao {
 
     public List<Deck> getAllDecks() {
         List<Deck> decks = new ArrayList<>();
-        String sql = "SELECT SELECT deck_id, user_id, deck_name, deck_description, cover_img, pending_approval," +
+        String sql = "SELECT SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval," +
                 "is_approved, admin_id FROM decks;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -51,7 +51,7 @@ public class JdbcDeckDao {
 
     public List<Deck> geAllDecksByUserId(int userId) {
         List<Deck> decks = new ArrayList<>();
-        String sql = "SELECT SELECT deck_id, user_id, deck_name, cover_img, deck_description, pending_approval," +
+        String sql = "SELECT SELECT deck_id, user_id, deck_title, cover_img, deck_description, pending_approval," +
                 "is_approved, admin_id FROM decks WHERE user_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
@@ -67,11 +67,11 @@ public class JdbcDeckDao {
 
     public Deck createDeck(Deck deckToCreate){
         Deck newDeck = null;
-        String sql = "INSERT INTO decks (user_id, deck_name, cover_img, deck_description, pending_approval, " +
+        String sql = "INSERT INTO decks (user_id, deck_title, cover_img, deck_description, pending_approval, " +
                 "is_approved, admin_id) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING deck_id;";
 
         try{
-            int newDeckId = jdbcTemplate.queryForObject(sql, int.class, deckToCreate.getUserId(), deckToCreate.getDeckName(),
+            int newDeckId = jdbcTemplate.queryForObject(sql, int.class, deckToCreate.getUserId(), deckToCreate.getDeckTitle(),
                     deckToCreate.getCoverImg(), deckToCreate.getDeckDescription(), deckToCreate.isPendingApproval(),
                     deckToCreate.isApproved(), deckToCreate.getAdminId());
             newDeck = getDeckByDeckId(newDeckId);
@@ -83,14 +83,19 @@ public class JdbcDeckDao {
         return newDeck;
     }
 
+    public void deleteDeck(int deckId){
+        String sql = "DELETE FROM deck WHERE deck_id = ?";
+        jdbcTemplate.update(sql, deckId);
+
+    }
 
     public void updateDeck(Deck updateDeck){
 
         String sql = "UPDATE decks " +
-                "SET deck_name = ?, cover_img = ?, deck_description =?, pending_approval = ?, is_approved = ?, admin_id =?" +
+                "SET deck_title = ?, cover_img = ?, deck_description =?, pending_approval = ?, is_approved = ?, admin_id =?" +
                 "WHERE deck_id = ?";
         try{
-           jdbcTemplate.update(sql, updateDeck.getDeckName(), updateDeck.getCoverImg(), updateDeck.getDeckDescription(),
+           jdbcTemplate.update(sql, updateDeck.getDeckTitle(), updateDeck.getCoverImg(), updateDeck.getDeckDescription(),
                    updateDeck.isPendingApproval(), updateDeck.isApproved(), updateDeck.getAdminId(), updateDeck.getDeckId());
 
         }catch (CannotGetJdbcConnectionException e) {
@@ -108,7 +113,7 @@ public class JdbcDeckDao {
         Deck deck = new Deck();
         deck.setDeckId(rs.getInt("deck_id"));
         deck.setUserId(rs.getInt("user_id"));
-        deck.setDeckName(rs.getString("deck_name"));
+        deck.setDeckTitle(rs.getString("deck_name"));
         deck.setCoverImg(rs.getString("cover_img"));
         deck.setDeckDescription(rs.getString("deck_description"));
         deck.setPendingApproval(rs.getBoolean("pending_approval"));
