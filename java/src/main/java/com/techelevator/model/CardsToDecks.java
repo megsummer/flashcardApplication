@@ -1,6 +1,6 @@
 package com.techelevator.model;
 
-public class cardsToDecks {
+public class CardsToDecks {
 private int cardId;
 private int deckId;
 
