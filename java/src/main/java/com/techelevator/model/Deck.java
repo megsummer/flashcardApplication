@@ -5,9 +5,22 @@ public class Deck {
     private int userId;
     private String deckName;
     private String coverImg;
+    private String deckDescription;
     private boolean pendingApproval;
     private boolean isApproved;
     private int adminId;
+
+    public String getDeckDescription() {
+        return deckDescription;
+    }
+
+    public void setDeckDescription(String deckDescription) {
+        this.deckDescription = deckDescription;
+    }
+
+    public int getAdminId() {
+        return adminId;
+    }
 
     public int getDeckId() {
         return deckId;
@@ -55,10 +68,6 @@ public class Deck {
 
     public void setApproved(boolean approved) {
         isApproved = approved;
-    }
-
-    public int isAdminId() {
-        return adminId;
     }
 
     public void setAdminId(int adminId) {
