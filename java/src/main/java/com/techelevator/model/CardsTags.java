@@ -1,6 +1,6 @@
 package com.techelevator.model;
 
-public class Cardstags {
+public class CardsTags {
     private int cardId;
     private String tag;
 
