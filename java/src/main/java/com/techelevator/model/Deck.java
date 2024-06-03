@@ -1,13 +1,13 @@
 package com.techelevator.model;
 
-public class Decks {
+public class Deck {
     private int deckId;
     private int userId;
     private String deckName;
     private String coverImg;
     private boolean pendingApproval;
     private boolean isApproved;
-    private boolean adminId;
+    private int adminId;
 
     public int getDeckId() {
         return deckId;
@@ -42,7 +42,7 @@ public class Decks {
     }
 
     public boolean isPendingApproval() {
-        return pendingApproval;
+        return this.pendingApproval;
     }
 
     public void setPendingApproval(boolean pendingApproval) {
@@ -57,11 +57,11 @@ public class Decks {
         isApproved = approved;
     }
 
-    public boolean isAdminId() {
+    public int isAdminId() {
         return adminId;
     }
 
-    public void setAdminId(boolean adminId) {
+    public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
 }
