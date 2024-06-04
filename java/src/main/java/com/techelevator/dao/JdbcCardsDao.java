@@ -54,10 +54,11 @@ public class JdbcCardsDao implements CardsDao {
 
     @Override
     public void saveCard(Cards card) {
-        if (tag != null) then {
+        List<String> tag = card.getTags();
+        if (tag != null) {
             try {
                 String sql = "INSERT INTO cards_tags (tag)";
-                jdbcTemplate.update(sql, cards_tags.tag());
+                jdbcTemplate.update(sql, tag);
             } catch (DataAccessException e) {
                 throw new DaoException("Error saving tag: " + tag, e);
             }
@@ -74,10 +75,11 @@ public class JdbcCardsDao implements CardsDao {
     @Override
 //    handle tags
     public void updateCard(Cards card) {
-        if (tag != null) then {
+        List<String> tag = card.getTags();
+        if (tag != null) {
             try {
                 String sql = "UPDATE INTO cards_tags (tag)";
-                jdbcTemplate.update(sql, cards_tags.tag());
+                jdbcTemplate.update(sql, tag);
             } catch (DataAccessException e) {
                 throw new DaoException("Error saving tag: " + tag, e);
             }
