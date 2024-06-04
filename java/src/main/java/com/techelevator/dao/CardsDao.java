@@ -17,7 +17,10 @@ public interface CardsDao {
 
     public List<String> getTagsByCardId(int cardId);
 
+
     public boolean deleteCard(int cardId);
+
+
 
     List<Cards> getCardByTags(List<String> tags);
 
