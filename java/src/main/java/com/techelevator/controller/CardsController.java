@@ -61,9 +61,6 @@ public class CardsController {
     }
 
 
-
-
-
 //deleteCard
 @RequestMapping(path = "/cards/{cardId}", method = RequestMethod.DELETE)
 public boolean deleteCard(@PathVariable int cardId){
