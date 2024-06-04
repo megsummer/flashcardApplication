@@ -55,9 +55,10 @@ public class DeckController {
         return deckDao.updateDeck(updateDeck);
      }
 
-
-
-   /* public List<String> getTagsByDeckId(int deckId){}
-    public List<Deck> getDeckIdByTag(String tag){}
-}*/
+    //use only if adding deck tags
+   // public List<String> getTagsByDeckId(int deckId){
+      //use only if adding deck tags
+    //public List<Deck> getDeckIdByTag(String tag){}
+    //use only if adding deck tags
+    //public DeckTags updateTagByDeckId(DeckTags deckTags)
 }
