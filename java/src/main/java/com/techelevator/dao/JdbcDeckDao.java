@@ -134,22 +134,24 @@ public class JdbcDeckDao {
         return deckTags;
     }
 
-    //TODO: if we expand this to returning a list of deck objects with all tags attached, that will work
-    public List<Integer> getDeckIdByTag(String tag){
-        List<Integer> deckIds = new ArrayList<>();
+
+    public List<Deck> getDeckIdByTag(String tag){
+        List<Deck> decks = new ArrayList<>();
         String sql = "SELECT * FROM deck_tags WHERE tag = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql,tag);
             while (results.next()) {
-                deckIds.add(results.getInt("deck_id"));
+              Deck deck = mapRowToDeck(results);
+              deck.setTags(getTagsByDeckId(deck.getDeckId()));
+              decks.add(deck);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
-        return deckIds;
+        return decks;
     }
 
-    //todo:
+    //todo: I think we need to adjust this so that it is deleting all existing tags under deck id, then adding new tags with deck id..
     public DeckTags updateTagByDeckId(DeckTags deckTags){
         DeckTags updateTags = null;
         String sql = "UPDATE deck_tags SET tag = ? WHERE deck_id = ?";
