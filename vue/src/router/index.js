@@ -6,6 +6,8 @@ import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
+import DeckView from '../views/DeckView.vue';
+import CardView from '../views/CardView.vue';
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -47,7 +49,112 @@ const routes = [
     meta: {
       requiresAuth: false
     }
+  },
+  { 
+    path: "/decks",
+    name: "getAllDecks",
+    component: DeckView, 
+    meta: {
+      requiresAuth: false
+    }
+  }, 
+  { 
+    path: "/decks/{id}",
+    name: "getDecksByDeckId",
+    component: DeckView, 
+    meta: {
+      requiresAuth: false
+    }
+  },
+  { 
+    path: "/decks/{user}/{id}",
+    name: "getAllDecksByUserId",
+    component: DeckView, 
+    meta: {
+      requiresAuth: false
+    }
+  },
+  { 
+    path: "/decks/new",
+    name: "createDeck",
+    component: DeckView, 
+    meta: {
+      requiresAuth: true
+    }
+  },
+  { 
+    path: "/decks/{id}",
+    name: "updateDeck",
+    component: DeckView, 
+    meta: {
+      requiresAuth: true
+    }
+  },
+  { 
+    path: "/decks/{id}",
+    name: "deleteDeck",
+    component: DeckView, 
+    meta: {
+      requiresAuth: true
+    }
+  },
+  { 
+    path: "/decks/admin",
+    name: "getAllAdminDecks",
+    component: DeckView, 
+    meta: {
+      requiresAuth: true
+    }
+  },
+  { 
+    path: "/cards",
+    name: "getAllCards",
+    component: CardView, 
+    meta: {
+      requiresAuth: false
+    }
+  },
+  { 
+    path: "/cards/{id}",
+    name: "getCardById",
+    component: CardView, 
+    meta: {
+      requiresAuth: false    
+    }
+  },
+  { 
+    path: "/cards/new",
+    name: "saveCard",
+    component: CardView, 
+    meta: {
+      requiresAuth: true
+    }
+  },
+    { 
+    path: "/cards/{id}",
+    name: "updateCard",
+    component: CardView, 
+    meta: {
+      requiresAuth: true
+    }
+  },
+  { 
+    path: "/cards/{id}",
+    name: "deleteCard",
+    component: CardView, 
+    meta: {
+      requiresAuth: true
+    }
+  },
+  { 
+    path: "/cards/{tag}",
+    name: "getCardByTags",
+    component: CardView, 
+    meta: {
+      requiresAuth: false
+    }
   }
+
 ];
 
 // Create the router
