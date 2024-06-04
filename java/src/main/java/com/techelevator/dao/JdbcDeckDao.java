@@ -8,11 +8,13 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlInOutParameter;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcDeckDao {
+@Component
+public class JdbcDeckDao implements DeckDao{
 
     //TODO add @markups and authorizations
 
@@ -40,7 +42,7 @@ public class JdbcDeckDao {
 
     public List<Deck> getAllDecks() {
         List<Deck> decks = new ArrayList<>();
-        String sql = "SELECT SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval," +
+        String sql = "SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval," +
                 "is_approved, admin_id FROM decks;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -58,7 +60,7 @@ public class JdbcDeckDao {
 
     public List<Deck> geAllDecksByUserId(int userId) {
         List<Deck> decks = new ArrayList<>();
-        String sql = "SELECT SELECT deck_id, user_id, deck_title, cover_img, deck_description, pending_approval," +
+        String sql = "SELECT deck_id, user_id, deck_title, cover_img, deck_description, pending_approval," +
                 "is_approved, admin_id FROM decks WHERE user_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
@@ -73,9 +75,9 @@ public class JdbcDeckDao {
         return decks;
     }
 
-    public List<Deck> geAllAdminDecks() {
+    public List<Deck> getAllAdminDecks() {
         List<Deck> decks = new ArrayList<>();
-        String sql = "SELECT SELECT deck_id, user_id, deck_title, cover_img, deck_description, pending_approval," +
+        String sql = "SELECT deck_id, user_id, deck_title, cover_img, deck_description, pending_approval," +
                 "is_approved, admin_id FROM decks WHERE is_approved = true;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -91,32 +93,35 @@ public class JdbcDeckDao {
     }
 
     //TODO: add code to add new tags from deck object to the database
-    public Deck createDeck(Deck deckToCreate){
+    public int createDeck(Deck deckToCreate){
         Deck newDeck = null;
-        String sql = "INSERT INTO decks (user_id, deck_title, cover_img, deck_description, pending_approval, " +
-                "is_approved, admin_id) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING deck_id;";
+        String sql = "INSERT INTO decks (user_id, deck_title, cover_img, deck_description) VALUES (?, ?, ?, ?) RETURNING deck_id;";
 
         try{
             int newDeckId = jdbcTemplate.queryForObject(sql, int.class, deckToCreate.getUserId(), deckToCreate.getDeckTitle(),
-                    deckToCreate.getCoverImg(), deckToCreate.getDeckDescription(), deckToCreate.isPendingApproval(),
-                    deckToCreate.isApproved(), deckToCreate.getAdminId());
+                    deckToCreate.getCoverImg(), deckToCreate.getDeckDescription());
             newDeck = getDeckByDeckId(newDeckId);
         }catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
-        return newDeck;
+        return newDeck.getDeckId();
     }
 
     //TODO: Add sql to delete rows from tags before deleting deck
-    public void deleteDeck(int deckId){
+    public boolean deleteDeck(int deckId){
         String sql = "DELETE FROM deck WHERE deck_id = ?";
         jdbcTemplate.update(sql, deckId);
+        boolean isDeleted = false;
+        if (getDeckByDeckId(deckId) == null){
+            isDeleted = true;
+        }
+        return isDeleted;
 
     }
 //TODO: add sql to add tags from updated deck to the database
-    public void updateDeck(Deck updateDeck){
+    public boolean updateDeck(Deck updateDeck){
 
         String sql = "UPDATE decks " +
                 "SET deck_title = ?, cover_img = ?, deck_description =?, pending_approval = ?, is_approved = ?, admin_id =?" +
@@ -130,7 +135,7 @@ public class JdbcDeckDao {
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
-
+return true;
     }
 
 
@@ -197,7 +202,7 @@ public class JdbcDeckDao {
         Deck deck = new Deck();
         deck.setDeckId(rs.getInt("deck_id"));
         deck.setUserId(rs.getInt("user_id"));
-        deck.setDeckTitle(rs.getString("deck_name"));
+        deck.setDeckTitle(rs.getString("deck_title"));
         deck.setCoverImg(rs.getString("cover_img"));
         deck.setDeckDescription(rs.getString("deck_description"));
         deck.setPendingApproval(rs.getBoolean("pending_approval"));

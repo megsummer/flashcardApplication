@@ -46,7 +46,7 @@ public class JdbcDeckTagsDao {
         }
         return deckIds;
     }
-
+/*
     public DeckTags updateTagByDeckId(DeckTags deckTags){
         DeckTags updateTags = null;
         String sql = "UPDATE deck_tags SET tag = ? WHERE deck_id = ?";
@@ -65,7 +65,7 @@ public class JdbcDeckTagsDao {
             return getDeckTagsByDeckId(deckTags.getDeckId());
         }
 
-
+*/
 
 
 //get all deck_ids with tag //get all tags with decks_ids
