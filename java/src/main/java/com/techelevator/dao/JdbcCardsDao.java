@@ -51,8 +51,9 @@ public class JdbcCardsDao implements CardsDao {
     }
 
     @Override
-    public void saveCard(Cards card) {
+    public int saveCard(Cards card) {
         List<String> tag = card.getTags();
+        int newCardId = 0;
         if (tag != null) {
             try {
                 String sql = "INSERT INTO cards_tags (tag)";
@@ -61,18 +62,18 @@ public class JdbcCardsDao implements CardsDao {
                 throw new DaoException("Error saving tag: " + tag, e);
             }
         }
-
         try {
-            String sql = "INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES (?, ?, ?, ?)";
-            jdbcTemplate.update(sql, card.getFrontQuestion(), card.getBackAnswer(), card.getCardImg(), card.getUserId());
+            String sql = "INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES (?, ?, ?, ?) RETURNING card_id;";
+            newCardId = jdbcTemplate.queryForObject(sql, int.class, card.getFrontQuestion(), card.getBackAnswer(), card.getCardImg(), card.getUserId());
         } catch (DataAccessException e) {
             throw new DaoException("Error saving card: " + card, e);
         }
+        return newCardId;
     }
 
     @Override
 //    handle tags
-    public void updateCard(Cards card) {
+    public boolean updateCard(Cards card) {
         List<String> tag = card.getTags();
         if (tag != null) {
             try {
@@ -89,6 +90,7 @@ public class JdbcCardsDao implements CardsDao {
         } catch (DataAccessException e) {
             throw new DaoException("Error updating card: " + card, e);
         }
+        return true;
     }
 
     @Override
@@ -107,13 +109,18 @@ public class JdbcCardsDao implements CardsDao {
     }
 
     @Override
-    public void deleteCard(int cardId) {
+    public boolean deleteCard(int cardId) {
+        boolean isDeleted = false;
+        if ( getCardById(cardId) == null) {
+            isDeleted = true;
+        }
         try {
             String sql = "DELETE FROM cards WHERE card_id=?";
             jdbcTemplate.update(sql, cardId);
         } catch (DataAccessException e) {
             throw new DaoException("Error deleting card with id: " + cardId, e);
         }
+        return isDeleted;
     }
 
     @Override

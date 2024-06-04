@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface CardsDao {
 
-    List<Cards> getAllCards();
+    public List<Cards> getAllCards();
 
-    Cards getCardById(int cardId);
+    public Cards getCardById(int cardId);
 
-    void saveCard(Cards card);
+    public int saveCard(Cards card);
 
-    void updateCard(Cards card);
+    public boolean updateCard(Cards card);
 
-    List<String> getTagsByCardId(int cardId);
+    public List<String> getTagsByCardId(int cardId);
 
-    void deleteCard(int cardId);
+    public boolean deleteCard(int cardId);
 
     List<Cards> getCardByTags(List<String> tags);
 
