@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.dao.CardsDao;
 import com.techelevator.model.Cards;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,9 +72,12 @@ public boolean deleteCard(@PathVariable int cardId){
 
 //getCardByTags
 
+    //Mapper info from: https://stackoverflow.com/questions/36846055/json-string-array-into-java-string-list
     @RequestMapping(path = "/cards/search", method=RequestMethod.PUT)
-public List<Cards> getCardByTags(@RequestBody List<String> tags){
-        return cardsDao.getCardByTags(tags);
+public List<Cards> getCardByTags(@RequestBody String tags) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        List<String> tagsList = mapper.readValue(tags, List.class);
+        return cardsDao.getCardByTags(tagsList);
 }
 
 
