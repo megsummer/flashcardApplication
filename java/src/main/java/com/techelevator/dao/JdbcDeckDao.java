@@ -73,6 +73,23 @@ public class JdbcDeckDao {
         return decks;
     }
 
+    public List<Deck> geAllAdminDecks() {
+        List<Deck> decks = new ArrayList<>();
+        String sql = "SELECT SELECT deck_id, user_id, deck_title, cover_img, deck_description, pending_approval," +
+                "is_approved, admin_id FROM decks WHERE is_approved = true;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while(results.next()) {
+                Deck deck = mapRowToDeck(results);
+                deck.setTags(getTagsByDeckId(deck.getDeckId()));
+                decks.add(deck);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return decks;
+    }
+
     //TODO: add code to add new tags from deck object to the database
     public Deck createDeck(Deck deckToCreate){
         Deck newDeck = null;
@@ -116,6 +133,8 @@ public class JdbcDeckDao {
 
     }
 
+
+
 //copied these over from the deckTags dao, should prevent us having to instantiate a deck-tag object.
 
 
@@ -134,7 +153,8 @@ public class JdbcDeckDao {
         return deckTags;
     }
 
-
+//TODO: if we re-instate deck tags, adjust this to intake a string of tags and loop
+// through each tag and add responding decks to a list, excluding duplicates
     public List<Deck> getDeckIdByTag(String tag){
         List<Deck> decks = new ArrayList<>();
         String sql = "SELECT * FROM deck_tags WHERE tag = ?;";
@@ -151,7 +171,7 @@ public class JdbcDeckDao {
         return decks;
     }
 
-    //todo: I think we need to adjust this so that it is deleting all existing tags under deck id, then adding new tags with deck id..
+  /*  //todo: I think we need to adjust this so that it is deleting all existing tags under deck id, then adding new tags with deck id..
     public DeckTags updateTagByDeckId(DeckTags deckTags){
         DeckTags updateTags = null;
         String sql = "UPDATE deck_tags SET tag = ? WHERE deck_id = ?";
@@ -168,7 +188,7 @@ public class JdbcDeckDao {
             throw new DaoException("no rows effected");
         }
         return getTagsByDeckId(deckTags.getDeckId());
-    }
+    }*/
 
 
 
