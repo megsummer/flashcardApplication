@@ -44,15 +44,19 @@ public class CardsController {
 
 
 //saveCard
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @RequestMapping(path = "/cards/new", method = RequestMethod.POST)
-//    public Cards saveCard(@Valid @RequestBody Cards card) {
-//        return cardsDao.saveCard(card);
-//    }
-//^^ COME BACK TO THIS ONE ^^
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/cards/new", method = RequestMethod.POST)
+    public int saveCard(@Valid @RequestBody Cards card) {
+        return cardsDao.saveCard(card);
+    }
+
 
 
 //updateCard
+    @RequestMapping(path = "", method =RequestMethod.PUT)
+    public boolean updateCard (@RequestBody Cards updateCard, @PathVariable int cardId) {
+        return cardsDao.updateCard(updateCard);
+    }
 
 
 
