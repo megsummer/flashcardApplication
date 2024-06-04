@@ -1,26 +1,29 @@
 <template>
-  <div id="login">
-    <form v-on:submit.prevent="login">
-      <h1 >Please Sign In</h1>
-      <div role="alert" v-if="invalidCredentials">
+  <div class = 'flexed'>
+  <div id="login" class = login-container>
+    <form class="login-form" v-on:submit.prevent="login">
+      <h1 class="login-title">Please Log In </h1>
+      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
-      <div role="alert" v-if="this.$route.query.registration">
+      <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">
         Thank you for registering, please sign in.
       </div>
       <div class="form-input-group">
-        <label for="username">Username</label>
+        <label for="username" class="bold-label">USERNAME:</label>
         <input type="text" id="username" v-model="user.username" required autofocus />
       </div>
       <div class="form-input-group">
-        <label for="password">Password</label>
+        <label for="password" class="bold-label">PASSWORD:</label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
-      <button type="submit">Sign in</button>
-      <p>
+      <button class="btn btn-primary" type="submit">SIGN IN</button>
+      <p class="register-link">
       <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
   </div>
+</div>
+  
 </template>
 
 <script>
@@ -61,10 +64,70 @@ export default {
 </script>
 
 <style scoped>
-.form-input-group {
-  margin-bottom: 1rem;
+.login-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  background-color: white;
+
 }
-label {
-  margin-right: 0.5rem;
+.login-form{
+  background: rgb(196, 196, 196);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;  
+  text-align: center;
 }
+
+.login-title{
+  margin-bottom: 1.5rem;
+  font-size: 30px;
+  text-align: center;
+}
+.form-input-group{
+  margin-bottom: 10px;
+}
+
+label{
+  display: block;
+  margin-bottom: 2.5px;
+}
+.bold-label{
+  font-weight: bold;
+}
+
+button.btn{
+
+  width: 170px;
+  padding: 2px;
+  height: 30px;
+  border: black;
+  background-color: rgb(241, 214, 11);
+  color: black;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color .3s ease;
+  font-weight: bold;  
+}
+
+button.btn:hover{
+  background-color: yellow;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+}
+.register-link a{
+  color: blue;
+}
+.register-link a:hover{
+  text-decoration: dashed;
+}
+
+
 </style>

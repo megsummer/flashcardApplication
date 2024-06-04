@@ -1,24 +1,24 @@
 <template>
-   <div id="register" class="register-container">
-    <form class="register-form" v-on:submit.prevent="register">
-      <h1 class="register-title">Create Account</h1>
+  <div id="register" class="text-center">
+    <form v-on:submit.prevent="register">
+      <h1>Create Account</h1>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
       <div class="form-input-group">
-        <label for="username" class="bold-label">USERNAME:</label>
+        <label for="username">Username</label>
         <input type="text" id="username" v-model="user.username" required autofocus />
       </div>
       <div class="form-input-group">
-        <label for="password" class="bold-label">PASSWORD:</label>
+        <label for="password">Password</label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
       <div class="form-input-group">
-        <label for="confirmPassword" class="bold-label">Confirm Password</label>
+        <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
-      <button type="submit" class="btn">Create Account</button>
-      <p class="login-link"><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
+      <button type="submit">Create Account</button>
+      <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
   </div>
 </template>
@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style scoped>
-.register-container{
+.login-container{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,7 +81,7 @@ export default {
   background-color: white;
 
 }
-.register-form{
+.login-form{
   background: rgb(196, 196, 196);
   padding: 2rem;
   border-radius: 10px;
@@ -91,7 +91,7 @@ export default {
   text-align: center;
 }
 
-.register-title{
+.login-title{
   margin-bottom: 1.5rem;
   font-size: 30px;
   text-align: center;
@@ -127,14 +127,14 @@ button.btn:hover{
   background-color: yellow;
 }
 
-.login-link {
+.register-link {
   text-align: center;
   margin-top: 20px;
 }
-.login-link a{
+.register-link a{
   color: blue;
 }
-.login-link a:hover{
+.register-link a:hover{
   text-decoration: dashed;
 }
 
