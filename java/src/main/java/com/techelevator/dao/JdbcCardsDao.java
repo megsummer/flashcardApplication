@@ -5,6 +5,7 @@ import com.techelevator.model.Cards;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SqlRowSetResultSetExtractor;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import org.springframework.jdbc.core.RowMapper;
@@ -53,6 +54,15 @@ public class JdbcCardsDao implements CardsDao {
 
     @Override
     public void saveCard(Cards card) {
+        if (tag != null) then {
+            try {
+                String sql = "INSERT INTO cards_tags (tag)";
+                jdbcTemplate.update(sql, cards_tags.tag());
+            } catch (DataAccessException e) {
+                throw new DaoException("Error saving tag: " + tag, e);
+            }
+        }
+
         try {
             String sql = "INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES (?, ?, ?, ?)";
             jdbcTemplate.update(sql, card.getFrontQuestion(), card.getBackAnswer(), card.getCardImg(), card.getUserId());
@@ -64,12 +74,36 @@ public class JdbcCardsDao implements CardsDao {
     @Override
 //    handle tags
     public void updateCard(Cards card) {
+        if (tag != null) then {
+            try {
+                String sql = "UPDATE INTO cards_tags (tag)";
+                jdbcTemplate.update(sql, cards_tags.tag());
+            } catch (DataAccessException e) {
+                throw new DaoException("Error saving tag: " + tag, e);
+            }
+        }
+
         try {
             String sql = "UPDATE cards SET front_question=?, back_answer=?, card_img=?, user_id=? WHERE card_id=?";
             jdbcTemplate.update(sql, card.getFrontQuestion(), card.getBackAnswer(), card.getCardImg(), card.getUserId(), card.getCardId());
         } catch (DataAccessException e) {
             throw new DaoException("Error updating card: " + card, e);
         }
+    }
+
+    @Override
+    public List<String> getTagsByCardId(int cardId) {
+        List<String> cardTags = new ArrayList<>();
+        String sql = "SELECT * FROM card_tags WHERE card_id = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, cardId);
+            while (results.next()) {
+                cardTags.add(results.getString("tag"));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return cardTags;
     }
 
     @Override
