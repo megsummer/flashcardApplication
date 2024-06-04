@@ -111,24 +111,20 @@ public class JdbcCardsDao implements CardsDao {
 
     @Override
     public boolean deleteCard(int cardId) {
-<<<<<<< HEAD
+
         boolean isDeleted = false;
         if ( getCardById(cardId) == null) {
             isDeleted = true;
         }
-=======
->>>>>>> c78922a5d28b63bd7860836753f5da236cd8c7dc
         try {
             String sql = "DELETE FROM cards WHERE card_id=?";
             jdbcTemplate.update(sql, cardId);
         } catch (DataAccessException e) {
             throw new DaoException("Error deleting card with id: " + cardId, e);
-<<<<<<< HEAD
+
         }
         return isDeleted;
-=======
-        }return true;
->>>>>>> c78922a5d28b63bd7860836753f5da236cd8c7dc
+
     }
 
     @Override
