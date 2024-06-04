@@ -15,6 +15,8 @@ public interface CardsDao {
 
     void updateCard(Cards card);
 
+    List<String> getTagsByCardId(int cardId);
+
     void deleteCard(int cardId);
 
     List<Cards> getCardByTags(List<String> tags);
