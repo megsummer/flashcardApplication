@@ -6,12 +6,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+
+
 public class JdbcCardsDao implements CardsDao {
 
     private final JdbcTemplate jdbcTemplate;
@@ -27,7 +30,10 @@ public class JdbcCardsDao implements CardsDao {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             List<Cards> cardsList = new ArrayList<>();
             while (results.next()) {
-                cardsList.add(mapRowToCard(results));
+                Cards card = mapRowToCard(results);
+                card.setTags(getTagsByCardId(card.getCardId()));
+                cardsList.add(card);
+
             }
             return cardsList;
         } catch (DataAccessException e) {
@@ -41,7 +47,10 @@ public class JdbcCardsDao implements CardsDao {
             String sql = "SELECT * FROM cards WHERE card_id = ?";
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, cardId);
                 if(results.next()) {
-                    return mapRowToCard(results);
+                    Cards card = mapRowToCard(results);
+                    card.setTags(getTagsByCardId(card.getCardId()));
+                    return card;
+
                 } else {
                     return null; // or throw an exception if needed
                 }
@@ -75,8 +84,6 @@ public class JdbcCardsDao implements CardsDao {
     }
 
     @Override
-
-
     public boolean updateCard(Cards card) {
         List<String> tags = card.getTags();
 
@@ -117,8 +124,6 @@ public class JdbcCardsDao implements CardsDao {
         return cardTags;
     }
 
-    //TODO: add sql request to delete all tags with card id before running the delete
-
     @Override
     public boolean deleteCard(int cardId) {
 
@@ -157,8 +162,10 @@ public class JdbcCardsDao implements CardsDao {
             String sql = "SELECT * FROM cards WHERE card_id IN (SELECT card_id FROM cards_tags WHERE tag = ?);";
             try {
                 SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tag);
+
                 while (results.next()) {
                     Cards card = mapRowToCard(results);
+                    card.setTags(getTagsByCardId(card.getCardId()));
                     cards.add(card);
                 }
             } catch (CannotGetJdbcConnectionException e) {

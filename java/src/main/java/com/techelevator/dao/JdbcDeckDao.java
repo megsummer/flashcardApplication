@@ -8,12 +8,14 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlInOutParameter;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+
 public class JdbcDeckDao implements DeckDao{
 
     //TODO add @markups and authorizations
@@ -23,7 +25,8 @@ public class JdbcDeckDao implements DeckDao{
     public JdbcDeckDao(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
-
+@Override
+@PreAuthorize("isAuthenticated()")
     public Deck getDeckByDeckId(int deckId){
         Deck deck = null;
         String sql = "SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval, " +
@@ -39,7 +42,8 @@ public class JdbcDeckDao implements DeckDao{
             throw new DaoException("Unable to connect to server or database", e);
         }return deck;
     }
-
+@Override
+@PreAuthorize("isAuthenticated()")
     public List<Deck> getAllDecks() {
         List<Deck> decks = new ArrayList<>();
         String sql = "SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval," +
@@ -57,7 +61,8 @@ public class JdbcDeckDao implements DeckDao{
         return decks;
     }
 
-
+@Override
+@PreAuthorize("isAuthenticated()")
     public List<Deck> geAllDecksByUserId(int userId) {
         List<Deck> decks = new ArrayList<>();
         String sql = "SELECT deck_id, user_id, deck_title, cover_img, deck_description, pending_approval," +
@@ -74,6 +79,7 @@ public class JdbcDeckDao implements DeckDao{
         }
         return decks;
     }
+@Override
 
     public List<Deck> getAllAdminDecks() {
         List<Deck> decks = new ArrayList<>();
@@ -91,7 +97,8 @@ public class JdbcDeckDao implements DeckDao{
         }
         return decks;
     }
-
+@Override
+@PreAuthorize("isAuthenticated()")
     //TODO: add code to add new tags from deck object to the database
     public int createDeck(Deck deckToCreate){
         Deck newDeck = null;
@@ -108,7 +115,8 @@ public class JdbcDeckDao implements DeckDao{
         }
         return newDeck.getDeckId();
     }
-
+@Override
+@PreAuthorize("isAuthenticated()")
     //TODO: Add sql to delete rows from tags before deleting deck
     public boolean deleteDeck(int deckId){
         String sql = "DELETE FROM deck WHERE deck_id = ?";
@@ -120,6 +128,9 @@ public class JdbcDeckDao implements DeckDao{
         return isDeleted;
 
     }
+
+    @Override
+    @PreAuthorize("isAuthenticated()")
 //TODO: add sql to add tags from updated deck to the database
     public boolean updateDeck(Deck updateDeck){
 
@@ -140,10 +151,8 @@ return true;
 
 
 
-//copied these over from the deckTags dao, should prevent us having to instantiate a deck-tag object.
-
-
-
+@Override
+@PreAuthorize("isAuthenticated()")
     public List<String> getTagsByDeckId(int deckId){
         List<String> deckTags = new ArrayList<>();
         String sql = "SELECT * FROM deck_tags WHERE deck_id = ?;";
@@ -157,7 +166,8 @@ return true;
         }
         return deckTags;
     }
-
+@Override
+@PreAuthorize("isAuthenticated()")
 //TODO: if we re-instate deck tags, adjust this to intake a string of tags and loop
 // through each tag and add responding decks to a list, excluding duplicates
     public List<Deck> getDeckIdByTag(String tag){

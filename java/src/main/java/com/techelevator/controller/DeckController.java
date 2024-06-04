@@ -4,11 +4,12 @@ import com.techelevator.dao.DeckDao;
 import com.techelevator.model.Deck;
 import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-
+@CrossOrigin
 public class DeckController {
     private final String BASE_URL = "/decks";
 
@@ -40,6 +41,8 @@ public class DeckController {
         return deckDao.getAllAdminDecks();
     }
 
+
+ @ResponseStatus(HttpStatus.CREATED)
 @RequestMapping(path = BASE_URL + "/new", method = RequestMethod.POST)
     public int createDeck(@RequestBody Deck deckToCreate){
         return deckDao.createDeck(deckToCreate);
