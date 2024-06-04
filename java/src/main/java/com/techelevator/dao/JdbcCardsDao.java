@@ -73,6 +73,7 @@ public class JdbcCardsDao implements CardsDao {
 
     @Override
 //    handle tags
+
     public boolean updateCard(Cards card) {
         List<String> tag = card.getTags();
         if (tag != null) {

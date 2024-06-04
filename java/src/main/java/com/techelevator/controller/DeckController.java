@@ -51,13 +51,14 @@ public class DeckController {
      }
 
 @RequestMapping(path = BASE_URL + "/{id}", method = RequestMethod.PUT)
-     public boolean updateDeck(@RequestBody Deck updateDeck){
+     public boolean updateDeck(@RequestBody Deck updateDeck, @PathVariable int id){
         return deckDao.updateDeck(updateDeck);
      }
 
-
-
-   /* public List<String> getTagsByDeckId(int deckId){}
-    public List<Deck> getDeckIdByTag(String tag){}
-}*/
+    //use only if adding deck tags
+   // public List<String> getTagsByDeckId(int deckId){
+      //use only if adding deck tags
+    //public List<Deck> getDeckIdByTag(String tag){}
+    //use only if adding deck tags
+    //public DeckTags updateTagByDeckId(DeckTags deckTags)
 }
