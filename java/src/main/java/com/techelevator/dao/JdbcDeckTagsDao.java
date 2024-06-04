@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.DeckTags;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -47,23 +48,24 @@ public class JdbcDeckTagsDao {
         return deckIds;
     }
 
-    public DeckTags updateTagByDeckId(DeckTags deckTags){
-        DeckTags updateTags = null;
-        String sql = "UPDATE deck_tags SET tag = ? WHERE deck_id = ?";
-        try {
-            int numberOfRows = jdbcTemplate.update(sql, deckTags.getDeckId(), deckTags.getTag())
-            if (numberOfRows == 0) {
-                throw new DaoException("Zero rows updated, expected at least one");
-            }
-            } catch (CannotGetJdbcConnectionException e) {
-                throw new DaoException("unable to connect", e);
-            } catch (DataIntegrityViolationException e) {
-                throw new DaoException("data integrity violation", e);
-            } catch (DaoException e) {
-                throw new DaoException("no rows effected");
-            }
-            return getDeckTagsByDeckId(deckTags.getDeckId());
-        }
+    // need a return
+//    public DeckTags updateTagByDeckId(DeckTags deckTags){
+//        DeckTags updateTags = null;
+//        String sql = "UPDATE deck_tags SET tag = ? WHERE deck_id = ?";
+//        try {
+//            int numberOfRows = jdbcTemplate.update(sql, deckTags.getDeckId(), deckTags.getTag())
+//            if (numberOfRows == 0) {
+//                throw new DaoException("Zero rows updated, expected at least one");
+//            }
+//            } catch (CannotGetJdbcConnectionException e) {
+//                throw new DaoException("unable to connect", e);
+//            } catch (DataIntegrityViolationException e) {
+//                throw new DaoException("data integrity violation", e);
+//            } catch (DaoException e) {
+//                throw new DaoException("no rows effected");
+//            }
+//            return ();
+//        }
 
 
 
