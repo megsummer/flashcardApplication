@@ -32,7 +32,7 @@ public class CardsController {
 
 
 // getCardById
-    @RequestMapping(path ="/cards/{id}", method = RequestMethod.GET)
+    @RequestMapping(path ="/cards/{cardId}", method = RequestMethod.GET)
     public Cards getCards(@PathVariable int cardId) {
         Cards cards = cardsDao.getCardById(cardId);
         if (cards == null) {
@@ -53,7 +53,7 @@ public class CardsController {
 
 
 //updateCard
-    @RequestMapping(path = "/cards/{id}", method =RequestMethod.PUT)
+    @RequestMapping(path = "/cards/{cardId}", method =RequestMethod.PUT)
     public boolean updateCard (@RequestBody Cards updateCard, @PathVariable int cardId) {
         return cardsDao.updateCard(updateCard);
     }
@@ -63,7 +63,7 @@ public class CardsController {
 
 
 //deleteCard
-@RequestMapping(path = "/cards/{id}", method = RequestMethod.DELETE)
+@RequestMapping(path = "/cards/{cardId}", method = RequestMethod.DELETE)
 public boolean deleteCard(@PathVariable int cardId){
         return cardsDao.deleteCard(cardId);
 }

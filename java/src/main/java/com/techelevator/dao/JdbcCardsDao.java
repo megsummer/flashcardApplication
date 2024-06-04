@@ -51,6 +51,8 @@ public class JdbcCardsDao implements CardsDao {
     }
 
     @Override
+
+    //TODO: update sql for tags to insert a new line in cards_tags table for each tag
     public int saveCard(Cards card) {
         List<String> tag = card.getTags();
         int newCardId = 0;
@@ -72,7 +74,7 @@ public class JdbcCardsDao implements CardsDao {
     }
 
     @Override
-//    handle tags
+//    TODO: correct the sql request to first remove all cards/tags, then insert new lines on card_tags table for each new tags
 
     public boolean updateCard(Cards card) {
         List<String> tag = card.getTags();
@@ -109,6 +111,8 @@ public class JdbcCardsDao implements CardsDao {
         return cardTags;
     }
 
+    //TODO: add sql request to delete all tags with card id before running the delete
+
     @Override
     public boolean deleteCard(int cardId) {
 
@@ -131,7 +135,7 @@ public class JdbcCardsDao implements CardsDao {
     public List<Cards> getCardByTags(List<String> tags) {
         List<Cards> cards = new ArrayList<>();
         for (String tag : tags) {
-            String sql = "SELECT * FROM cards WHERE card_id IN (SELECT card_id FROM card_tags WHERE tag = ?)";
+            String sql = "SELECT * FROM cards WHERE card_id IN (SELECT card_id FROM cards_tags WHERE tag = ?);";
             try {
                 SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tag);
                 while (results.next()) {
