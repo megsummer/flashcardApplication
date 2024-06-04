@@ -13,6 +13,8 @@ import java.util.List;
 
 public class JdbcDeckDao {
 
+    //TODO add @markups and authorizations
+
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcDeckDao(JdbcTemplate jdbcTemplate){
@@ -24,9 +26,10 @@ public class JdbcDeckDao {
         String sql = "SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval, " +
                 "is_approved, admin_id FROM decks WHERE deck_id = ?;";
         try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, deckId);
+            SqlRowSet results = jdbcTemplate.queryForObject(sql, deckId);
             if(results.next()){
                 deck = mapRowToDeck(results);
+               // deck.setTags(getTagsByDeckId(deckId));
             }
         }catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
