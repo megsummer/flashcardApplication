@@ -74,7 +74,8 @@ public class JdbcCardsDao implements CardsDao {
     @Override
 //    handle tags
     public void updateCard(Cards card) {
-        if (tag != null) then {
+
+        if (tag != null) {
             try {
                 String sql = "UPDATE INTO cards_tags (tag)";
                 jdbcTemplate.update(sql, cards_tags.tag());

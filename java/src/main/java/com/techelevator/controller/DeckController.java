@@ -51,7 +51,7 @@ public class DeckController {
      }
 
 @RequestMapping(path = BASE_URL + "/{id}", method = RequestMethod.PUT)
-     public boolean updateDeck(@RequestBody Deck updateDeck){
+     public boolean updateDeck(@RequestBody Deck updateDeck, @PathVariable int id){
         return deckDao.updateDeck(updateDeck);
      }
 
