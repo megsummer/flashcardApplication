@@ -53,7 +53,7 @@ public class CardsController {
 
 
 //updateCard
-    @RequestMapping(path = "", method =RequestMethod.PUT)
+    @RequestMapping(path = "/cards/{id}", method =RequestMethod.PUT)
     public boolean updateCard (@RequestBody Cards updateCard, @PathVariable int cardId) {
         return cardsDao.updateCard(updateCard);
     }
@@ -68,7 +68,7 @@ public boolean deleteCard(@PathVariable int cardId){
         return cardsDao.deleteCard(cardId);
 }
 
-//getCardByTags -- maybe TBD
+//getCardByTags
 
     @RequestMapping(path = "/cards/search", method=RequestMethod.PUT)
 public List<Cards> getCardByTags(@RequestBody List<String> tags){
