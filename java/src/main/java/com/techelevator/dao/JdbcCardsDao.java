@@ -109,13 +109,13 @@ public class JdbcCardsDao implements CardsDao {
     }
 
     @Override
-    public void deleteCard(int cardId) {
+    public boolean deleteCard(int cardId) {
         try {
             String sql = "DELETE FROM cards WHERE card_id=?";
             jdbcTemplate.update(sql, cardId);
         } catch (DataAccessException e) {
             throw new DaoException("Error deleting card with id: " + cardId, e);
-        }
+        }return true;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.CardsDao;
 import com.techelevator.model.Cards;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -58,12 +59,17 @@ public class CardsController {
 
 
 //deleteCard
-
-
+@RequestMapping(path = "/cards/{id}", method = RequestMethod.DELETE)
+public boolean deleteCard(@PathVariable int cardId){
+        return cardsDao.deleteCard(cardId);
+}
 
 //getCardByTags -- maybe TBD
 
-
+    @RequestMapping(path = "/cards/search", method=RequestMethod.PUT)
+public List<Cards> getCardByTags(@RequestBody List<String> tags){
+        return cardsDao.getCardByTags(tags);
+}
 
 
 }
