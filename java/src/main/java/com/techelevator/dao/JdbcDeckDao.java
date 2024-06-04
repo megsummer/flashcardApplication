@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Deck;
+import com.techelevator.model.DeckTags;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,22 +21,23 @@ public class JdbcDeckDao {
     public JdbcDeckDao(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
-    //TODO: incorporate the get tags method so list of tags is added to deck object before it is returned
+
     public Deck getDeckByDeckId(int deckId){
         Deck deck = null;
         String sql = "SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval, " +
                 "is_approved, admin_id FROM decks WHERE deck_id = ?;";
         try {
-            SqlRowSet results = jdbcTemplate.queryForObject(sql, deckId);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, deckId);
             if(results.next()){
                 deck = mapRowToDeck(results);
-               // deck.setTags(getTagsByDeckId(deckId));
+                deck.setTags(getTagsByDeckId(deck.getDeckId()));
+
             }
         }catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }return deck;
     }
-    //TODO: incorporate the get tags method so list of tags is added to each deck object before list is returned
+
     public List<Deck> getAllDecks() {
         List<Deck> decks = new ArrayList<>();
         String sql = "SELECT SELECT deck_id, user_id, deck_title, deck_description, cover_img, pending_approval," +
@@ -44,6 +46,7 @@ public class JdbcDeckDao {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while(results.next()) {
                 Deck deck = mapRowToDeck(results);
+                deck.setTags(getTagsByDeckId(deck.getDeckId()));
                 decks.add(deck);
             }
             } catch (CannotGetJdbcConnectionException e) {
@@ -52,7 +55,6 @@ public class JdbcDeckDao {
         return decks;
     }
 
-    //TODO: incorporate the get tags method so list of tags is added to each deck object before list is returned
 
     public List<Deck> geAllDecksByUserId(int userId) {
         List<Deck> decks = new ArrayList<>();
@@ -62,6 +64,7 @@ public class JdbcDeckDao {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while(results.next()) {
                 Deck deck = mapRowToDeck(results);
+                deck.setTags(getTagsByDeckId(deck.getDeckId()));
                 decks.add(deck);
             }
         } catch (CannotGetJdbcConnectionException e) {
@@ -111,6 +114,58 @@ public class JdbcDeckDao {
             throw new DaoException("Data integrity violation", e);
         }
 
+    }
+
+//copied these over from the deckTags dao, should prevent us having to instantiate a deck-tag object.
+
+
+
+    public List<String> getTagsByDeckId(int deckId){
+        List<String> deckTags = new ArrayList<>();
+        String sql = "SELECT * FROM deck_tags WHERE deck_id = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,deckId);
+            while (results.next()) {
+                deckTags.add(results.getString("tag"));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return deckTags;
+    }
+
+    //TODO: if we expand this to returning a list of deck objects with all tags attached, that will work
+    public List<Integer> getDeckIdByTag(String tag){
+        List<Integer> deckIds = new ArrayList<>();
+        String sql = "SELECT * FROM deck_tags WHERE tag = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,tag);
+            while (results.next()) {
+                deckIds.add(results.getInt("deck_id"));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return deckIds;
+    }
+
+    //todo:
+    public DeckTags updateTagByDeckId(DeckTags deckTags){
+        DeckTags updateTags = null;
+        String sql = "UPDATE deck_tags SET tag = ? WHERE deck_id = ?";
+        try {
+            int numberOfRows = jdbcTemplate.update(sql, deckTags.getDeckId(), deckTags.getTag());
+            if (numberOfRows == 0) {
+                throw new DaoException("Zero rows updated, expected at least one");
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("unable to connect", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("data integrity violation", e);
+        } catch (DaoException e) {
+            throw new DaoException("no rows effected");
+        }
+        return getTagsByDeckId(deckTags.getDeckId());
     }
 
 
