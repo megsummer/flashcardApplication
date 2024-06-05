@@ -54,9 +54,7 @@ const routes = [
     path: "/decks",
     name: "getAllDecks",
     component: DeckView, 
-    meta: {
-      requiresAuth: false
-    }
+   
   }, 
   { 
     path: "/decks/{id}",

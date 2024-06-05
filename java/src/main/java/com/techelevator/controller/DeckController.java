@@ -27,7 +27,7 @@ public class DeckController {
     public Deck getDeckByDeckId(@PathVariable int deckId) {
         return deckDao.getDeckByDeckId(deckId);
     }
-    @PreAuthorize("isAuthenticated()")
+ //   @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = BASE_URL, method = RequestMethod.GET)
     public List<Deck> getAllDecks() {
         return deckDao.getAllDecks();
