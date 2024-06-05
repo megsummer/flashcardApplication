@@ -22,33 +22,25 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
-    meta: {
-      requiresAuth: true
-    }
+    
   },
   {
     path: "/login",
     name: "login",
     component: LoginView,
-    meta: {
-      requiresAuth: false
-    }
+    
   },
   {
     path: "/logout",
     name: "logout",
     component: LogoutView,
-    meta: {
-      requiresAuth: false
-    }
+    
   },
   {
     path: "/register",
     name: "register",
     component: RegisterView,
-    meta: {
-      requiresAuth: false
-    }
+    
   },
   { 
     path: "/decks",
@@ -60,97 +52,73 @@ const routes = [
     path: "/decks/{id}",
     name: "getDecksByDeckId",
     component: DeckView, 
-    meta: {
-      requiresAuth: false
-    }
+    
   },
   { 
     path: "/decks/user/{id}",
     name: "getAllDecksByUserId",
     component: DeckView, 
-    meta: {
-      requiresAuth: false
-    }
+    
   },
   { 
     path: "/decks/new",
     name: "createDeck",
     component: DeckView, 
-    meta: {
-      requiresAuth: true
-    }
+    
   },
   { 
     path: "/decks/{id}",
     name: "updateDeck",
     component: DeckView, 
-    meta: {
-      requiresAuth: true
-    }
+   
   },
   { 
     path: "/decks/{id}",
     name: "deleteDeck",
     component: DeckView, 
-    meta: {
-      requiresAuth: true
-    }
+    
   },
   { 
     path: "/decks/admin",
     name: "getAllAdminDecks",
     component: DeckView, 
-    meta: {
-      requiresAuth: false
-    }
+   
   },
   { 
     path: "/cards",
     name: "getAllCards",
     component: CardView, 
-    meta: {
-      requiresAuth: false
-    }
+    
   },
   { 
     path: "/cards/{id}",
     name: "getCardById",
     component: CardView, 
-    meta: {
-      requiresAuth: false    
-    }
+    
   },
   { 
     path: "/cards/new",
     name: "saveCard",
     component: CardView, 
-    meta: {
-      requiresAuth: true
-    }
+   
   },
     { 
     path: "/cards/{id}",
     name: "updateCard",
     component: CardView, 
-    meta: {
-      requiresAuth: true
-    }
+    
   },
   { 
     path: "/cards/{id}",
     name: "deleteCard",
     component: CardView, 
-    meta: {
-      requiresAuth: true
-    }
+    
   },
   { 
     path: "/cards/{tag}",
     name: "getCardByTags",
     component: CardView, 
-    meta: {
-      requiresAuth: false
-    }
+    
   }
 
 ];

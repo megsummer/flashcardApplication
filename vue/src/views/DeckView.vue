@@ -6,20 +6,15 @@
 
 
   <div v-else>
-    See All Decks:
-    {{decks}}
+   View All Decks
 
-    <div class = "deck" v-for="deck in decks" :key="deck.deckId">
-
+    <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
+          v-bind:to="{name: 'getDecksByDeckId'}">
+          <DeckIcon v-bind:deck="deck"/> 
+  </router-link>
    
-    hi
 
-  <div id = "deck-icons" class="deck-icons">
-    <DeckIcon v-bind:deck="deck"/>
-  
-  
-  </div>
-</div>
+
     
   </div>
 </template>
@@ -27,6 +22,7 @@
 <script>
 import DeckService from '../services/DeckServices';
 import DeckIcon from '../components/DeckIcon.vue';
+
 
 export default {
   components: {
@@ -41,6 +37,17 @@ export default {
     };
   },
   methods: {
+
+    handleError(error, verb) {
+      if (error.response) {
+        this.$store.commit('SET_NOTIFICATION',
+          "Error " + verb + " deck list. Response received was '" + error.response.statusText + "'.");
+      } else if (error.request) {
+        this.$store.commit('SET_NOTIFICATION', "Error " + verb + " deck list. Server could not be reached.");
+      } else {
+        this.$store.commit('SET_NOTIFICATION', "Error " + verb + " deck list. Request could not be created.");
+      }
+    },
 
     retrieveDecks(){
       DeckService.getAllDecks().then(response => {

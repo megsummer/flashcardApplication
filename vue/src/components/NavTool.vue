@@ -1,12 +1,9 @@
  <template>
     <div class="nav-tool">
-      <router-link to="" class="nav-button my-decks">My Decks</router-link>
-      <router-link to="" class="nav-button new-deck">Start a New Deck</router-link>
-      <router-link to="" class="nav-button search-cards">Search For Cards</router-link>
-      <router-link to="" class="nav-button admin-decks">Admin Decks</router-link>
-
-      
-      <router-link to="CardView" class="nav-button CardView">card</router-link>
+      <router-link class="nav-button" v-bind:to="{name: 'getAllCards'}">Card View</router-link>
+      <router-link v-bind:to="{name: 'createDecks'}">Create Deck</router-link>
+      <router-link v-bind:to="{name: 'getAllDecks'}">All Decks</router-link>
+      <router-link v-bind:to="{name: ''}">AllDecks</router-link>
     </div>
   </template>
   
@@ -30,8 +27,6 @@ export default {
   margin: 10px;
   padding: 35px;
   border-radius: 25px;
-
-
 }
 .nav-button:hover{
   background-color: #ffc107;

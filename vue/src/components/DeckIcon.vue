@@ -1,8 +1,10 @@
 <template>
-<h1>{{ deck.title }}</h1>
-<h2>{{ deck.description }}</h2>
-<h3>{{ card.tags }}</h3>
-DECK ICONS
+    <div id="deck" class="deck">
+<p id="title" class="title">{{ deck.deckTitle }}</p>
+<p id="description" class="description">{{ deck.deckDescription }}</p>
+<img src=""/>
+</div>
+
 </template>
 
 <script>
@@ -29,3 +31,29 @@ export default {
 
 
 </script>
+<style>
+a{
+    text-decoration: none;
+}
+
+
+.deck{
+  background-color: #1616161e;
+  color: black;
+  text-align: center;
+  text-transform: none;
+  text-decoration: none;
+  margin: 10px;
+  padding: 35px;
+  border-radius: 25px;
+  width: 100px;
+  height: 100px;
+}
+.title{
+
+
+}
+.description{
+
+}
+</style>
