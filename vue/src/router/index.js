@@ -103,7 +103,7 @@ const routes = [
     name: "getAllAdminDecks",
     component: DeckView, 
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   { 
