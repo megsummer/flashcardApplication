@@ -5,6 +5,12 @@
 
 rest of div
  
+
+<nav></nav>
+
+
+
+  <div>
     
   </div>
 </template>
