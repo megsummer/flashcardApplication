@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import NavTool from '../components/NavTool.vue';
+import NavTool from '@/components/NavTool.vue';
 import CardServices from '../services/CardServices.js';
 
 export default {
