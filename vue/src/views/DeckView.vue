@@ -1,18 +1,26 @@
 <template>
+<div>here is the div
 
-/**
-flex box
-<nav></nav>
+  <nav>here is the nav</nav>
 
-
- */
-  <div>
+rest of div
+ 
     
   </div>
 </template>
 
 <script>
+import DeckServices from '../services/DeckServices';
 export default {
+  components: {},
+  data() {
+    return {
+
+    };
+  },
+  methods: {
+
+  },
 
 }
 </script>
