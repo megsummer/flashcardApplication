@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div class="nav-tool">
       <router-link to="" class="nav-button my-decks">My Decks</router-link>
       <router-link to="" class="nav-button new-deck">Start a New Deck</router-link>
