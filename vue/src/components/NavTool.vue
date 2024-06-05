@@ -1,13 +1,12 @@
 <template>
-    <div class="nav-tool">
-      <router-link class="nav-button" v-bind:to="{name: 'getAllCards'}">Card View</router-link>
-      <router-link v-bind:to="{name: 'createDecks'}">Create Deck</router-link>
-      <router-link v-bind:to="{name: 'getAllDecks'}">All Decks</router-link>
-      <router-link v-bind:to="{name: ''}">AllDecks</router-link>
-    </div>
-  </template>
-  
-  <script>
+  <div class="nav-tool">
+    <router-link class="nav-button" v-bind:to="{ name: 'getAllCards' }">Card View</router-link>
+    <router-link class="nav-button" v-bind:to="{ name: 'createDeck' }">Create Deck</router-link>
+    <router-link class="nav-button" v-bind:to="{ name: 'getAllDecks' }">All Decks</router-link>
+  </div>
+</template>
+
+<script>
 export default {
   name: 'NavTool'
 }
@@ -20,7 +19,7 @@ export default {
   width: 200px;
 }
 
-.nav-button{
+.nav-button {
   background-color: #ffd966;
   color: black;
   text-align: center;
@@ -28,8 +27,8 @@ export default {
   padding: 35px;
   border-radius: 25px;
 }
-.nav-button:hover{
+
+.nav-button:hover {
   background-color: #ffc107;
-  
 }
 </style>
