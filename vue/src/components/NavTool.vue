@@ -6,7 +6,7 @@
       <router-link to="" class="nav-button admin-decks">Admin Decks</router-link>
 
       
-      <router-link to="TempCard" class="nav-button cardview">card</router-link>
+      <router-link to="CardView" class="nav-button CardView">card</router-link>
     </div>
   </template>
   
