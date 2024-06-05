@@ -15,3 +15,26 @@ export default {
   name: 'NavTool'
 }
 </script>
+
+<style scoped>
+.nav-tool {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.nav-button{
+  background-color: #ffd966;
+  color: black;
+  text-align: center;
+  margin: 10px;
+  padding: 35px;
+  border-radius: 25px;
+
+
+}
+.nav-button:hover{
+  background-color: #ffc107;
+  
+}
+</style>
