@@ -6,15 +6,14 @@
 
 
   <div v-else>
-    See All Decks:
-  {{ decks }}
+   View All Decks
 
     <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
-          v-bind:to="{name: 'getDecksByDeckId', params: {deckId: deck.deckId}}">
-          <DeckIcon v-bind:deck="deck"/> {{ deck.deckTitle }}
+          v-bind:to="{name: 'getDecksByDeckId'}">
+          <DeckIcon v-bind:deck="deck"/> 
   </router-link>
    
-HELLO
+
 
     
   </div>
