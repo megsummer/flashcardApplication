@@ -1,7 +1,7 @@
 <template>
-<h1>{{ deck.title }}</h1>
-<h2>{{ deck.description }}</h2>
-<h3>{{ card.tags }}</h3>
+<h1>{{ deck.deckTitle }}</h1>
+<h2>{{ deck.deckDescription }}</h2>
+
 DECK ICONS
 </template>
 
