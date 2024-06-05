@@ -1,4 +1,11 @@
 <template>
+
+/**
+flex box
+<nav></nav>
+
+
+ */
   <div>
     
   </div>

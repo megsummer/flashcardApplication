@@ -1,6 +1,8 @@
 <template>
    <div id="register" class="register-container">
     <form class="register-form" v-on:submit.prevent="register">
+      <img src="@/assets/CroppedFlipFlashLogo.png" alt="Logo" class="form-logo" /> 
+      
       <h1 class="register-title">Create Account</h1>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
@@ -114,7 +116,7 @@ button.btn{
   padding: 2px;
   height: 30px;
   border: black;
-  background-color: rgb(241, 214, 11);
+  background-color: rgb(255, 217, 102,100);
   color: black;
   border-radius: 5px;
   font-size: 15px;
@@ -137,6 +139,9 @@ button.btn:hover{
 .login-link a:hover{
   text-decoration: dashed;
 }
-
+img{
+  width: 300px;
+  
+}
 
 </style>

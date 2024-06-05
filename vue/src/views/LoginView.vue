@@ -2,6 +2,7 @@
   <div class = 'flexed'>
   <div id="login" class = login-container>
     <form class="login-form" v-on:submit.prevent="login">
+      <img src="@/assets/CroppedFlipFlashLogo.png" alt="Logo" class="form-logo" />
       <h1 class="login-title">Please Log In </h1>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
@@ -127,6 +128,10 @@ button.btn:hover{
 }
 .register-link a:hover{
   text-decoration: dashed;
+}
+img{
+  width: 300px;
+  
 }
 
 
