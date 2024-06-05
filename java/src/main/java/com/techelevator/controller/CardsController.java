@@ -7,6 +7,7 @@ import com.techelevator.model.Cards;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
 public class CardsController {
 
     @Autowired
@@ -45,29 +47,22 @@ public class CardsController {
     }
 
 
-//saveCard
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/cards/new", method = RequestMethod.POST)
     public int saveCard(@Valid @RequestBody Cards card) {
         return cardsDao.saveCard(card);
     }
 
-
-
-//updateCard
     @RequestMapping(path = "/cards/{cardId}", method =RequestMethod.PUT)
     public boolean updateCard (@RequestBody Cards updateCard, @PathVariable int cardId) {
         return cardsDao.updateCard(updateCard);
     }
 
 
-//deleteCard
 @RequestMapping(path = "/cards/{cardId}", method = RequestMethod.DELETE)
 public boolean deleteCard(@PathVariable int cardId){
         return cardsDao.deleteCard(cardId);
 }
-
-//getCardByTags
 
     //Mapper info from: https://stackoverflow.com/questions/36846055/json-string-array-into-java-string-list
     @RequestMapping(path = "/cards/search", method=RequestMethod.PUT)
