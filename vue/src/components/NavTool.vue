@@ -5,7 +5,8 @@
       <router-link to="" class="nav-button search-cards">Search For Cards</router-link>
       <router-link to="" class="nav-button admin-decks">Admin Decks</router-link>
 
-
+      
+      <router-link to="CardView" class="nav-button CardView">card</router-link>
     </div>
   </template>
   

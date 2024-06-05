@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home"> 
     <NavTool />
     <h1>Home</h1>
     <p>You are authenticated if you see this.</p>
@@ -10,7 +10,7 @@
 
 <script>
 
-import NavTool from '@/components/NavTool.vue'
+import NavTool from '@/components/NavTool.vue';
 
 export default {
   name: 'HomeView',
