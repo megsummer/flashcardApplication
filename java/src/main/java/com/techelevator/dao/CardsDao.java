@@ -1,7 +1,6 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Cards;
-import com.techelevator.model.CardsTags;
 
 import java.util.List;
 
