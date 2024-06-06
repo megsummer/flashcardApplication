@@ -1,41 +1,45 @@
 <template>
-    <div>
-      <h2>{{ deck.name }}</h2>
-      <ul>
-        <li v-for="card in deck.cards" :key="card.id">
-          {{ card.content }}
-        </li>
-      </ul>
-    </div>
-  </template>
+  <div>
+    <h2>{{ deck.name }}</h2>
+    <ul>
+      <li v-for="card in deck.cards" :key="card.id">
+        {{ card.content }}
+      </li>
+    </ul>
+  </div>
+</template>
   
-  <script>
-  import { ref, onMounted } from 'vue';
-  import { useRoute } from 'vue-router';
-  import DeckService from '../services/DeckServices';
-  
-  export default {
-    setup() {
-      const route = useRoute();
-      const deck = ref(null);
-  
-      const fetchDeck = async () => {
-        const deckId = route.params.id;
-        try {
-          const response = await DeckService.getDeckById(deckId);
-          deck.value = response.data;
-        } catch (error) {
-          console.error('Error fetching deck:', error);
-        }
-      };
-  
-      onMounted(() => {
-        fetchDeck();
-      });
-  
-      return {
-        deck,
-      };
-    },
-  };
-  </script>
+<script>
+import DeckService from '../services/DeckService';
+
+export default {
+  data() {
+    return {
+      deck: null
+    };
+  },
+  methods: {
+    fetchDeck() {
+      const deckId = this.$route.params.id;
+      DeckService.getDeckById(deckId)
+        .then(response => {
+          this.deck = response.data;
+        })
+        .catch(error => {
+          let errorMessage = 'Error fetching deck.';
+          if (error.response) {
+            errorMessage += ` Response received was "${error.response.statusText}".`;
+          } else if (error.request) {
+            errorMessage += ' Server could not be reached.';
+          } else {
+            errorMessage += ' Request could not be created.';
+          }
+          console.error(errorMessage);
+        });
+    }
+  },
+  mounted() {
+    this.fetchDeck();
+  }
+};
+</script>
