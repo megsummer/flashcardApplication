@@ -4,12 +4,14 @@
     <div class="loading" v-if="isLoading">Loading...</div>
 
     <div v-else>
-    
+        
 
-        <form>
+        <form v-on:submit.prevent="search">
             <input type="text" id="search-bar" v-model="searchTags.searchTags"/>
             <button v-on:click="search">Search</button>
+            <p>Please separate your keywords with a comma. Example: science, chemistry, lipids</p>
         </form>
+        {{ this.searchTags }}
 
     <router-link v-for="card in cards" v-bind:key="card.cardId"
         v-bind:to="{name: 'getCardById'}">
@@ -56,19 +58,21 @@ CardIcon
             this.isLoading = false;
         })
     },
-    search(searchTags){
+    search(){
         console.log("searching for cards...")
+        console.log(this.searchTags)
         this.isLoading=false;
-        cardService.getCardsByTag().then(response =>{
+        cardService.getCardsByTag(this.searchTags).then(response =>{
             this.searchedCards=response.data;
             console.log("search complete.")
             this.isLoading = false;
             console.log("search complete.")
+            this.cards = this.searchedCards;
         }).catch(error => {
-            this.handleError;
+            this.handleError(error, "searching");
         })
         console.log("exiting search.")
-        this.cards = this.searchedCards;
+        
 }
 
     },
