@@ -4,9 +4,12 @@
     <div class="loading" v-if="isLoading">Loading...</div>
 
     <div v-else>
-        Card Search
+    
 
-        <form></form>
+        <form>
+            <input type="text" id="search-bar" v-model="searchTags.searchTags"/>
+            <button v-on:click="search">Search</button>
+        </form>
 
     <router-link v-for="card in cards" v-bind:key="card.cardId"
         v-bind:to="{name: 'getCardById'}">
@@ -29,7 +32,9 @@ CardIcon
     data(){
         return {
             cards: [],
+            searchedCards: [],
             isLoading: false,
+            searchTags: {searchTags: ""},
         };
     },
     methods:{
@@ -50,8 +55,21 @@ CardIcon
             this.cards = response.data;
             this.isLoading = false;
         })
-    }
-
+    },
+    search(searchTags){
+        console.log("searching for cards...")
+        this.isLoading=false;
+        cardService.getCardsByTag().then(response =>{
+            this.searchedCards=response.data;
+            console.log("search complete.")
+            this.isLoading = false;
+            console.log("search complete.")
+        }).catch(error => {
+            this.handleError;
+        })
+        console.log("exiting search.")
+        this.cards = this.searchedCards;
+}
 
     },
     created(){

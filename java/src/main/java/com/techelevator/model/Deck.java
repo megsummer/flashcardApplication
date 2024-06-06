@@ -82,6 +82,21 @@ public class Deck {
         isApproved = approved;
     }
 
+    @Override
+    public String toString() {
+        return "Deck{" +
+                "deckId=" + deckId +
+                ", userId=" + userId +
+                ", deckTitle='" + deckTitle + '\'' +
+                ", coverImg='" + coverImg + '\'' +
+                ", deckDescription='" + deckDescription + '\'' +
+                ", pendingApproval=" + pendingApproval +
+                ", isApproved=" + isApproved +
+                ", adminId=" + adminId +
+                ", tags=" + tags +
+                '}';
+    }
+
     public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
