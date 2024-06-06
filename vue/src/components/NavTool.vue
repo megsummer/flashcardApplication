@@ -2,7 +2,8 @@
   <div class="nav-tool">
     <router-link class="nav-button" v-bind:to="{ name: 'getAllCards' }">Card View</router-link>
     <router-link class="nav-button" v-bind:to="{ name: 'createDeck' }">Create Deck</router-link>
-    <router-link class="nav-button" v-bind:to="{ name: 'getAllDecks' }">All Decks</router-link>
+    <!-- <router-link class="nav-button" v-bind:to="{ name: 'getAllDecks' }">All Decks</router-link> -->
+    <router-link class="nav-button" v-bind:to="{ name: 'deck' }">My Decks</router-link>
   </div>
 </template>
 
