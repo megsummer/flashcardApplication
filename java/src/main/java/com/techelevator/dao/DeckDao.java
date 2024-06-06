@@ -13,6 +13,5 @@ public interface DeckDao {
     public int createDeck(Deck deckToCreate);
     public boolean deleteDeck(int deckId);
     public boolean updateDeck(Deck updateDeck);
-    public List<String> getTagsByDeckId(int deckId);
-    public List<Deck> getDeckIdByTag(String tag);
+
 }

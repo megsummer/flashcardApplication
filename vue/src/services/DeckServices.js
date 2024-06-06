@@ -7,31 +7,31 @@ const http = axios.create({
 export default {
 
     getAllDecks() {
-        return http.get('/decks');
+        return axios.get('/decks');
     },
 
     getDeckById(deckId){
-        return http.get(`/decks/${deckId}`);
+        return axios.get(`/decks/${deckId}`);
     },
 
     getDecksByUserId(userId){
-        return http.get(`/decks/user/${userId}`);
+        return axios.get(`/decks/user/${userId}`);
     },
 
     createNewDeck(newDeck){
-        return http.post('/decks/new', newDeck);
+        return axios.post('/decks/new', newDeck);
     },
 
     deleteDeckById(deckId){
-        return http.delete(`/decks/${deckId}`);
+        return axios.delete(`/decks/${deckId}`);
     },
 
     updateDeck(deckId, updatedDeck){
-        return http.put(`/decks/${deckId}`, updatedDeck);
+        return axios.put(`/decks/${deckId}`, updatedDeck);
     },
 
     getAdminDecks() {
-        return http.get('/decks/admin');
+        return axios.get('/decks/admin');
     }
 
 }

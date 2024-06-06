@@ -8,7 +8,8 @@ import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import DeckView from '../views/DeckView.vue';
 import CardView from '../views/CardView.vue';
-import CreateDeckView from '../views/CreateDeckView.vue'
+import CreateDeckView from '../views/CreateDeckView.vue';
+import CardSearchView from '../views/CardSearchView.vue';
 import MyDecksView from '../views/MyDecksView.vue'
 
 /**
@@ -96,12 +97,18 @@ const routes = [
     path: "/cards",
     name: "getAllCards",
     component: CardView, 
+    meta: {
+      requiresAuth : true
+    }
     
   },
   { 
     path: "/cards/{id}",
     name: "getCardById",
     component: CardView, 
+    meta: {
+      requiresAuth : true
+    }
     
   },
   { 
@@ -123,9 +130,9 @@ const routes = [
     
   },
   { 
-    path: "/cards/{tag}",
-    name: "getCardByTags",
-    component: CardView, 
+    path: "/search-cards",
+    name: "search-cards",
+    component: CardSearchView, 
     
   }
 

@@ -7,36 +7,36 @@ const http = axios.create({
 export default {
 
     getAllCards(){
-        return http.get('/cards');
+        return axios.get('/cards');
     },
 
     getCardById(cardId){
-        return http.get(`/cards/${cardId}`);
+        return axios.get(`/cards/${cardId}`);
     },
 
     createNewCard(newCard){
-        return http.post('/cards/new', newCard);
+        return axios.post('/cards/new', newCard);
     },
 
     updateCardById(cardId, updatedCard){
-        return http.put(`/cards/${cardId}`, updatedCard);
+        return axios.put(`/cards/${cardId}`, updatedCard);
     },
 
     deleteCardById(cardId){
-        return http.delete(`/cards/${cardId}`);
+        return axios.delete(`/cards/${cardId}`);
     },
     getCardsByTag(tags){
-        return http.get('/cards/search', tags);
+        return axios.get('/cards/search', tags);
     },
 
     getCardsByDeckId(deckId){
-        return http.get(`/decks/${deckId}/cards`);
+        return axios.get(`/decks/${deckId}/cards`);
     },
     addCardToDeck(card, deckId){
-        return http.post(`/decks/${deckId}/cards`, card);
+        return axios.post(`/decks/${deckId}/cards`, card);
     },
     removeCardFromDeck(deckId, cardId){
-        return http.delete(`/decks/${deckId}/cards/${cardId}`);
+        return axios.delete(`/decks/${deckId}/cards/${cardId}`);
     }
 
 }
