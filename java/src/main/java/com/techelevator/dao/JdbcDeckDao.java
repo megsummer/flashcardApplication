@@ -34,7 +34,6 @@ public class JdbcDeckDao implements DeckDao{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, deckId);
             if(results.next()){
                 deck = mapRowToDeck(results);
-                deck.setTags(getTagsByDeckId(deck.getDeckId()));
 
             }
         }catch (CannotGetJdbcConnectionException e) {
@@ -50,7 +49,6 @@ public class JdbcDeckDao implements DeckDao{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while(results.next()) {
                 Deck deck = mapRowToDeck(results);
-                deck.setTags(getTagsByDeckId(deck.getDeckId()));
                 decks.add(deck);
             }
             } catch (CannotGetJdbcConnectionException e) {
@@ -68,7 +66,6 @@ public class JdbcDeckDao implements DeckDao{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while(results.next()) {
                 Deck deck = mapRowToDeck(results);
-                deck.setTags(getTagsByDeckId(deck.getDeckId()));
                 decks.add(deck);
             }
         } catch (CannotGetJdbcConnectionException e) {
@@ -85,7 +82,6 @@ public class JdbcDeckDao implements DeckDao{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while(results.next()) {
                 Deck deck = mapRowToDeck(results);
-                deck.setTags(getTagsByDeckId(deck.getDeckId()));
                 decks.add(deck);
             }
         } catch (CannotGetJdbcConnectionException e) {
@@ -94,7 +90,7 @@ public class JdbcDeckDao implements DeckDao{
         return decks;
     }
 @Override
-    //TODO: add code to add new tags from deck object to the database
+
     public int createDeck(Deck deckToCreate){
         Deck newDeck = null;
         String sql = "INSERT INTO decks (user_id, deck_title, cover_img, deck_description) VALUES (?, ?, ?, ?) RETURNING deck_id;";
@@ -111,7 +107,7 @@ public class JdbcDeckDao implements DeckDao{
         return newDeck.getDeckId();
     }
 @Override
-    //TODO: Add sql to delete rows from tags before deleting deck
+
     public boolean deleteDeck(int deckId){
         String sql = "DELETE FROM deck WHERE deck_id = ?";
         jdbcTemplate.update(sql, deckId);
@@ -124,7 +120,7 @@ public class JdbcDeckDao implements DeckDao{
     }
 
     @Override
-//TODO: add sql to add tags from updated deck to the database
+
     public boolean updateDeck(Deck updateDeck){
 
         String sql = "UPDATE decks " +
@@ -142,59 +138,6 @@ public class JdbcDeckDao implements DeckDao{
 return true;
     }
 
-
-
-@Override
-    public List<String> getTagsByDeckId(int deckId){
-        List<String> deckTags = new ArrayList<>();
-        String sql = "SELECT * FROM deck_tags WHERE deck_id = ?;";
-        try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,deckId);
-            while (results.next()) {
-                deckTags.add(results.getString("tag"));
-            }
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        }
-        return deckTags;
-    }
-@Override
-//TODO: if we re-instate deck tags, adjust this to intake a string of tags and loop
-// through each tag and add responding decks to a list, excluding duplicates
-    public List<Deck> getDeckIdByTag(String tag){
-        List<Deck> decks = new ArrayList<>();
-        String sql = "SELECT * FROM deck_tags WHERE tag = ?;";
-        try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,tag);
-            while (results.next()) {
-              Deck deck = mapRowToDeck(results);
-              deck.setTags(getTagsByDeckId(deck.getDeckId()));
-              decks.add(deck);
-            }
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        }
-        return decks;
-    }
-
-  /*  //todo: I think we need to adjust this so that it is deleting all existing tags under deck id, then adding new tags with deck id..
-    public DeckTags updateTagByDeckId(DeckTags deckTags){
-        DeckTags updateTags = null;
-        String sql = "UPDATE deck_tags SET tag = ? WHERE deck_id = ?";
-        try {
-            int numberOfRows = jdbcTemplate.update(sql, deckTags.getDeckId(), deckTags.getTag());
-            if (numberOfRows == 0) {
-                throw new DaoException("Zero rows updated, expected at least one");
-            }
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("unable to connect", e);
-        } catch (DataIntegrityViolationException e) {
-            throw new DaoException("data integrity violation", e);
-        } catch (DaoException e) {
-            throw new DaoException("no rows effected");
-        }
-        return getTagsByDeckId(deckTags.getDeckId());
-    }*/
 
 
 
