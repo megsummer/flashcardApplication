@@ -27,6 +27,16 @@ export default {
     },
     getCardsByTag(tags){
         return http.get('/cards/search', tags);
+    },
+
+    getCardsByDeckId(deckId){
+        return http.get(`/decks/${deckId}/cards`);
+    },
+    addCardToDeck(card, deckId){
+        return http.post(`/decks/${deckId}/cards`, card);
+    },
+    removeCardFromDeck(deckId, cardId){
+        return http.delete(`/decks/${deckId}/cards/${cardId}`);
     }
 
 }
