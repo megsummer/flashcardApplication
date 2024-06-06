@@ -2,12 +2,12 @@
   <form v-on:submit.prevent="createDeck">
       <div class="deck-form">
         <label for="deck-title">Deck Title:</label>
-        <input type="text" id="deck-title" v-model="newDeck.title" />
+        <input type="text" id="deck-title" v-model="newDeck.deckTitle" />
       </div>
 
       <div class="deck-form">
         <label for="deck-description">Description:</label>
-        <input type="text" id="deck-description" v-model="newDeck.description" />
+        <input type="text" id="deck-description" v-model="newDeck.deckDescription" />
       </div>
 
       <input type="submit" value="Save Deck" v-on:click="resetForm"/>
@@ -20,11 +20,10 @@
 
 <script>
 // add a pop-up box 'Deck Saved'//
+//userId saving based on log-in
+
 
 import DeckServices from "../services/DeckServices.js";
-
-
-
 
 
 export default {
@@ -32,7 +31,16 @@ export default {
 //I don't think this is right ^^
   data(){
     return {
-      newDeck: {}
+      newDeck: {
+        deckId: "",
+        userId: "",
+        deckTitle: "",
+        coverImg: "",
+        deckDescription: "",
+        pendingApproval: false,
+        adminId: "",
+        approved: false
+      }
     };
   },
   methods: {
@@ -46,11 +54,6 @@ export default {
 
     },
     createDeck() {
-      // let deck = {
-      //   title: this.title,
-      //   description: this.description
-      // }
-      // this.newDeck.push(deck);
 
       DeckServices.createNewDeck(this.newDeck).then(
                 (response) => {
