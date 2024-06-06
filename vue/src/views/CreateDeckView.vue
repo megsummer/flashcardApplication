@@ -16,7 +16,6 @@
       <input type="button" value="Submit for Admin Approval"/>
     </form>
 
-    {{ newDeck }}
 </template>
 
 <script>
@@ -25,15 +24,19 @@
 
 
 import DeckServices from "../services/DeckServices.js";
-
+import Logo from "../components/Logo.vue"
+import NavTool from '../components/NavTool.vue';
 
 export default {
-//  props:{
-//   deck: {
-//     type: Object, 
-//     required: true
-//   }
-//  },
+  components:{
+    // Logo,
+    // NavTool
+   
+
+
+  },
+
+
 
   data(){
     return {
