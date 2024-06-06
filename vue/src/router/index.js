@@ -8,6 +8,7 @@ import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import DeckView from '../views/DeckView.vue';
 import CardView from '../views/CardView.vue';
+import CreateDeckView from '../views/CreateDeckView.vue'
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -63,7 +64,7 @@ const routes = [
   { 
     path: "/decks/new",
     name: "createDeck",
-    component: DeckView, 
+    component: CreateDeckView, 
     
   },
   { 
