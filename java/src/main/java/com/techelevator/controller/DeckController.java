@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 @RestController
 @CrossOrigin
@@ -61,7 +62,13 @@ public class DeckController {
   @PreAuthorize("isAuthenticated()")
  @ResponseStatus(HttpStatus.CREATED)
   @RequestMapping(path = BASE_URL + "/new", method = RequestMethod.POST)
-    public int createDeck(@RequestBody Deck deckToCreate){
+    public int createDeck(@RequestBody Deck deckToCreate, Principal principal){
+      System.out.println(principal.getName());
+        System.out.println("DEBUG");
+      System.out.println(deckToCreate);
+        // use some DAO method to figure out the user id?
+      // deckToCreate.setUserId(....)
+
         return deckDao.createDeck(deckToCreate);
     }
 

@@ -19,6 +19,8 @@ export default {
     },
 
     createNewDeck(newDeck){
+        console.log('DEBUG')
+        console.log(newDeck);
         return axios.post('/decks/new', newDeck);
     },
 
