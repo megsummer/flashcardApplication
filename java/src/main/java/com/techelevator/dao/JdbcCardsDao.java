@@ -177,6 +177,66 @@ public class JdbcCardsDao implements CardsDao {
         return cards;
     }
 
+public List<Cards> getCardsByDeckId (int deckId){
+       List<Cards> cards = new ArrayList<>();
+
+       String sql = "SELECT cards.card_id, front_question, back_answer, card_img, user_id \n" +
+               "FROM cards\n" +
+               "JOIN cards_to_decks\n" +
+               "ON cards.card_id\n" +
+               "   = cards_to_decks.card_id\n" +
+               "WHERE deck_id = ?;";
+       try {
+           SqlRowSet results = jdbcTemplate.queryForRowSet(sql, deckId);
+
+        while (results.next()) {
+            Cards card = mapRowToCard(results);
+            card.setTags(getTagsByCardId(card.getCardId()));
+            cards.add(card);
+        }
+    } catch (CannotGetJdbcConnectionException e) {
+        throw new DaoException("Unable to connect to server or database", e);
+    } catch (DataAccessException e) {
+        throw new DaoException("Error retrieving cards.", e);
+    }
+        return cards;
+}
+
+
+
+    public boolean removeCardFromDeck(int cardId, int deckId){
+        String sql = "DELETE FROM cards_to_decks WHERE card_id = ? AND deck_id = ?;";
+
+        try {
+             jdbcTemplate.update(sql, cardId, deckId);
+
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataAccessException e) {
+            throw new DaoException("Error removing cards.", e);
+        }
+
+        return true;
+    }
+
+
+
+
+    public boolean addCardToDeck(Cards card, int deckId){
+        String sql = "INSERT INTO cards_to_decks (card_id, deck_id) VALUES (?, ?);";
+        try {
+            jdbcTemplate.update(sql, card.getCardId(), deckId);
+
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataAccessException e) {
+            throw new DaoException("Error adding cards.", e);
+        }
+
+        return true;
+    }
+
+
     private Cards mapRowToCard(SqlRowSet rs) {
         Cards card = new Cards();
         card.setCardId(rs.getInt("card_id"));

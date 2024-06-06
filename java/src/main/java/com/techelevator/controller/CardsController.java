@@ -22,20 +22,19 @@ public class CardsController {
     @Autowired
     private CardsDao cardsDao;
 
-    //private Cards cards;
 
     public CardsController(CardsDao cardsDao){
         this.cardsDao = cardsDao;
     }
 
-// getAllCards
+
     @RequestMapping(path = "/cards", method = RequestMethod.GET)
     public List<Cards> listCards(){
         return cardsDao.getAllCards();
     }
 
 
-// getCardById
+
     @RequestMapping(path ="/cards/{cardId}", method = RequestMethod.GET)
     public Cards getCards(@PathVariable int cardId) {
         Cards cards = cardsDao.getCardById(cardId);
@@ -71,6 +70,19 @@ public List<Cards> getCardByTags(@RequestBody String tags) throws JsonProcessing
         List<String> tagsList = mapper.readValue(tags, List.class);
         return cardsDao.getCardByTags(tagsList);
 }
+@RequestMapping(path = "/decks/{deckId}/cards", method = RequestMethod.GET)
+    public List<Cards> getCardsByDeckId (@PathVariable int deckId){
+        return cardsDao.getCardsByDeckId(deckId);
+    }
 
+    @RequestMapping( path = "/decks/{deckId}/cards/{cardId}",  method = RequestMethod.DELETE)
+    public boolean removeCardFromDeck(@PathVariable Integer cardId, @PathVariable Integer deckId){
+        return cardsDao.removeCardFromDeck(cardId, deckId);
+    }
+
+    @RequestMapping(path = "/decks/{deckId}/cards", method = RequestMethod.POST)
+    public boolean addCardToDeck(@RequestBody Cards card, @PathVariable Integer deckId){
+        return cardsDao.addCardToDeck(card, deckId);
+    }
 
 }

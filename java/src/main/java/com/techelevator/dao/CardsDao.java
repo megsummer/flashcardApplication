@@ -21,5 +21,11 @@ public interface CardsDao {
 
     List<Cards> getCardByTags(List<String> tags);
 
+    public List<Cards> getCardsByDeckId (int deckId);
+
+    public boolean removeCardFromDeck(int cardId, int deckId);
+
+    public boolean addCardToDeck(Cards card, int deckId);
+
 
 }

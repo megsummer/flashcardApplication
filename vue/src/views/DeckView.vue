@@ -6,6 +6,9 @@
 
 
   <div v-else>
+    
+    <NavTool />
+     
    View All Decks
 
     <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
@@ -22,6 +25,7 @@
 <script>
 import DeckService from '../services/DeckServices';
 import DeckIcon from '../components/DeckIcon.vue';
+import NavTool from '../components/NavTool.vue';
 
 
 export default {
