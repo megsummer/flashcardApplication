@@ -6,7 +6,7 @@ import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
-import DeckView from '../views/DeckView.vue';
+import AdminDeckView from '../views/adminDeckView.vue';
 import CardView from '../views/CardView.vue';
 import CreateDeckView from '../views/CreateDeckView.vue';
 import CardSearchView from '../views/CardSearchView.vue';
@@ -21,13 +21,6 @@ import MyDecksView from '../views/MyDecksView.vue'
  * If they have (or don't need to) they're allowed to go about their way.
  */
 const routes = [
-  
-  {
-    path: '/my-decks',
-    name: 'deck',
-    component: MyDecksView,
-    
-  },
   {
     path: '/',
     name: 'home',
@@ -52,47 +45,27 @@ const routes = [
     component: RegisterView,
     
   },
-  { 
-    path: "/decks",
-    name: "getAllDecks",
-    component: DeckView, 
-   
+  {
+    path: '/mydecks',
+    name: 'mydecks',
+    component: MyDecksView,
+    
   }, 
   { 
-    path: "/decks/{id}",
-    name: "getDecksByDeckId",
-    component: DeckView, 
-    
-  },
-  { 
-    path: "/decks/user/{id}",
-    name: "getAllDecksByUserId",
-    component: DeckView, 
+    path: "/decks/:id",
+    name: "deckDetail",
+    component: MyDecksView, 
     
   },
   { 
     path: "/decks/new",
     name: "createDeck",
     component: CreateDeckView, 
-    
-  },
-  { 
-    path: "/decks/{id}",
-    name: "updateDeck",
-    component: DeckView, 
-   
-  },
-  { 
-    path: "/decks/{id}",
-    name: "deleteDeck",
-    component: DeckView, 
-    
   },
   { 
     path: "/decks/admin",
     name: "getAllAdminDecks",
-    component: DeckView, 
-   
+    component: AdminDeckView, 
   },
   { 
     path: "/cards",
@@ -100,17 +73,7 @@ const routes = [
     component: CardView, 
     meta: {
       requiresAuth : true
-    }
-    
-  },
-  { 
-    path: "/cards/{id}",
-    name: "getCardById",
-    component: CardView, 
-    meta: {
-      requiresAuth : true
-    }
-    
+    } 
   },
   { 
     path: "/cards/new",
@@ -119,13 +82,13 @@ const routes = [
    
   },
     { 
-    path: "/cards/{id}",
+    path: "/cards/:id",
     name: "updateCard",
     component: CardView, 
     
   },
   { 
-    path: "/cards/{id}",
+    path: "/cards/:id",
     name: "deleteCard",
     component: CardView, 
     
@@ -134,9 +97,7 @@ const routes = [
     path: "/search-cards",
     name: "search-cards",
     component: CardSearchView, 
-    
   }
-
 ];
 
 // Create the router
@@ -161,3 +122,25 @@ router.beforeEach((to) => {
 });
 
 export default router;
+
+// ,
+//   { 
+//     path: "/decks/{id}",
+//     name: "updateDeck",
+//     component: DeckView, 
+   
+//   },
+//   { 
+//     path: "/decks/{id}",
+//     name: "deleteDeck",
+//     component: DeckView, 
+    
+//   }
+// { 
+//   path: "/cards/{id}",
+//   : "getCardById",
+//   component: CardView, 
+//   meta: {
+//     requiresAuth : true
+//   }
+// }

@@ -1,22 +1,17 @@
 <template>
   <div class="deck-view">
     <NavTool />
-
     <div class="deck-content">
-      <div class="loading" v-if="isLoading">Loading...</div>
-
+      <div class="loading" v-if="isLoading">
+        hi
+      </div>
       <div v-else>
         <h1>My Decks</h1>
-
         <div class="deck-grid">
-          <router-link
-            v-for="deck in decks"
-            :key="deck.id"
-            :to="{ name: 'DeckDetail', params: { id: deck.id } }"
-            class="deck-item"
-          >
-            <DeckIcon :deck="deck" />
-          </router-link>
+          <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
+          v-bind:to="{name: 'deckDetail',  params:{ id: deck.deckId }}">
+          <DeckIcon v-bind:deck="deck"/> 
+  </router-link>
         </div>
       </div>
     </div>
@@ -24,10 +19,9 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
 import NavTool from '@/components/NavTool.vue';
 import DeckIcon from '../components/DeckIcon.vue';
-import DeckService from '../services/DeckServices';
+import DeckService from '../services/DeckServices'; 
 
 export default {
   components: {
@@ -37,7 +31,7 @@ export default {
   data() {
     return {
       decks: [],
-      isLoading: false,
+      isLoading: true
     };
   },
   methods: {
@@ -53,9 +47,10 @@ export default {
           `Error ${verb} deck list. Request could not be created.`);
       }
     },
-    async retrieveDecks(userId = null) {
+    async retrieveDecks(userId) {
       try {
-        const response = userId ? await DeckService.getDecksByUserId(userId) : await DeckService.getAllDecks();
+        this.isLoading = true;
+        const response = await DeckService.getDecksByUserId(userId);
         this.decks = response.data;
       } catch (error) {
         this.handleError(error, 'retrieving');
@@ -65,12 +60,14 @@ export default {
     }
   },
   created() {
-    const userId = this.$store.state.user.userId; 
-    this.retrieveDecks(userId);
+    // const userId = this.$store.state.user.userId;
+    const userId = 3;
+    if (userId) {
+      this.retrieveDecks(userId);
+    } else {
+      this.handleError(new Error('User ID is not defined'), 'retrieving');
+    }
   }
 }
 </script>
-
-<style>
-
-</style>
+../services/DeckServices
