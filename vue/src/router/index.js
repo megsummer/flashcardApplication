@@ -22,7 +22,7 @@ import MyDecksView from '../views/MyDecksView.vue'
  */
 const routes = [
   {
-    path: '/',
+    path: '/Yourdecks',
     name: 'deck',
     component: MyDecksView,
     
