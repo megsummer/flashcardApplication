@@ -21,41 +21,64 @@ public class DeckController {
         this.deckDao = deckDao;
     }
 
-   @PreAuthorize("isAuthenticated()")
 
+    //GET ALL DECKS BY ID
+
+   @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = BASE_URL + "/{deckId}", method = RequestMethod.GET)
     public Deck getDeckByDeckId(@PathVariable int deckId) {
         return deckDao.getDeckByDeckId(deckId);
     }
+
+
+    //GET ALL DECKS
+
   @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = BASE_URL, method = RequestMethod.GET)
     public List<Deck> getAllDecks() {
         return deckDao.getAllDecks();
     }
+
+    //GET ALL DECKS BY USER ID
+
+
   @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = BASE_URL + "/user/{userId}", method = RequestMethod.GET)
     public List<Deck> geAllDecksByUserId(@PathVariable int userId){
         return deckDao.geAllDecksByUserId(userId);
     }
 
-
+// GET ALL ADMIN DECKS
 @RequestMapping(path = BASE_URL + "/admin", method = RequestMethod.GET)
     public List<Deck> getAllAdminDecks() {
         return deckDao.getAllAdminDecks();
     }
 
+
+    //CREATE A DECK
+
+
   @PreAuthorize("isAuthenticated()")
  @ResponseStatus(HttpStatus.CREATED)
-@RequestMapping(path = BASE_URL + "/new", method = RequestMethod.POST)
+  @RequestMapping(path = BASE_URL + "/new", method = RequestMethod.POST)
     public int createDeck(@RequestBody Deck deckToCreate){
         return deckDao.createDeck(deckToCreate);
     }
+
+
+    //DELETE DECK
+
 
    @PreAuthorize("isAuthenticated()")
 @RequestMapping(path = BASE_URL + "/{deckId}", method = RequestMethod.DELETE)
      public boolean deleteDeck(@PathVariable int deckId){
         return deckDao.deleteDeck(deckId);
      }
+
+
+     //UPDATE DECK
+
+
      @PreAuthorize("isAuthenticated()")
 @RequestMapping(path = BASE_URL + "/{id}", method = RequestMethod.PUT)
      public boolean updateDeck(@RequestBody Deck updateDeck, @PathVariable int id){
