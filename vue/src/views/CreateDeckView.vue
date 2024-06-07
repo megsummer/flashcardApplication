@@ -1,4 +1,7 @@
 <template>
+  <div> 
+      <NavTool/>
+  </div>
   <form v-on:submit.prevent="createDeck">
     {{newDeck}}
       <div class="deck-form">
@@ -19,21 +22,17 @@
 </template>
 
 <script>
-// add a pop-up box 'Deck Saved'//
+
 //userId saving based on log-in
 
 
 import DeckServices from "../services/DeckServices.js";
-import Logo from "../components/Logo.vue"
 import NavTool from '../components/NavTool.vue';
+
 
 export default {
   components:{
-    // Logo,
-    // NavTool
-   
-
-
+    NavTool
   },
 
 
@@ -64,16 +63,16 @@ export default {
       this.$router.push({name: 'saveCard'})
     },
 
-    resetForm (){
-      this.newDeck = {
-        userId: "",
-        deckTitle: "",
-        coverImg: "",
-        deckDescription: "",
-      };
+    // resetForm (){
+    //   this.newDeck = {
+    //     userId: "",
+    //     deckTitle: "",
+    //     coverImg: "",
+    //     deckDescription: "",
+      //};
      // this.$router.push({name: 'getAllDecks'});
 
-    },
+    //},
 
     createDeck() {
       console.log('What am I passing to the service?')
@@ -99,21 +98,21 @@ export default {
 
 
 
-
-
 <style>
 
 .deck-form {
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  
 }
 
-.deck-form label{
-display: block
+#NavTool {
+  display: flex
+
 }
 
-.deck-form textarea {
-  height: 60px;
-  width: 300px;
-}
+
+
+
 
 </style>
