@@ -74,10 +74,10 @@ export default {
     //},
 
     createDeck() {
-      DeckServices.createNewDeck(this.newDeck)
+      let newDeck = DeckServices.createNewDeck(this.newDeck)
         .then(response => {
           if(response.status === 201) {
-            this.$router.push({ name: 'createCard' });
+            this.$router.push({ name: 'deckById', params: {id: newDeck.deckId }});
              //this.resetForm();         
             }
           }).catch(error => {

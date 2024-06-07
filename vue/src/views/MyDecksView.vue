@@ -10,7 +10,7 @@
         <h1>My Decks</h1>
         <div class="deck-grid">
           <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
-          v-bind:to="{name: 'deckDetail',  params:{ id: deck.deckId }}">
+          v-bind:to="{name: 'deckById',  params:{ id: deck.deckId }}">
           <DeckIcon v-bind:deck="deck"/> 
   </router-link>
         </div>

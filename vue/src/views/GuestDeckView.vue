@@ -7,16 +7,16 @@
 
   <div v-else>
   
-    <p id="Register" class = "register">
-      <router-link v-bind:to="{ name: 'register' }">Register Here!</router-link></p>
+  
      
-   View Admin Decks
-Or    <p class="register-link"></p>
+   These flash card study decks are provided by your school administration.  To view the decks in full, please  <a id="Register" class = "register">
+      <router-link v-bind:to="{ name: 'register' }">Register Here!</router-link></a>
+   <p class="register-link"></p>
 
-    <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
+    <div v-for="deck in decks" v-bind:key="deck.deckId" 
           v-bind:to="{name: 'deckById', params :{id: deck.deckId}}">
           <DeckIcon v-bind:deck="deck"/> 
-  </router-link>
+    </div>
    
 
 

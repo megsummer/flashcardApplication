@@ -9,7 +9,7 @@
   
 THESE ARE THE ADMIN DECKS
      
-   View Admin Decks
+  Click a deck to see more!
    <p class="register-link"></p>
 
     <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
