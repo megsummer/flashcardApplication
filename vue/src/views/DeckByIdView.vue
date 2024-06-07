@@ -1,5 +1,5 @@
 <template>
-  <div class="study"> 
+  <div class="deckbyid"> 
     <NavTool />
     <h1>DeckByID</h1>
     <p>You are inside DeckbyID if you see this.</p>
