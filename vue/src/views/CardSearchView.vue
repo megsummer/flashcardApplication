@@ -14,7 +14,7 @@
         {{ this.searchTags }}
 
     <router-link v-for="card in cards" v-bind:key="card.cardId"
-        v-bind:to="{name: 'getCardById'}">
+        v-bind:to="{name: 'getCardById', params : {cardId : card.cardId}}">
         <CardIcon v-bind:card="card"/>
      </router-link>
 
