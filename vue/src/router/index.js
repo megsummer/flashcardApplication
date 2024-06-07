@@ -53,8 +53,8 @@ const routes = [
     
   },
   {
-    path: '/mydecks',
-    name: 'mydecks',
+    path: '/myDecks',
+    name: 'myDecks',
     component: MyDecksView,
     
   },
@@ -69,8 +69,8 @@ const routes = [
     component: CreateCardView, 
   },
   { 
-    path: "/search-cards",
-    name: "search-cards",
+    path: "/searchCards",
+    name: "searchCards",
     component: SearchCardView, 
   },
   { 
