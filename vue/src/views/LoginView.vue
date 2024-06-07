@@ -21,6 +21,7 @@
       <button class="btn btn-primary" type="submit">SIGN IN</button>
       <p class="register-link">
       <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+      <p><router-link v-bind:to="{name: 'getAllAdminDecks'}">Want to browse first?  Check out decks built by your school!</router-link></p>
     </form>
   </div>
 </div>

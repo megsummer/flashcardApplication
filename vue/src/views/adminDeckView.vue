@@ -6,16 +6,19 @@
 
 
   <div v-else>
-    
-    <NavTool />
+  
+    <p id="Register" class = "register">
+      <router-link v-bind:to="{ name: 'register' }">Register Here!</router-link></p>
      
-   View All Decks
+   View Admin Decks
+Or    <p class="register-link"></p>
 
     <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
-          v-bind:to="{name: 'getDecksByDeckId'}">
+          v-bind:to="{name: 'getAllAdminDecks'}">
           <DeckIcon v-bind:deck="deck"/> 
   </router-link>
    
+
 
 
     
@@ -25,7 +28,7 @@
 <script>
 import DeckService from '../services/DeckServices';
 import DeckIcon from '../components/DeckIcon.vue';
-import NavTool from '../components/NavTool.vue';
+
 
 
 export default {
@@ -54,7 +57,7 @@ export default {
     },
 
     retrieveDecks(){
-      DeckService.getAllDecks().then(response => {
+      DeckService.getAdminDecks().then(response => {
         this.decks = response.data;
         this.isLoading = false;
       }) 
