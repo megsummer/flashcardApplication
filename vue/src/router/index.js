@@ -88,6 +88,14 @@ const routes = [
     
   },
   { 
+       path: "/cards/{id}",
+       name: "getCardById",
+       component: CardView, 
+       meta: {
+        requiresAuth : true
+       }
+      },
+  { 
     path: "/cards/:id",
     name: "deleteCard",
     component: CardView, 
@@ -135,12 +143,4 @@ export default router;
 //     name: "deleteDeck",
 //     component: DeckView, 
     
-//   }
-// { 
-//   path: "/cards/{id}",
-//   : "getCardById",
-//   component: CardView, 
-//   meta: {
-//     requiresAuth : true
-//   }
-// }
+
