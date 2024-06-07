@@ -15,8 +15,7 @@
       </div>
 
       <input type="submit" value="Save Deck"/>
-      <input type="button" value="Write New Cards" v-on:click="createCards"/> <br>
-      <input type="button" value="Submit for Admin Approval"/>
+      
     </form>
 
 </template>
@@ -75,12 +74,10 @@ export default {
     //},
 
     createDeck() {
-      console.log('What am I passing to the service?')
-      console.log(this.newDeck);
       DeckServices.createNewDeck(this.newDeck)
         .then(response => {
           if(response.status === 201) {
-            window.alert('Deck Added!');
+            this.$router.push({ name: 'createCard' });
              //this.resetForm();         
             }
           }).catch(error => {
