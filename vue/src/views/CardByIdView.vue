@@ -4,7 +4,6 @@
     <h1>CardByID</h1>
     <p>You are inside CardByID if you see this.</p>
     <p></p>
-    
   </div>
 </template>
 
