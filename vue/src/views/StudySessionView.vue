@@ -1,11 +1,9 @@
 <template>
-  <div class="home"> 
+  <div class="study"> 
     <NavTool />
-    <h1>Home</h1>
-    <p>You are authenticated if you see this.</p>
+    <h1>Flash Study Time</h1>
+    <p>You are inside Study Session if you see this.</p>
     <p></p>
-
-    <router-link v-bind:to="{name: 'search-cards'}">Temp Link to Search Cards</router-link>"
   </div>
 </template>
 
@@ -14,7 +12,7 @@
 import NavTool from '@/components/NavTool.vue';
 
 export default {
-  name: 'HomeView',
+  name: 'StudySession',
   components: {
     NavTool
   }
