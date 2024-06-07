@@ -61,7 +61,6 @@ public class JdbcCardsDao implements CardsDao {
 
     @Override
 
-
     public int saveCard(Cards card) {
         List<String> tags = card.getTags();
         int newCardId;
@@ -92,7 +91,6 @@ public class JdbcCardsDao implements CardsDao {
         int currentCardUserId = currentCard.getUserId();
         if (updatedCardUserId != currentCardUserId) {
             saveCard(card);
-            return true;
         } else {
 
             try {
@@ -185,6 +183,7 @@ public class JdbcCardsDao implements CardsDao {
         return cards;
     }
 
+    @Override
 public List<Cards> getCardsByDeckId (int deckId){
        List<Cards> cards = new ArrayList<>();
 
