@@ -56,7 +56,7 @@ public class DeckController {
 
   @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = BASE_URL + "/user", method = RequestMethod.GET)
-    public List<Deck> geAllDecksByUserId(@RequestBody Principal principal){
+    public List<Deck> getAllDecksByUserId( Principal principal){
       User user = userDao.getUserByUsername(principal.getName());
 
         return deckDao.geAllDecksByUserId(user.getId());

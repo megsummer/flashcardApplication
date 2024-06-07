@@ -39,7 +39,7 @@ export default {
   data(){
     return {
       newDeck: {
-        userId: 1,
+        userId: "",
         deckTitle: "",
         coverImg: "",
         deckDescription: "",
@@ -74,11 +74,12 @@ export default {
     //},
 
     createDeck() {
-      let newDeck = DeckServices.createNewDeck(this.newDeck)
+      let createdDeckId = DeckServices.createNewDeck(this.newDeck)
         .then(response => {
-          if(response.status === 201) {
-            this.$router.push({ name: 'deckById', params: {id: newDeck.deckId }});
-             //this.resetForm();         
+          if(response.status == 201) {
+            console.log (createdDeckId);
+            this.$router.push({ name: 'deckById', params: {id: createdDeckId }});
+                     
             }
           }).catch(error => {
             this.handleError(error, 'adding');

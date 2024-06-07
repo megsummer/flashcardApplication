@@ -17,6 +17,9 @@ export function createStore(currentToken, currentUser) {
         state.user = user;
         localStorage.setItem('user', JSON.stringify(user));
       },
+      SET_NOTIFICATION(){
+
+      },
       LOGOUT(state) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
