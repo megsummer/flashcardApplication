@@ -7,11 +7,10 @@
 
   <div v-else>
   
-    <p id="Register" class = "register">
-      <router-link v-bind:to="{ name: 'register' }">Register Here!</router-link></p>
+THESE ARE THE ADMIN DECKS
      
    View Admin Decks
-Or    <p class="register-link"></p>
+   <p class="register-link"></p>
 
     <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
           v-bind:to="{name: 'deckById', params: {id: deck.deckId}}">

@@ -5,7 +5,6 @@
     <p>You are authenticated if you see this.</p>
     <p></p>
 
-    <router-link v-bind:to="{name: 'search-cards'}">Temp Link to Search Cards</router-link>"
   </div>
 </template>
 
