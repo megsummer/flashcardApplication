@@ -6,11 +6,18 @@ import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
-import AdminDeckView from '../views/adminDeckView.vue';
-import CardView from '../views/CardView.vue';
+import AdminDeckView from '../views/AdminDeckView.vue';
+import CardByIdView from '../views/CardByIdView.vue';
+import CreateCardView from '../views/CreateCardView.vue';
 import CreateDeckView from '../views/CreateDeckView.vue';
-import CardSearchView from '../views/CardSearchView.vue';
-import MyDecksView from '../views/MyDecksView.vue'
+import SearchCardView from '../views/SearchCardView.vue';
+import MyDecksView from '../views/MyDecksView.vue';
+import StudySessionView from '../views/StudySessionView.vue';
+import DeckByIdView from '../views/DeckByIdView.vue';
+import GuestDeckView from '../views/GuestDeckView.vue';
+
+
+
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -50,12 +57,6 @@ const routes = [
     name: 'mydecks',
     component: MyDecksView,
     
-  }, 
-  { 
-    path: "/decks/:id",
-    name: "deckDetail",
-    component: MyDecksView, 
-    
   },
   { 
     path: "/decks/new",
@@ -63,49 +64,41 @@ const routes = [
     component: CreateDeckView, 
   },
   { 
-    path: "/decks/admin",
-    name: "getAllAdminDecks",
-    component: AdminDeckView, 
-  },
-  { 
-    path: "/cards",
-    name: "getAllCards",
-    component: CardView, 
-    meta: {
-      requiresAuth : true
-    } 
-  },
-  { 
     path: "/cards/new",
-    name: "saveCard",
-    component: CardView, 
-   
-  },
-    { 
-    path: "/cards/:id",
-    name: "updateCard",
-    component: CardView, 
-    
-  },
-  { 
-       path: "/cards/{id}",
-       name: "getCardById",
-       component: CardView, 
-       meta: {
-        requiresAuth : true
-       }
-      },
-  { 
-    path: "/cards/:id",
-    name: "deleteCard",
-    component: CardView, 
-    
+    name: "createCard",
+    component: CreateCardView, 
   },
   { 
     path: "/search-cards",
     name: "search-cards",
-    component: CardSearchView, 
-  }
+    component: SearchCardView, 
+  },
+  { 
+    path: "/decks/admin",
+    name: "adminDecks",
+    component: AdminDeckView, 
+  },{ 
+    path: "/guest",
+    name: "guest",
+    component: GuestDeckView, 
+  },
+  { 
+    path: "/decks/:id",
+    name: "deckById",
+    component: DeckByIdView, 
+    
+  },
+  { 
+    path: "/cards/:id",
+    name: "cardById",
+    component: CardByIdView, 
+    
+  },
+  { 
+    path: "/studysession",
+    name: "studySession",
+    component: StudySessionView,
+  } 
 ];
 
 // Create the router
@@ -130,17 +123,3 @@ router.beforeEach((to) => {
 });
 
 export default router;
-
-// ,
-//   { 
-//     path: "/decks/{id}",
-//     name: "updateDeck",
-//     component: DeckView, 
-   
-//   },
-//   { 
-//     path: "/decks/{id}",
-//     name: "deleteDeck",
-//     component: DeckView, 
-    
-
