@@ -21,7 +21,7 @@
       </div>
       <button type="submit" class="btn">Create Account</button>
       <p class="login-link"><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
-      <p><router-link v-bind:to="{name: 'getAllAdminDecks'}">Want to browse first?  Check out decks built by your school!</router-link></p>
+      <p><router-link v-bind:to="{name: 'guest'}">Want to browse first?  Check out decks built by your school!</router-link></p>
     </form>
   </div>
 </template>

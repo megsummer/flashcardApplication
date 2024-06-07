@@ -11,10 +11,9 @@
             <button v-on:click="search">Search</button>
             <p>Please separate your keywords with a comma. Example: science, chemistry, lipids</p>
         </form>
-        {{ this.searchTags }}
-
+       
     <router-link v-for="card in cards" v-bind:key="card.cardId"
-        v-bind:to="{name: 'getCardById', params : {cardId : card.cardId}}">
+        v-bind:to="{name: 'cardById', params : {id : card.cardId}}">
         <CardIcon v-bind:card="card"/>
      </router-link>
 

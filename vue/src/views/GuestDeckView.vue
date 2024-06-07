@@ -14,7 +14,7 @@
 Or    <p class="register-link"></p>
 
     <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
-          v-bind:to="{name: 'getAllAdminDecks'}">
+          v-bind:to="{name: 'deckById', params :{id: deck.deckId}}">
           <DeckIcon v-bind:deck="deck"/> 
   </router-link>
    
