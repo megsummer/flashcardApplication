@@ -1,10 +1,15 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.DeckDao;
+import com.techelevator.dao.JdbcDeckDao;
+import com.techelevator.dao.JdbcUserDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Deck;
+import com.techelevator.model.User;
 import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +20,18 @@ import java.util.List;
 public class DeckController {
     private final String BASE_URL = "/decks";
 
+
+
     @Autowired
     private DeckDao deckDao;
+    @Autowired
+    private UserDao userDao;
 
-    public DeckController(DeckDao deckDao) {
+    public DeckController(DeckDao deckDao, UserDao userDao) {
         this.deckDao = deckDao;
+        this.userDao = userDao;
     }
+
 
 
     //GET ALL DECKS BY ID
@@ -44,9 +55,11 @@ public class DeckController {
 
 
   @PreAuthorize("isAuthenticated()")
-    @RequestMapping(path = BASE_URL + "/user/{userId}", method = RequestMethod.GET)
-    public List<Deck> geAllDecksByUserId(@PathVariable int userId){
-        return deckDao.geAllDecksByUserId(userId);
+    @RequestMapping(path = BASE_URL + "/user", method = RequestMethod.GET)
+    public List<Deck> geAllDecksByUserId(@RequestBody Principal principal){
+      User user = userDao.getUserByUsername(principal.getName());
+
+        return deckDao.geAllDecksByUserId(user.getId());
     }
 
 // GET ALL ADMIN DECKS
@@ -63,11 +76,9 @@ public class DeckController {
  @ResponseStatus(HttpStatus.CREATED)
   @RequestMapping(path = BASE_URL + "/new", method = RequestMethod.POST)
     public int createDeck(@RequestBody Deck deckToCreate, Principal principal){
-      System.out.println(principal.getName());
-        System.out.println("DEBUG");
-      System.out.println(deckToCreate);
-        // use some DAO method to figure out the user id?
-      // deckToCreate.setUserId(....)
+
+        User user = userDao.getUserByUsername(principal.getName());
+      deckToCreate.setUserId(user.getId());
 
         return deckDao.createDeck(deckToCreate);
     }
@@ -87,9 +98,12 @@ public class DeckController {
 
 
      @PreAuthorize("isAuthenticated()")
-@RequestMapping(path = BASE_URL + "/{id}", method = RequestMethod.PUT)
-     public boolean updateDeck(@RequestBody Deck updateDeck, @PathVariable int id){
-        return deckDao.updateDeck(updateDeck);
+@RequestMapping(path = BASE_URL, method = RequestMethod.PUT)
+     public boolean updateDeck(@RequestBody Deck updateDeck, Principal principal) {
+         User user = userDao.getUserByUsername(principal.getName());
+         updateDeck.setUserId(user.getId());
+
+         return deckDao.updateDeck(updateDeck);
      }
 
 

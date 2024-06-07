@@ -3,7 +3,8 @@
     <NavTool />
     <div class="deck-content">
       <div class="loading" v-if="isLoading">
-        hi
+    Loading...
+ 
       </div>
       <div v-else>
         <h1>My Decks</h1>
@@ -31,7 +32,8 @@ export default {
   data() {
     return {
       decks: [],
-      isLoading: true
+      isLoading: true,
+      
     };
   },
   methods: {
@@ -47,10 +49,10 @@ export default {
           `Error ${verb} deck list. Request could not be created.`);
       }
     },
-    async retrieveDecks(userId) {
+    async retrieveDecks() {
       try {
         this.isLoading = true;
-        const response = await DeckService.getDecksByUserId(userId);
+        const response = await DeckService.getDecksByUserId();
         this.decks = response.data;
       } catch (error) {
         this.handleError(error, 'retrieving');
@@ -60,13 +62,9 @@ export default {
     }
   },
   created() {
-    // const userId = this.$store.state.user.userId;
-    const userId = 3;
-    if (userId) {
-      this.retrieveDecks(userId);
-    } else {
-      this.handleError(new Error('User ID is not defined'), 'retrieving');
-    }
+ 
+      this.retrieveDecks();
+  
   }
 }
 </script>

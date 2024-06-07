@@ -26,8 +26,7 @@ export default {
         return axios.delete(`/cards/${cardId}`);
     },
     getCardsByTag(tags){
-        console.log('DEEEEBUG')
-        console.log(tags);
+     
         return axios.put('/cards/search', tags);
     },
 

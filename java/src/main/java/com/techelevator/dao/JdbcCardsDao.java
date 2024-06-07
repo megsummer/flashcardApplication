@@ -87,25 +87,34 @@ public class JdbcCardsDao implements CardsDao {
     public boolean updateCard(Cards card) {
         List<String> tags = card.getTags();
 
-        try {
-            String sql1 = "UPDATE cards SET front_question=?, back_answer=?, card_img=? WHERE card_id=?; ";
-            String sql2 = "DELETE from cards_tags where card_id = ?;";
-            jdbcTemplate.update(sql1, card.getFrontQuestion(), card.getBackAnswer(), card.getCardImg(), card.getCardId());
-            jdbcTemplate.update(sql2, card.getCardId());
-        } catch (DataAccessException e) {
-            throw new DaoException("Error updating card: " + card, e);
-        }
-       if (tags != null) {
-           for (String tag : tags) {
+        int updatedCardUserId = card.getUserId();
+        Cards currentCard = getCardById(card.getCardId());
+        int currentCardUserId = currentCard.getUserId();
+        if (updatedCardUserId != currentCardUserId) {
+            saveCard(card);
+            return true;
+        } else {
 
-               try {
-                   String sql = "INSERT INTO cards_tags (card_id, tag) VALUES (?,?);";
-                   jdbcTemplate.update(sql, card.getCardId(), tag);
-               } catch (DataAccessException e) {
-                   throw new DaoException("Error saving tag: " + tag, e);
-               }
-           }
-       }
+            try {
+                String sql1 = "UPDATE cards SET front_question=?, back_answer=?, card_img=? WHERE card_id=?; ";
+                String sql2 = "DELETE from cards_tags where card_id = ?;";
+                jdbcTemplate.update(sql1, card.getFrontQuestion(), card.getBackAnswer(), card.getCardImg(), card.getCardId());
+                jdbcTemplate.update(sql2, card.getCardId());
+            } catch (DataAccessException e) {
+                throw new DaoException("Error updating card: " + card, e);
+            }
+            if (tags != null) {
+                for (String tag : tags) {
+
+                    try {
+                        String sql = "INSERT INTO cards_tags (card_id, tag) VALUES (?,?);";
+                        jdbcTemplate.update(sql, card.getCardId(), tag);
+                    } catch (DataAccessException e) {
+                        throw new DaoException("Error saving tag: " + tag, e);
+                    }
+                }
+            }
+        }
         return true;
     }
 
@@ -126,7 +135,6 @@ public class JdbcCardsDao implements CardsDao {
 
     @Override
     public boolean deleteCard(int cardId) {
-
 
 
         String sql1 = "DELETE from cards_tags where card_id = ?;";

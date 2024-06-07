@@ -3,8 +3,10 @@ package com.techelevator.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.dao.CardsDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Cards;
 import com.techelevator.model.SearchTags;
+import com.techelevator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -22,10 +25,13 @@ public class CardsController {
 
     @Autowired
     private CardsDao cardsDao;
+    @Autowired
+    private UserDao userDao;
 
 
-    public CardsController(CardsDao cardsDao){
+    public CardsController(CardsDao cardsDao, UserDao userDao){
         this.cardsDao = cardsDao;
+        this.userDao = userDao;
     }
 
 
@@ -49,7 +55,9 @@ public class CardsController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/cards/new", method = RequestMethod.POST)
-    public int saveCard(@Valid @RequestBody Cards card) {
+    public int saveCard(@Valid @RequestBody Cards card, Principal principal) {
+        User user = userDao.getUserByUsername(principal.getName());
+        card.setUserId(user.getId());
         return cardsDao.saveCard(card);
     }
 

@@ -14,13 +14,12 @@ export default {
         return axios.get(`/decks/${deckId}`);
     },
 
-    getDecksByUserId(userId){
-        return axios.get(`/decks/user/${userId}`);
+    getDecksByUserId(){
+        return axios.get('/decks/user');
     },
 
     createNewDeck(newDeck){
-        console.log('DEBUG')
-        console.log(newDeck);
+
         return axios.post('/decks/new', newDeck);
     },
 
@@ -28,8 +27,8 @@ export default {
         return axios.delete(`/decks/${deckId}`);
     },
 
-    updateDeck(deckId, updatedDeck){
-        return axios.put(`/decks/${deckId}`, updatedDeck);
+    updateDeck(updatedDeck){
+        return axios.put('/decks', updatedDeck);
     },
 
     getAdminDecks() {

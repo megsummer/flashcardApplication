@@ -58,9 +58,10 @@ public class JdbcDeckDao implements DeckDao{
     }
 
 
-@Override
+
     public List<Deck> geAllDecksByUserId(int userId) {
         List<Deck> decks = new ArrayList<>();
+    System.out.println("userid is:" + userId);
         String sql = "SELECT deck_id, user_id, deck_title, cover_img, deck_description, pending_approval," +
                 "is_approved, admin_id FROM decks WHERE user_id = ?;";
         try {
