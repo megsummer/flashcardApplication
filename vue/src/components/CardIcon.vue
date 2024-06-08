@@ -3,6 +3,7 @@
     <div id="card" class="card">
         <img src=""/>
         <p>{{ card.frontQuestion }}</p>
+        <img :src="card.imageUrl" alt="Card Image" />
 
     </div>
    

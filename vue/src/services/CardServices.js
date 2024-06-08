@@ -10,8 +10,8 @@ export default {
         return axios.get('/cards');
     },
 
-    getCardById(cardId){
-        return axios.get(`/cards/${cardId}`);
+    getCardById(id){
+        return axios.get(`/cards/${id}`);
     },
 
     createNewCard(newCard){
