@@ -124,18 +124,25 @@ public class JdbcDeckDao implements DeckDao{
     @Override
 
     public boolean updateDeck(Deck updateDeck){
+        int updatedDeckUserId = updateDeck.getUserId();
+        Deck currentDeck = getDeckByDeckId(updateDeck.getDeckId());
+        int currentDeckUserId = currentDeck.getUserId();
+        if(updatedDeckUserId != currentDeckUserId){
+            createDeck(updateDeck);
+        }else {
 
-        String sql = "UPDATE decks " +
-                "SET deck_title = ?, cover_img = ?, deck_description =?, pending_approval = ?, is_approved = ?, admin_id =?" +
-                "WHERE deck_id = ?";
-        try{
-           jdbcTemplate.update(sql, updateDeck.getDeckTitle(), updateDeck.getCoverImg(), updateDeck.getDeckDescription(),
-                   updateDeck.isPendingApproval(), updateDeck.isApproved(), updateDeck.getAdminId(), updateDeck.getDeckId());
+            String sql = "UPDATE decks " +
+                    "SET deck_title = ?, cover_img = ?, deck_description =?, pending_approval = ?, is_approved = ?, admin_id =?" +
+                    "WHERE deck_id = ?";
+            try {
+                jdbcTemplate.update(sql, updateDeck.getDeckTitle(), updateDeck.getCoverImg(), updateDeck.getDeckDescription(),
+                        updateDeck.isPendingApproval(), updateDeck.isApproved(), updateDeck.getAdminId(), updateDeck.getDeckId());
 
-        }catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        } catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data integrity violation", e);
+            } catch (CannotGetJdbcConnectionException e) {
+                throw new DaoException("Unable to connect to server or database", e);
+            } catch (DataIntegrityViolationException e) {
+                throw new DaoException("Data integrity violation", e);
+            }
         }
 return true;
     }

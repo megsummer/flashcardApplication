@@ -4,7 +4,17 @@
     <div class="loading" v-if="isLoading">Loading...</div>
     <div v-else>
       <h1>DeckByID</h1>
-      <p>You are inside DeckbyID if you see this.</p>
+      <p>You are inside DeckbyID if you see this.</p> 
+      <div id="showDeck" class = "showCard">
+        <h1>Deck View</h1>
+        <div id="deckTitle">Title: {{ localDeck.deckTitle }}</div>
+        <div id="deckDescription">Description: {{ localDeck.deckDescription }}</div>
+       <img :src="localDeck.imageUrl" alt="Deck Image" />
+
+      </div>
+
+      *********
+
       <p></p>
       <router-link class="nav-button" v-bind:to="{ name: 'studySession' }">Study Session</router-link>
       <router-link class="nav-button" v-bind:to="{ name: 'createCard' }">Create Cards</router-link>

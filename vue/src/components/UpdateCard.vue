@@ -10,7 +10,7 @@
           <label for="tag">Back Answer:</label>
           <input id="tag" type="text" class="form-control" v-model="editCard.backAnswer" />
           <label for="status">Card Image:</label>
-          <input id="status" type="text" class="form-control" v-model="editCard.imageUrl" />
+          <input id="status" type="text" class="form-control" v-model="editCard.coverImg" />
         </div>
         <div class="form-group">
           <label for="description">Tags:</label>
@@ -37,10 +37,10 @@
       return {
         formShowing: false,
         editCard: {
-        id: this.card.id,
+        cardId: this.card.cardId,
         frontQuestion: this.card.frontQuestion,
         backAnswer: this.card.backAnswer,
-        imageUrl: this.card.imageUrl,
+        cardImg: this.card.cardImg,
         tags: this.card.tags,
         
         }
@@ -87,7 +87,7 @@
                         type: 'success'
                     }
                 );
-                this.$router.push({ name: 'Cardview', params: { id: this.editCard.id  } });
+                this.$router.push({ name: 'cardById', params: { id: this.editCard.id  } });
               }
             })
             .catch(error => {

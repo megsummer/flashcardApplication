@@ -1,6 +1,5 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -20,8 +19,7 @@ CREATE TABLE decks (
     is_approved boolean default false,
     admin_id int,
     CONSTRAINT PK_decks PRIMARY KEY (deck_id),
-    CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
-    CONSTRAINT FK_admin_id FOREIGN KEY (admin_id) REFERENCES users(user_id)
+    CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
     );
 
 CREATE TABLE cards (

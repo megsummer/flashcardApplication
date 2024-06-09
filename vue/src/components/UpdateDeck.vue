@@ -4,15 +4,15 @@
     <form v-if="formShowing" @submit.prevent="submitForm" class="deckForm">
       <div class="form-group">
         <label for="title">Deck Title:</label>
-        <input id="title" type="text" class="form-control" v-model="editDeck.title" autocomplete="off" />
+        <input id="title" type="text" class="form-control" v-model="editDeck.deckTitle" autocomplete="off" />
       </div>
       <div class="form-group">
         <label for="description">Deck Description:</label>
-        <textarea id="description" class="form-control" v-model="editDeck.description"></textarea>
+        <textarea id="description" class="form-control" v-model="editDeck.deckDescription"></textarea>
       </div>
       <div class="form-group">
         <label for="image">Deck Image:</label>
-        <input id="image" type="text" class="form-control" v-model="editDeck.image" />
+        <input id="image" type="text" class="form-control" v-model="editDeck.coverImg" />
       </div>
       <button class="btn btn-submit">Submit</button>
       <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
@@ -35,10 +35,11 @@ export default {
     return {
       formShowing: false,
       editDeck: {
-        id: this.deck.id,
-        title: this.deck.title,
-        description: this.deck.description,
-        image: this.deck.image,
+        
+        deckId: this.deck.deckId,
+        deckTitle: "",
+        deckDescription: "",
+        coverImg: "",
       }
     };
   },
@@ -55,7 +56,7 @@ export default {
       if (!this.validateForm()) {
         return;
       }
-      DeckServices.updateDeckById(this.editDeck)
+      DeckServices.updateDeck(this.editDeck)
         .then(response => {
           if (response.status === 200) {
             this.$store.commit(
@@ -83,7 +84,7 @@ export default {
     },
     validateForm() {
       let msg = '';
-      if (this.editDeck.title.length === 0) {
+      if (this.editDeck.deckTitle.length === 0) {
         msg += 'The deck must have a title. ';
       }
       if (msg.length > 0) {

@@ -8,7 +8,7 @@
           <h1>CardView</h1>
           <div id="Question" class="question">
             <h1>{{ localCard.frontQuestion }}</h1>
-            <img :src="localCard.imageUrl" alt="Card Image" />
+            <img :src="localCard.coverImg" alt="Card Image" />
           </div>
           <div id="Answer" class="answer">
             <h1>{{ localCard.backAnswer }}</h1>
