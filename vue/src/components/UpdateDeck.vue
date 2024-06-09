@@ -17,7 +17,7 @@
       <button class="btn btn-submit">Submit</button>
       <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
     </form>
-    <div>Form should be showing: {{ formShowing }}</div>
+  
   </div>
 </template>
 

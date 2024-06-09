@@ -3,30 +3,25 @@
     <NavTool />
     <div class="loading" v-if="isLoading">Loading...</div>
     <div v-else>
-      <h1>DeckByID</h1>
-      <p>You are inside DeckbyID if you see this.</p> 
-      <div id="showDeck" class = "showCard">
-        <h1>Deck View</h1>
-        <div id="deckTitle">Title: {{ localDeck.deckTitle }}</div>
-        <div id="deckDescription">Description: {{ localDeck.deckDescription }}</div>
-       <img :src="localDeck.imageUrl" alt="Deck Image" />
-
-      </div>
-
-      *********
-
-      <p></p>
-      <router-link class="nav-button" v-bind:to="{ name: 'studySession' }">Study Session</router-link>
-      <router-link class="nav-button" v-bind:to="{ name: 'createCard' }">Create Cards</router-link>
       
-      <UpdateDeck :deck="localDeck" />
+
 
       <div class="deckDetails">
-        <h2>{{ localDeck.title }}</h2>
-        <p>{{ localDeck.description }}</p>
-        <img :src="localDeck.image" alt="Deck Image" />
+        <h2> Title: {{ localDeck.deckTitle }}</h2>
+        <p>Description: {{ localDeck.deckDescription }}</p>
+        <img :src="localDeck.coverImg" alt="Deck Image" />
   
       </div>
+      <p></p>
+      <UpdateDeck :deck="localDeck" />
+      <p></p>
+      <router-link class="nav-button" v-bind:to="{ name: 'studySession' }">Study Session</router-link>
+      <p></p>
+      <router-link class="nav-button" v-bind:to="{ name: 'createCard' }">Create Cards</router-link>
+      <p></p>
+      <button class="nav-button" @click="deleteDeck">Delete Deck</button>
+     
+<p></p>
       Cards In This Deck
 
       <router-link v-for="card in cards" v-bind:key="card.cardId"
@@ -34,15 +29,8 @@
         <CardIcon v-bind:card="card"/>
      </router-link>
 
-      <button class="delete-button" @click="deleteDeck">Delete Deck</button>
-      
+  
 
-      <div v-for="card in localDeck.cards" :key="card.cardId">
-        <div class="card">
-          <h3>{{ card.frontQuestion }}</h3>
-          <p>{{ card.backAnswer }}</p>
-        </div>
-      </div>
     </div>
     <Logo/>
   </div>
