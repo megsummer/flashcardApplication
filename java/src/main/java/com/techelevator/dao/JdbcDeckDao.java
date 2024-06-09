@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Cards;
 import com.techelevator.model.Deck;
+import com.techelevator.model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
@@ -12,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +65,7 @@ public class JdbcDeckDao implements DeckDao{
 
     public List<Deck> getAllDecksByUserId(int userId) {
         List<Deck> decks = new ArrayList<>();
-    System.out.println("userid is:" + userId);
+
         String sql = "SELECT deck_id, user_id, deck_title, cover_img, deck_description, pending_approval," +
                 "is_approved, admin_id FROM decks WHERE user_id = ?;";
         try {
@@ -112,13 +114,20 @@ public class JdbcDeckDao implements DeckDao{
     }
 @Override
 
-    public boolean deleteDeck(int deckId){
-        String sql = "DELETE FROM deck WHERE deck_id = ?";
-        jdbcTemplate.update(sql, deckId);
-        boolean isDeleted = false;
-        if (getDeckByDeckId(deckId) == null){
+    public boolean deleteDeck(int deckId, User user){
+    Deck deleteDeck = getDeckByDeckId(deckId);
+    int deleteDeckUserId = deleteDeck.getUserId();
+    boolean isDeleted = false;
+    if(deleteDeckUserId == user.getId()) {
+
+        String sql = "DELETE FROM cards_to_decks WHERE deck_id = ?;\n" +
+                "DELETE FROM decks WHERE deck_id = ?;";
+        jdbcTemplate.update(sql, deckId, deckId);
+
+        if (getDeckByDeckId(deckId) == null) {
             isDeleted = true;
         }
+    }
         return isDeleted;
 
     }

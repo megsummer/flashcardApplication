@@ -82,6 +82,26 @@ export default {
         this.$store.commit('SET_NOTIFICATION', `Error ${verb} deck. Request could not be created.`);
       }
     },
+
+
+    deleteDeck(){
+      
+      const shouldDelete = confirm("Are you sure you want to delete this deck?");
+
+      if(shouldDelete){
+        DeckServices.deleteDeckById(this.localDeck.deckId)
+        .then(response => {
+          if(response.status === 200){
+            this.$store.commit('SET_NOTIFICATION', {message: "Successfully deleted board.", type: 'success'})
+            this.$router.push({name: 'myDecks'});
+          }
+        }).catch(error => {
+          this.handleError(error, 'deleting');
+        });
+      }
+
+    },
+
     getCardsbyDeckId(deckId) {
       CardServices.getCardsByDeckId(deckId)
         .then(response => {

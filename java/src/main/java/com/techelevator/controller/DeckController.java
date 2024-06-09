@@ -89,8 +89,9 @@ public class DeckController {
 
    @PreAuthorize("isAuthenticated()")
 @RequestMapping(path = BASE_URL + "/{deckId}", method = RequestMethod.DELETE)
-     public boolean deleteDeck(@PathVariable int deckId){
-        return deckDao.deleteDeck(deckId);
+     public boolean deleteDeck(@PathVariable int deckId, Principal principal){
+        User user = userDao.getUserByUsername(principal.getName());
+        return deckDao.deleteDeck(deckId, user);
      }
 
 
