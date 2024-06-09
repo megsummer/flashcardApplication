@@ -27,6 +27,13 @@
         <img :src="localDeck.image" alt="Deck Image" />
   
       </div>
+      Cards In This Deck
+
+      <router-link v-for="card in cards" v-bind:key="card.cardId"
+        v-bind:to="{name: 'cardById', params : {id : card.cardId}}">
+        <CardIcon v-bind:card="card"/>
+     </router-link>
+
       <button class="delete-button" @click="deleteDeck">Delete Deck</button>
       
 
@@ -47,18 +54,22 @@ import NavTool from '@/components/NavTool.vue';
 import DeckServices from '../services/DeckServices';
 import UpdateDeck from '../components/UpdateDeck.vue';
 import Logo from '../components/Logo.vue';
+import CardServices from '../services/CardServices';
+import CardIcon from '../components/CardIcon.vue';
 
 export default {
   name: 'DeckById',
   components: {
     NavTool,
     UpdateDeck,
-    Logo
+    Logo,
+    CardIcon
 },
   data() {
     return {
       isLoading: true,
-      localDeck: {}
+      localDeck: {},
+      cards: []
     };
   },
   methods: {
@@ -71,11 +82,21 @@ export default {
         this.$store.commit('SET_NOTIFICATION', `Error ${verb} deck. Request could not be created.`);
       }
     },
+    getCardsbyDeckId(deckId) {
+      CardServices.getCardsByDeckId(deckId)
+        .then(response => {
+          this.cards = response.data;
+          this.isLoading = false;
+        })
+        .catch(error => {
+          this.handleError(error, 'retrieving');
+        });
+      },
     getDeck(deckId) {
       DeckServices.getDeckById(deckId)
         .then(response => {
           this.localDeck = response.data;
-          this.isLoading = false;
+          
         })
         .catch(error => {
           this.handleError(error, 'retrieving');
@@ -85,6 +106,8 @@ export default {
   created() {
     const deckId = parseInt(this.$route.params.id);
     this.getDeck(deckId);
+    this.getCardsbyDeckId(deckId);
+    
   }
 };
 </script>
