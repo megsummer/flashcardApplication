@@ -12,15 +12,6 @@ public class Deck {
     private boolean isApproved;
     private int adminId;
 
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
-    }
-
-    private List<String> tags;
 
     public String getDeckDescription() {
         return deckDescription;
@@ -93,7 +84,6 @@ public class Deck {
                 ", pendingApproval=" + pendingApproval +
                 ", isApproved=" + isApproved +
                 ", adminId=" + adminId +
-                ", tags=" + tags +
                 '}';
     }
 

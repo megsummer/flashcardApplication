@@ -42,7 +42,7 @@ export default {
   data(){
     return {
       newDeck: {
-        userId: "",
+      
         deckTitle: "",
         coverImg: "",
         deckDescription: "",
@@ -65,31 +65,20 @@ export default {
       this.$router.push({name: 'saveCard'})
     },
 
-    // resetForm (){
-    //   this.newDeck = {
-    //     userId: "",
-    //     deckTitle: "",
-    //     coverImg: "",
-    //     deckDescription: "",
-      //};
-     // this.$router.push({name: 'getAllDecks'});
-
-    //},
 
     createDeck() {
-      let createdDeckId = DeckServices.createNewDeck(this.newDeck)
+      DeckServices.createNewDeck(this.newDeck)
         .then(response => {
-          if(response.status == 201) {
-            console.log (createdDeckId);
-            this.$router.push({ name: 'deckById', params: {id: createdDeckId }});
+          if(response.status === 201) {
+           
+            this.$router.push({ name: 'createCard'});
                      
             }
           }).catch(error => {
             this.handleError(error, 'adding');
           });
     },
-    //saving title, description (&img)//
-    //after save keep you on same page to add card?
+   
 
 
   }

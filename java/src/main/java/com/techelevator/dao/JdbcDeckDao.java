@@ -1,7 +1,9 @@
 package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.Cards;
 import com.techelevator.model.Deck;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -59,7 +61,7 @@ public class JdbcDeckDao implements DeckDao{
 
 
 
-    public List<Deck> geAllDecksByUserId(int userId) {
+    public List<Deck> getAllDecksByUserId(int userId) {
         List<Deck> decks = new ArrayList<>();
     System.out.println("userid is:" + userId);
         String sql = "SELECT deck_id, user_id, deck_title, cover_img, deck_description, pending_approval," +
@@ -127,9 +129,40 @@ public class JdbcDeckDao implements DeckDao{
         int updatedDeckUserId = updateDeck.getUserId();
         Deck currentDeck = getDeckByDeckId(updateDeck.getDeckId());
         int currentDeckUserId = currentDeck.getUserId();
-        if(updatedDeckUserId != currentDeckUserId){
-            createDeck(updateDeck);
-        }else {
+        if(updatedDeckUserId != currentDeckUserId) {
+           int createdDeckId = createDeck(updateDeck);
+            int currentDeckId = currentDeck.getDeckId();
+            List<Integer> cardInts = new ArrayList<>();
+
+            try {
+                String sql = "SELECT card_id \n" +
+                        "FROM cards_to_decks\n" +
+                        "WHERE deck_id = ?;";
+                SqlRowSet results = jdbcTemplate.queryForRowSet(sql, currentDeckId);
+                while (results.next()) {
+                    cardInts.add(results.getInt("card_id"));
+                }
+            } catch (CannotGetJdbcConnectionException e) {
+                throw new DaoException("Unable to connect to server or database", e);
+            } catch (DataAccessException e) {
+                throw new DaoException("Error retrieving cards.", e);
+            }
+            if(cardInts != null) {
+                for (int card : cardInts) {
+                    String sql = "INSERT INTO cards_to_decks (card_id, deck_id) VALUES (?, ?);";
+                    try {
+                        jdbcTemplate.update(sql, card, createdDeckId);
+
+                    } catch (CannotGetJdbcConnectionException e) {
+                        throw new DaoException("Unable to connect to server or database", e);
+                    } catch (DataAccessException e) {
+                        throw new DaoException("Error adding cards.", e);
+                    }
+
+                }
+            }
+
+        } else {
 
             String sql = "UPDATE decks " +
                     "SET deck_title = ?, cover_img = ?, deck_description =?, pending_approval = ?, is_approved = ?, admin_id =?" +

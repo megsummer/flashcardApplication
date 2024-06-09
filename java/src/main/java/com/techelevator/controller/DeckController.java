@@ -59,7 +59,7 @@ public class DeckController {
     public List<Deck> getAllDecksByUserId( Principal principal){
       User user = userDao.getUserByUsername(principal.getName());
 
-        return deckDao.geAllDecksByUserId(user.getId());
+        return deckDao.getAllDecksByUserId(user.getId());
     }
 
 // GET ALL ADMIN DECKS
