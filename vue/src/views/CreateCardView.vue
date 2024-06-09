@@ -1,6 +1,7 @@
 <template>
    <!-- <div class="viewCardActions"> </div>-->
    <div>
+  
       <NavTool />
   </div>
 
@@ -58,6 +59,7 @@
           <input type="submit" value="Save Card"/>
         </div>
       </form>
+      <Logo/>
   </div>
 </template>
 
@@ -65,14 +67,16 @@
 import NavTool from '@/components/NavTool.vue';
 import CardServices from '@/services/CardServices.js';
 import CardIcon from '@/components/CardIcon.vue';
+import Logo from '../components/Logo.vue';
 
 export default {
   name: 'CardView',
 
-  components: { 
+  components: {
     CardIcon,
-    NavTool 
-    },
+    NavTool,
+    Logo
+},
     
     data () {
       return {

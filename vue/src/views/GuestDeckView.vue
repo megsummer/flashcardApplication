@@ -17,6 +17,7 @@
           v-bind:to="{name: 'deckById', params :{id: deck.deckId}}">
           <DeckIcon v-bind:deck="deck"/> 
     </div>
+    <Logo/>
    
 
 
@@ -28,14 +29,15 @@
 <script>
 import DeckService from '../services/DeckServices';
 import DeckIcon from '../components/DeckIcon.vue';
+import Logo from '../components/Logo.vue';
 
 
 
 export default {
   components: {
-    DeckIcon
-
-  },
+    DeckIcon,
+    Logo
+},
   data() {
     return {
       decks: [],

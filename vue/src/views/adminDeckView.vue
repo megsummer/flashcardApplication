@@ -1,11 +1,12 @@
 <template>
 
 
-
+<Logo/>
   <div class = "loading" v-if="isLoading">Loading...</div>
 
 
   <div v-else>
+    
   
 THESE ARE THE ADMIN DECKS
      
@@ -16,6 +17,8 @@ THESE ARE THE ADMIN DECKS
           v-bind:to="{name: 'deckById', params: {id: deck.deckId}}">
           <DeckIcon v-bind:deck="deck"/> 
   </router-link>
+
+  
    
 
 
@@ -27,14 +30,15 @@ THESE ARE THE ADMIN DECKS
 <script>
 import DeckService from '../services/DeckServices';
 import DeckIcon from '../components/DeckIcon.vue';
+import Logo from '../components/Logo.vue';
 
 
 
 export default {
   components: {
-    DeckIcon
-
-  },
+    DeckIcon,
+    Logo
+},
   data() {
     return {
       decks: [],

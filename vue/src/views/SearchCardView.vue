@@ -16,6 +16,7 @@
         v-bind:to="{name: 'cardById', params : {id : card.cardId}}">
         <CardIcon v-bind:card="card"/>
      </router-link>
+     <Logo/>
 
 
     </div>
@@ -25,11 +26,13 @@
 
 import cardService from '../services/CardServices';
 import CardIcon from '../components/CardIcon.vue';
+import Logo from '../components/Logo.vue';
 
 export default{
     components:{
-CardIcon
-    },
+    CardIcon,
+    Logo
+},
     data(){
         return {
             cards: [],

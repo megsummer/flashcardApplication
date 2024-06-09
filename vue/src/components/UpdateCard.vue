@@ -1,61 +1,165 @@
 <template>
-    
- 
-
-     this button is supposed to toggle the update form from showing, but for some reason it is not.
-     will fix up later.  
-<button id="update" class = "update" v-on:click="toggleForm()">Update Card</button>
-
-<form id="updateForm" class = "form" v-if="formShowing">
- <div>
- <label for="card-frontQuestion">Front Question:</label>
-         <input type="text" id="card-frontQuestion" v-model="newCard.frontQuestion" />
-       </div>
-       <div class="card-form">
-         <label for="card-backAnswer">Back Answer:</label>
-         <input type="text" id="card-backAnswer" v-model="newCard.backAnswer"/>
-       </div>
-       <div class="card-form">
-         <label for="card-img">Card Image:</label>
-         <input type="text" id="card-img" v-model="newCard.cardImg" />
-       </div>
-       <div class="card-form">
-         <label for="card-tags">Tags:</label>
-         <input type="text" id="card-tags" v-model="newCard.tags" />
-         <input type="submit" value="Save Card"/>
-       </div>
-</form>
-
-
-    form should be showing: {{ formShowing }}
-
-   
-</template>
-<script>
-import CardServices from '../services/CardServices';
-
-export default{
-    components: {
-
+    <div>
+      <button class="update" @click="toggleForm">Update Card</button>
+      <form v-if="formShowing" @submit.prevent="submitForm" class="cardForm">
+        <div class="form-group">
+          <label for="title">Front Question:</label>
+          <input id="title" type="text" class="form-control" v-model="editCard.frontQuestion" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="tag">Back Answer:</label>
+          <input id="tag" type="text" class="form-control" v-model="editCard.backAnswer" />
+          <label for="status">Card Image:</label>
+          <input id="status" type="text" class="form-control" v-model="editCard.imageUrl" />
+        </div>
+        <div class="form-group">
+          <label for="description">Tags:</label>
+          <input id="description" type="text" class="form-control" v-model="editCard.tags" />
+        </div>
+        <button class="btn btn-submit">Submit</button>
+        <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
+      </form>
+      <div>Form should be showing: {{ formShowing }}</div>
+    </div>
+  </template>
+  
+  <script>
+  import CardServices from '../services/CardServices';
+  
+  export default {
+    props: {
+      card: {
+        type: Object,
+        required: true
+      }
     },
-    props: ['card'],
-    data(){
-        return {
-            formShowing: false,
-
-        };
+    data() {
+      return {
+        formShowing: false,
+        editCard: {
+        id: this.card.id,
+        frontQuestion: this.card.frontQuestion,
+        backAnswer: this.card.backAnswer,
+        imageUrl: this.card.imageUrl,
+        tags: this.card.tags,
+        
+        }
+      };
     },
-    methods:{
-        toggleForm(){
-            if(this.formShowing){
-                this.formShowing = false;
-            }else {
-                this.formShowing = true;
-            }
-        },
-
-
-    },
-}
-
-</script>
+    methods: {
+      toggleForm() {
+        this.formShowing = !this.formShowing;
+        if (this.formShowing) {
+          this.$store.commit('SET_NOTIFICATION', 'Update form is now visible.');
+        } else {
+          this.$store.commit('SET_NOTIFICATION', 'Update form is now hidden.');
+        }
+      },
+      submitForm() {
+        if (!this.validateForm()) {
+          return;
+        }
+        if (this.editCard.id === 0) {
+          CardServices.addCard(this.editCard)
+            .then(response => {
+              if (response.status === 201) {
+                this.$store.commit(
+                    'SET_NOTIFICATION',
+                     {
+                        message: 'A new card was added.',
+                        type: 'success'
+                    }
+                );
+                this.$router.push({ name: 'CardView', params: { id: this.editCard.id  } });
+              }
+            })
+            .catch(error => {
+              this.handleErrorResponse(error, 'adding');
+            });
+        } else {
+          CardServices
+          .updateCardById(this.editCard)
+          .then(response => {
+              if (response.status === 200) {
+                this.$store.commit(
+                    'SET_NOTIFICATION', {
+                        message: `Card ${this.editCard.id} was updated.`,
+                        type: 'success'
+                    }
+                );
+                this.$router.push({ name: 'Cardview', params: { id: this.editCard.id  } });
+              }
+            })
+            .catch(error => {
+              this.handleErrorResponse(error, 'updating');
+            });
+        }
+      },
+      handleErrorResponse(error, verb) {
+        if (error.response) {
+          this.$store.commit('SET_NOTIFICATION',
+            "Error " + verb + " card. Response received was '" + error.response.statusText + "'.");
+        } else if (error.request) {
+          this.$store.commit('SET_NOTIFICATION', "Error " + verb + " card. Server could not be reached.");
+        } else {
+          this.$store.commit('SET_NOTIFICATION', "Error " + verb + " card. Request could not be created.");
+        }
+      },
+      validateForm() {
+        let msg = '';
+        if (this.editCard.frontQuestion.length === 0) {
+          msg += 'The new card must have a front question. ';
+        }
+        if (this.editCard.backAnswer.length === 0) {
+          msg += 'The new card must have a back answer.';
+        }
+        if (msg.length > 0) {
+          this.$store.commit('SET_NOTIFICATION', msg);
+          return false;
+        }
+        return true;
+      },
+    }
+  }
+  </script>
+  
+  <style scoped>
+  .cardForm {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-control {
+    display: block;
+    width: 80%;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+  
+  textarea.form-control {
+    height: 75px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  select.form-control {
+    width: 20%;
+    display: inline-block;
+    margin: 10px 20px 10px 10px;
+  }
+  </style>

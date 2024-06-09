@@ -17,6 +17,7 @@
       <input type="submit" value="Save Deck"/>
       
     </form>
+    <Logo/>
 
 </template>
 
@@ -27,12 +28,14 @@
 
 import DeckServices from "../services/DeckServices.js";
 import NavTool from '../components/NavTool.vue';
+import Logo from "../components/Logo.vue";
 
 
 export default {
   components:{
-    NavTool
-  },
+    NavTool,
+    Logo
+},
 
 
 

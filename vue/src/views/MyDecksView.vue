@@ -16,6 +16,7 @@
         </div>
       </div>
     </div>
+    <Logo/>
   </div>
 </template>
 
@@ -23,12 +24,14 @@
 import NavTool from '@/components/NavTool.vue';
 import DeckIcon from '../components/DeckIcon.vue';
 import DeckService from '../services/DeckServices'; 
+import Logo from '../components/Logo.vue';
 
 export default {
   components: {
     DeckIcon,
-    NavTool
-  },
+    NavTool,
+    Logo
+},
   data() {
     return {
       decks: [],
@@ -68,4 +71,3 @@ export default {
   }
 }
 </script>
-../services/DeckServices
