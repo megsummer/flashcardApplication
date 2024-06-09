@@ -1,9 +1,10 @@
 <template>
-  <div> 
+  <div class = form> 
+  <div>
       <NavTool/>
   </div>
   <form v-on:submit.prevent="createDeck">
-    {{newDeck}}
+    
       <div class="deck-form">
         <label for="deck-title">Deck Title:</label>
         <input type="text" id="deck-title" v-model="newDeck.deckTitle" />
@@ -14,11 +15,11 @@
         <input type="text" id="deck-description" v-model="newDeck.deckDescription" />
       </div>
 
-      <input type="submit" value="Save Deck"/>
+      <input class = 'submit-button' type="submit" value="Save Deck"/>
       
     </form>
     <Logo/>
-
+  </div>
 </template>
 
 <script>
@@ -71,7 +72,7 @@ export default {
         .then(response => {
           if(response.status === 201) {
            
-            this.$router.push({ name: 'createCard'});
+            this.$router.push({ name: 'myDecks'});
                      
             }
           }).catch(error => {
@@ -86,18 +87,42 @@ export default {
 };
 </script>
 
-
-
 <style>
 
-.deck-form {
-  display: flex;
+
+
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  color: black;
+  text-align: center;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
   align-items: center;
   
 }
 
-#NavTool {
-  display: flex
+
+.deck-form {
+
+}
+
+.submit-button {
+  color: black;
+  text-align: center;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  
+}
+
+.submit-button:hover {
+  background-color: #ffc107;
+}
+
+.NavTool{
 
 }
 

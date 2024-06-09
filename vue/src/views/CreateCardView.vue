@@ -114,7 +114,7 @@ export default {
        },
 
     createCard() {
-      console.log(this.newCard);
+      //console.log(this.newCard);
       CardServices.createNewCard(this.newCard)
         .then(response => {
           if(response.status === 201) {
