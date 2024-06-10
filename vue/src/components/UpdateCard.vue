@@ -34,7 +34,6 @@
   
   <script>
   import CardServices from '../services/CardServices';
-  import AddCardToDeck from './AddCardToDeck.vue';
   import DeckServices from '../services/DeckServices';
   
   export default {
@@ -44,9 +43,7 @@
         required: true
       }
     },
-    components: {
-      
-    },
+  
     data() {
       return {
         formShowing: false,
