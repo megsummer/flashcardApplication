@@ -24,11 +24,22 @@
 <p></p>
       Cards In This Deck
 
+      <button v-on:click="toggleDeleting">Delete Cards From This Deck</button>
+
+      <div class="deleting" v-if="isDeleting">Click a card to delete from this deck.       
+        
+        <p v-for="card in cards" v-bind:key="card.cardId"
+        v-on:click="removeCard(card.cardId)">
+        <CardIcon v-bind:card="card"/>
+      </p>
+      
+      </div>
+    <div v-else>
       <router-link v-for="card in cards" v-bind:key="card.cardId"
         v-bind:to="{name: 'cardById', params : {id : card.cardId}}">
         <CardIcon v-bind:card="card"/>
      </router-link>
-
+</div>
   
 
     </div>
@@ -45,17 +56,20 @@ import Logo from '../components/Logo.vue';
 import CardServices from '../services/CardServices';
 import CardIcon from '../components/CardIcon.vue';
 
+
 export default {
   name: 'DeckById',
   components: {
     NavTool,
     UpdateDeck,
     Logo,
-    CardIcon
+    CardIcon,
+
 },
   data() {
     return {
       isLoading: true,
+      isDeleting: false,
       localDeck: {},
       cards: []
     };
@@ -70,7 +84,13 @@ export default {
         this.$store.commit('SET_NOTIFICATION', `Error ${verb} deck. Request could not be created.`);
       }
     },
+toggleDeleting(){
+  this.isDeleting = !this.isDeleting;
+},
 
+removeCard(cardId){
+        CardServices.removeCardFromDeck(this.localDeck.deckId, cardId)
+    },
 
     deleteDeck(){
       
