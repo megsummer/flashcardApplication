@@ -28,7 +28,7 @@
         </div>
         <div class="card-form">
           <label for="card-tags">Tags:</label>
-          <input type="text" id="card-tags" v-model="newCard.tags" />
+          <input type="text" id="card-tags" v-model="tagsAsString" />
           <input type="submit" value="Save Card"/>
         </div>
 <div class="card-form">
@@ -65,8 +65,9 @@ export default {
             frontQuestion: "", 
             backAnswer: "", 
             cardImg: "",
-            tags: ["string1", "string2"],
+            tags: [],
           },
+          tagsAsString: "",
     };
   },
     
@@ -94,13 +95,15 @@ export default {
        },
 
     createCard() {
-      //console.log(this.newCard);
+      if(this.tagsAsString != ""){
+        this.newCard.tags = this.tagsAsString.split(",");}
+     
       CardServices.createNewCard(this.newCard)
         .then(response => {
           if(response.status === 201) {
             window.alert('Card Added!');
           }
-          // this.resetForm();
+        
           }).catch(error => {
             this.handleError(error, 'adding');
           });

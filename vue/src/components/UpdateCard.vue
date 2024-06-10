@@ -19,7 +19,7 @@
         <button class="btn btn-submit">Submit</button>
         <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
       </form>
-      <div>Form should be showing: {{ formShowing }}</div>
+     
     </div>
   </template>
   
@@ -60,29 +60,12 @@
         if(this.tagsAsString != ""){
         this.editCard.tags = this.tagsAsString.split(",");}
 
-        console.log(this.editCard);
+  
 
        if (!this.validateForm()) {
          return;
         }
-        //if (this.editCard.cardId === 0) {
-         // CardServices.addCard(this.editCard)
-           // .then(response => {
-             // if (response.status === 201) {
-               // this.$store.commit(
-                 //   'SET_NOTIFICATION',
-                   //  {
-                     //   message: 'A new card was added.',
-                       // type: 'success'
-                   // }
-              //  );
-            //    this.$router.push({ name: 'CardView', params: { id: this.editCard.cardId  } });
-        //      }
-          //  })
-           // .catch(error => {
-            //  this.handleErrorResponse(error, 'adding');
-           // });
-        //} else {
+       
           CardServices
           .updateCardById(this.card.cardId, this.editCard)
           .then(response => {
