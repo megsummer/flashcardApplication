@@ -106,7 +106,7 @@ form{
 }
 
 #search-bar{
-    width: 40%;
+    width: 50%;
     padding: 10px;
     margin-right: 10px;
     border-radius: 5px;
@@ -129,7 +129,11 @@ button:hover {
 
 .grid-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 200px,1fr,1fr;
+    grid-template-areas: 
+    "Navtool top-grid-container top-grid-container"
+    "Navtool cards cards"
+;
     gap: 10px;
     flex-grow: 1;
 }
@@ -139,7 +143,7 @@ button:hover {
 }
 
 p{
-    text-align: left center;
+    text-align: ;
     color: black;
 }
 .main-container{
@@ -154,7 +158,7 @@ p{
 
 .top-grid-container{
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr,1fr;
     align-items: center;
     padding: 10px;
     gap: 10px;
