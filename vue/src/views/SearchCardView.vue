@@ -33,7 +33,7 @@
 <script>
 
 import NavTool from '../components/NavTool.vue';
-import cardService from '../services/CardServices';
+import CardServices from '../services/CardServices';
 import CardIcon from '../components/CardIcon.vue';
 import Logo from '../components/Logo.vue';
 
@@ -65,7 +65,7 @@ Logo
     },
 
     retrieveAllCards(){
-        cardService.getAllCards().then(response => {
+        CardServices.getAllCards().then(response => {
             this.cards = response.data;
             this.isLoading = false;
         })
@@ -74,7 +74,7 @@ Logo
         console.log("searching for cards...")
         console.log(this.searchTags)
         this.isLoading=false;
-        cardService.getCardsByTag(this.searchTags).then(response =>{
+        CardServices.getCardsByTag(this.searchTags).then(response =>{
             this.searchedCards=response.data;
             console.log("search complete.")
             this.isLoading = false;
@@ -135,6 +135,7 @@ button:hover {
 
 p{
     text-align: center;
+    text-align: top;
     color: black;
 }
 .main-container{

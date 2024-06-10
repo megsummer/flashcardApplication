@@ -24,7 +24,7 @@
         <button class="btn btn-submit">Submit</button>
         <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
 
-        {{ this.deckToAddTo.id }}
+       
        
 
       </form>
@@ -45,7 +45,7 @@
       }
     },
     components: {
-      AddCardToDeck
+      
     },
     data() {
       return {
@@ -65,17 +65,29 @@
     methods: {
       toggleForm() {
         this.formShowing = !this.formShowing;
-        if (this.formShowing) {
-          this.$store.commit('SET_NOTIFICATION', 'Update form is now visible.');
-        } else {
-          this.$store.commit('SET_NOTIFICATION', 'Update form is now hidden.');
-        }
+    
       },
+
+      addCardToDeck(){
+        if(this.deckToAddTo.id != 0){CardServices.addCardToDeck(this.editCard, this.deckToAddTo.id)
+                    .then(response=> {
+                      if(response.status === 200) {
+                        this.$store.commit(
+                    'SET_NOTIFICATION', {
+                        message: `Card was added to deck.`,
+                        type: 'success'
+                    }
+           ) }}
+           ).catch(error => {
+            this.handleErrorResponse(error, 'updating');
+           });
+          }
+      },
+
       submitForm() {
         if(this.tagsAsString != ""){
         this.editCard.tags = this.tagsAsString.split(",");}
 
-  
 
        if (!this.validateForm()) {
          return;
@@ -90,27 +102,16 @@
                         message: `Card was updated.`,
                         type: 'success'
                     }
-                  );
-                  if(this.deckToAddTo.id != 0){CardServices.addCardToDeck(this.card, this.deckToAddTo.id)
-                    .then(response=> {
-                      if(response.status === 200) {
-                        this.$store.commit(
-                    'SET_NOTIFICATION', {
-                        message: `Card was added to deck.`,
-                        type: 'success'
-                    }
-           ) }}
-           ).catch(error => {
-            this.handleErrorResponse(error, 'updating');
-           });
-          }//end of if
-                    
-              }
-            })
+                  )
+                  }
+                  this.addCardToDeck();
+                })
             .catch(error => {
               this.handleErrorResponse(error, 'updating');
             });
       },
+
+
       handleErrorResponse(error, verb) {
         if (error.response) {
           this.$store.commit('SET_NOTIFICATION',
