@@ -31,6 +31,7 @@
           <input type="text" id="card-tags" v-model="tagsAsString" />
           <input type="submit" value="Save Card"/>
         </div>
+        <AddCardToDeck></AddCardToDeck>
 <div class="card-form">
  
 </div>
@@ -44,7 +45,7 @@
 import NavTool from '@/components/NavTool.vue';
 import CardServices from '@/services/CardServices.js';
 import Logo from '../components/Logo.vue';
-//import AddCardToDeck from '../components/AddCardToDeck.vue';
+import AddCardToDeck from '../components/AddCardToDeck.vue';
 
 
 
@@ -55,7 +56,7 @@ export default {
   
     NavTool,
     Logo,
-    //AddCardToDeck
+    AddCardToDeck
 },
     
     data () {
@@ -109,9 +110,7 @@ export default {
           });
         },
     },
-    created(){
-        this.createCard();
-    }
+    
   };
 </script>
 

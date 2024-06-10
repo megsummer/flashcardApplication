@@ -5,13 +5,13 @@
       </div>
       <div v-else>
 
-        Hi
-        {{ decks }}
-        
+      
         <form>
             <label for="deck-to-add">Which Deck Should We add this card to?</label>
-        
-            <select name="deckToAddTo" id="deck-to-add">
+        {{ deckToAddTo }}
+            <select name="deckToAddTo" id="deck-to-add"  v-model="deckToAddTo.id">
+                <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{ deck.deckTitle }}</option>
+
             </select>
 
         </form>
@@ -34,19 +34,12 @@ export default{
         return {
             decks: [],
             isLoading: true,
-            deckToAddTo: "",
+            deckToAddTo: {},
 
         };
     },
     methods:{
-        createFormOptions(){
-        let options ="<option value ='0'>Please Choose a Deck</option>"
-
-        for (let i = 0; i<this.decks.length; i++){  
-        options += " <option value ='"+ i +"'>"+ this.decks[i].deckTitle+"</option>";
-        }
-        document.getElementById('deck-to-add').innerHTML.options;
-    },
+     
         handleError(error, verb) {
       if (error.response) {
         this.$store.commit('SET_NOTIFICATION',
@@ -76,7 +69,7 @@ export default{
   created() { 
  
       this.retrieveDecks();
-      this.createFormOptions();
+      
   
   }
 

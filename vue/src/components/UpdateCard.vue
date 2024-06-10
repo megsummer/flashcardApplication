@@ -16,8 +16,17 @@
           <label for="description">Tags:</label>
           <input id="description" type="text" class="form-control" v-model="tagsAsString" />
         </div>
+        <label for="deck-to-add">Add this card to a deck:</label>
+            <select name="deckToAddTo" id="deck-to-add"  v-model="deckToAddTo.id">
+              <option v-bind:value="0">Please Select a Deck</option>
+                <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{ deck.deckTitle }}</option>
+            </select>
         <button class="btn btn-submit">Submit</button>
         <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
+
+        {{ this.deckToAddTo.id }}
+       
+
       </form>
      
     </div>
@@ -25,6 +34,8 @@
   
   <script>
   import CardServices from '../services/CardServices';
+  import AddCardToDeck from './AddCardToDeck.vue';
+  import DeckServices from '../services/DeckServices';
   
   export default {
     props: {
@@ -32,6 +43,9 @@
         type: Object,
         required: true
       }
+    },
+    components: {
+      AddCardToDeck
     },
     data() {
       return {
@@ -45,6 +59,7 @@
         
         },
         tagsAsString: "",
+        deckToAddTo: {},
       };
     },
     methods: {
@@ -76,8 +91,20 @@
                         type: 'success'
                     }
                   );
-
-               // this.$router.push({ name: 'cardById', params: {id: } });
+                  if(this.deckToAddTo.id != 0){CardServices.addCardToDeck(this.card, this.deckToAddTo.id)
+                    .then(response=> {
+                      if(response.status === 200) {
+                        this.$store.commit(
+                    'SET_NOTIFICATION', {
+                        message: `Card was added to deck.`,
+                        type: 'success'
+                    }
+           ) }}
+           ).catch(error => {
+            this.handleErrorResponse(error, 'updating');
+           });
+          }//end of if
+                    
               }
             })
             .catch(error => {
@@ -108,8 +135,28 @@
         }
         return true;
       },
-    }
+      async retrieveDecks() {
+      try {
+        this.isLoading = true;
+        const response = await DeckServices.getDecksByUserId();
+        this.decks = response.data;
+      } catch (error) {
+        this.handleErrorResponse(error, 'retrieving');
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    },
+    
+
+  created() { 
+ 
+      this.retrieveDecks();
+      
+  
   }
+    }
+
   </script>
   
   <style scoped>
