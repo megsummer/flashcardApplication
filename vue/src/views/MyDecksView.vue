@@ -1,12 +1,13 @@
 <template>
-
+  <div class="grid-container">
       <div class="loading" v-if="isLoading">
     Loading...
  
       </div>
       <div v-else>
         <div class="deck-view">
-    <NavTool />
+    <NavTool class="nav-tool" />
+    <Logo class="logo"/>
     <div class="deck-content">
       
         <h1>My Decks</h1>
@@ -14,11 +15,12 @@
           <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
           v-bind:to="{name: 'deckById',  params:{ id: deck.deckId }}">
           <DeckIcon v-bind:deck="deck"/> 
-  </router-link>
+    </router-link>
+          </div>
         </div>
       </div>
+      
     </div>
-    <Logo/>
   </div>
 </template>
 
@@ -73,3 +75,42 @@ export default {
   }
 }
 </script>
+<style scoped>
+.grid-container {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        "nav-tool logo ."
+        "mydeck mydeck mydeck";
+    gap: 15px;
+}
+
+.logo {
+    grid-area: logo;
+    display: flex;
+    justify-content: center; /* center content horizontally */
+    align-items: center; /* center content vertically */
+}
+
+.nav-tool {
+    grid-area: nav-tool;
+    display: flex;
+    justify-content: center; /* center content horizontally */
+    align-items: center; /* center content vertically */
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: mydeck; /* place loading within deck area */
+}
+
+.deck-content {
+    grid-area: mydeck;
+    display: flex;
+    justify-content: center; /* center content horizontally */
+    align-items: center; /* center content vertically */
+}
+</style>
