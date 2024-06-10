@@ -54,7 +54,7 @@ import DeckServices from '../services/DeckServices';
 import UpdateDeck from '../components/UpdateDeck.vue';
 import Logo from '../components/Logo.vue';
 import CardServices from '../services/CardServices';
-import CardIcon from '../components/CardIcon';
+import CardIcon from '../components/CardIcon.vue';
 
 
 export default {
