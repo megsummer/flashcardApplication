@@ -95,26 +95,26 @@ Logo
 </script>
 
 <style scoped>
-.loading{
+/* .loading{
     text-align: center;
     font-size: 2em;
     margin-top: 20px;
-}
+} */
 
-form{
+/* form{
     text-align: center;
-    margin-bottom: 20px;
-}
+     margin-bottom: 20px;
+}  */
 
-#search-bar{
+/* #search-bar{
     width: 50%;
     padding: 10px;
     margin-right: 10px;
     border-radius: 5px;
     border: 1px solid black;
-}
+} */
 
-button {
+/* button {
   background-color: #ffd966;
   color: black;
   text-align: center;
@@ -126,10 +126,10 @@ button {
 
 button:hover {
   background-color: #ffc107;
-}
+} */
 
 
-.grid-item{
+/* .grid-item{
     text-decoration: none;
 }
 
@@ -137,47 +137,39 @@ p{
     text-align: center;
     text-align: top;
     color: black;
-}
+} */
 .main-container{
   border: solid #ffc107;
   grid-area: main;
-    display: flex;
+    /* display: flex; */
     padding: 10px;
 }
 
 .nav-tool{
   border: solid;
   grid-area: nav;
-    width: 200px;
-    margin-right: 20px;
+    /* width: 200px;
+    margin-right: 20px; */
 }
 
-.top-grid-container{
-  border: solid #ffc107;
-  grid-area: topp;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: top;
-    padding: 10px;
-    gap: 10px;
-    margin-bottom: 20px;
 
-}
 .search-container{
+  grid-area: search;
   border: solid sienna;
-    text-align: center;
+    /* text-align: center; */
 }
 .logo-container{
+  grid-area: logo;
 border: solid green;
-  display: flex;
-    justify-content: center;
+  /* display: flex; */
+    /* justify-content: center; */
 }
 .griddy{
   display: grid;
-  grid-template-columns: 2000px 3000px;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: 
-  "nav topp"
-  "nav main";
+  "nav search logo"
+  "nav main main";
 
 
 }

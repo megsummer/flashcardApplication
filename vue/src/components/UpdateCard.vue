@@ -34,7 +34,6 @@
   
   <script>
   import CardServices from '../services/CardServices';
-  
   import DeckServices from '../services/DeckServices';
   
   export default {
