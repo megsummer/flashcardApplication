@@ -33,7 +33,7 @@
 <script>
 
 import NavTool from '../components/NavTool.vue';
-import CardServices from '../services/CardServices';
+import CardServices from '../services/CardServices.js';
 import CardIcon from '../components/CardIcon.vue';
 import CardIconVue from '../components/CardIcon.vue';
 import Logo from '../components/Logo.vue';

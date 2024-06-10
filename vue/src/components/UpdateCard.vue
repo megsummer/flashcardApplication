@@ -43,9 +43,7 @@
         required: true
       }
     },
-    components: {
-      
-    },
+  
     data() {
       return {
         formShowing: false,

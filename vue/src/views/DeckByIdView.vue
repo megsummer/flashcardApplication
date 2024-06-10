@@ -50,10 +50,10 @@
 <script>
 
 import NavTool from '@/components/NavTool.vue';
-import DeckServices from '../services/DeckServices';
+import DeckServices from '../services/DeckServices.js';
 import UpdateDeck from '../components/UpdateDeck.vue';
 import Logo from '../components/Logo.vue';
-import CardServices from '../services/CardServices';
+import CardServices from '../services/CardServices.js';
 import CardIcon from '../components/CardIcon.vue';
 
 
