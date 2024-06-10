@@ -3,7 +3,7 @@
     <NavTool />
     <div class="loading" v-if="isLoading">Loading...</div>
     <div v-else>
-      <div class="Cardbyid">
+      <div class="CardById">
         <div id="showCard" class="showCard">
           <h1>CardView</h1>
           <div id="Question" class="question">
@@ -32,7 +32,7 @@ import UpdateCard from '@/components/UpdateCard.vue';
 import Logo from '../components/Logo.vue';
 
 export default {
-  name: 'CardbyId',
+  name: 'CardById',
   components: {
     NavTool,
     UpdateCard,

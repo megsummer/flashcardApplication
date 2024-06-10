@@ -1,5 +1,5 @@
 <template>
-  <div class="deckbyid"> 
+  <div class="DeckById"> 
     <NavTool />
     <div class="loading" v-if="isLoading">Loading...</div>
     <div v-else>
@@ -54,7 +54,7 @@ import DeckServices from '../services/DeckServices';
 import UpdateDeck from '../components/UpdateDeck.vue';
 import Logo from '../components/Logo.vue';
 import CardServices from '../services/CardServices';
-import CardIcon from '../components/CardIcon.vue';
+import CardIcon from '../components/CardIcon';
 
 
 export default {
