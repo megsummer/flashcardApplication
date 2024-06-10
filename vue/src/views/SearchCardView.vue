@@ -1,38 +1,47 @@
 <template>
-
-    
     <div class="loading" v-if="isLoading">Loading...</div>
-
     <div v-else>
-        
-
-        <form v-on:submit.prevent="search">
-            <input type="text" id="search-bar" v-model="searchTags.searchTags"/>
+      <div class="top-grid-container">
+        <div class="search-container">
+          <form v-on:submit.prevent="search">
+            <input type="text" id="search-bar" v-model="searchTags.searchTags" />
             <button v-on:click="search">Search</button>
             <p>Please separate your keywords with a comma. Example: science, chemistry, lipids</p>
-        </form>
-      
-    <router-link v-for="card in cards" v-bind:key="card.cardId"
-        v-bind:to="{name: 'cardById', params : {id : card.cardId}}">
-        <CardIcon v-bind:card="card"/>
-     </router-link>
-     <Logo/>
-
-
+          </form>
+        </div>
+        <div class="logo-container">
+          <Logo />
+        </div>
+      </div>
+      <div class="main-container">
+        <NavTool class="nav-tool" />
+        <div class="grid-container">
+          <router-link
+            v-for="card in cards"
+            v-bind:key="card.cardId"
+            v-bind:to="{ name: 'cardById', params: { id: card.cardId } }"
+            class="grid-item"
+          >
+            <CardIcon v-bind:card="card" />
+          </router-link>
+        </div>
+      </div>
     </div>
-</template>
+  </template>
 
 <script>
 
+import NavTool from '../components/NavTool.vue';
 import cardService from '../services/CardServices';
 import CardIcon from '../components/CardIcon.vue';
 import Logo from '../components/Logo.vue';
 
 export default{
     components:{
-    CardIcon,
-    Logo
-},
+CardIcon,
+NavTool,
+Logo
+    },
     data(){
         return {
             cards: [],
@@ -84,5 +93,79 @@ export default{
 }
 </script>
 
-<style>
+<style scoped>
+.loading{
+    text-align: center;
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+form{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#search-bar{
+    width: 40%;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+button {
+  background-color: #ffd966;
+  color: black;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ffc107;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.grid-item{
+    text-decoration: none;
+}
+
+p{
+    text-align: left center;
+    color: black;
+}
+.main-container{
+    display: flex;
+    padding: 10px;
+}
+
+.nav-tool{
+    width: 200px;
+    margin-right: 20px;
+}
+
+.top-grid-container{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    margin-bottom: 20px;
+
+}
+.search-container{
+    text-align: center;
+}
+.logo-container{
+    display: flex;
+    justify-content: center;
+}
 </style>

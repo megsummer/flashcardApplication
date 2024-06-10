@@ -6,12 +6,11 @@
   
 <style scoped>
 .logo {
-  position: absolute;
   top: 20px; /* Adjust the top distance as needed */
   right: 20px; /* Adjust the right distance as needed */
 }
 
 .form-logo {
-  max-width: 400px; /* Adjust the max-width to make the logo smaller */
+  max-width: 300px; /* Adjust the max-width to make the logo smaller */
 }
 </style>
