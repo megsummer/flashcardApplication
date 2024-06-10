@@ -1,12 +1,14 @@
 <template>
-  <div class="deck-view">
-    <NavTool />
-    <div class="deck-content">
+
       <div class="loading" v-if="isLoading">
     Loading...
  
       </div>
       <div v-else>
+        <div class="deck-view">
+    <NavTool />
+    <div class="deck-content">
+      
         <h1>My Decks</h1>
         <div class="deck-grid">
           <router-link v-for="deck in decks" v-bind:key="deck.deckId" 

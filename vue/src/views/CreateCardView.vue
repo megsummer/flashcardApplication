@@ -5,36 +5,9 @@
       <NavTool />
   </div>
 
-  <!-- 1) get working to support display a single card first
-       2) then add paging thru cards from search cards ?
-       3) add branding
-  -->
+  
 
-  <!-- <div class="loading" v-if="isLoading">Loading...</div>
-  <div v-else>
-      <h1>CardView</h1>
-      <div id=Question class="question">
-        <h1> {{ card.frontQuestion }}</h1>
-        <h1> {{ card.backAnswer }}</h1>
-        <h1> {{  card.cardImg }}</h1>
-        <h1> {{  card.tags }}</h1>
-        <p> Front - Question</p>
-        <p> Type question here.....</p>
-      </div>
-      <div id=Answer class="answer">
-        <p>Back - Answer</p>
-        <p>Type answer here....</p>
-       </div>
-       
-      <div id=Tags class="tags">
-        <p>Tags- Type Answer</p>
-        <p>Tags type answer here....</p>
-      </div>
-  </div> -->
-
-  <div class="navActions">
-    <!-- <router-link :to="{ name: 'HomeView' }">Return to HomeView</router-link> -->
-  </div>
+ 
   <div id="create-card">
     <h2>
       Create New Card
@@ -55,9 +28,13 @@
         </div>
         <div class="card-form">
           <label for="card-tags">Tags:</label>
-          <input type="text" id="card-tags" v-model="newCard.tags" />
+          <input type="text" id="card-tags" v-model="tagsAsString" />
           <input type="submit" value="Save Card"/>
         </div>
+<div class="card-form">
+ 
+</div>
+
       </form>
       <Logo/>
   </div>
@@ -66,16 +43,19 @@
 <script>
 import NavTool from '@/components/NavTool.vue';
 import CardServices from '@/services/CardServices.js';
-import CardIcon from '@/components/CardIcon.vue';
 import Logo from '../components/Logo.vue';
+//import AddCardToDeck from '../components/AddCardToDeck.vue';
+
+
 
 export default {
   name: 'CardView',
 
   components: {
-    CardIcon,
+  
     NavTool,
-    Logo
+    Logo,
+    //AddCardToDeck
 },
     
     data () {
@@ -85,8 +65,9 @@ export default {
             frontQuestion: "", 
             backAnswer: "", 
             cardImg: "",
-            tags: ["string1", "string2"],
+            tags: [],
           },
+          tagsAsString: "",
     };
   },
     
@@ -114,13 +95,15 @@ export default {
        },
 
     createCard() {
-      //console.log(this.newCard);
+      if(this.tagsAsString != ""){
+        this.newCard.tags = this.tagsAsString.split(",");}
+     
       CardServices.createNewCard(this.newCard)
         .then(response => {
           if(response.status === 201) {
             window.alert('Card Added!');
           }
-          // this.resetForm();
+        
           }).catch(error => {
             this.handleError(error, 'adding');
           });
