@@ -1,7 +1,8 @@
 <template>
+  <div class="griddy">
     <div class="loading" v-if="isLoading">Loading...</div>
     <div v-else>
-      <div class="top-grid-container">
+      <NavTool class="nav-tool" />
         <div class="search-container">
           <form v-on:submit.prevent="search">
             <input type="text" id="search-bar" v-model="searchTags.searchTags" />
@@ -12,9 +13,8 @@
         <div class="logo-container">
           <Logo />
         </div>
-      </div>
       <div class="main-container">
-        <NavTool class="nav-tool" />
+        
         <div class="grid-container">
           <router-link
             v-for="card in cards"
@@ -27,6 +27,7 @@
         </div>
       </div>
     </div>
+  </div>
   </template>
 
 <script>
@@ -127,49 +128,57 @@ button:hover {
   background-color: #ffc107;
 }
 
-.grid-container{
-    display: grid;
-    grid-template-columns: 200px,1fr,1fr;
-    grid-template-areas: 
-    "Navtool top-grid-container top-grid-container"
-    "Navtool cards cards"
-;
-    gap: 10px;
-    flex-grow: 1;
-}
 
 .grid-item{
     text-decoration: none;
 }
 
 p{
+    text-align: center;
     text-align: top;
     color: black;
 }
 .main-container{
+  border: solid #ffc107;
+  grid-area: main;
     display: flex;
     padding: 10px;
 }
 
 .nav-tool{
+  border: solid;
+  grid-area: nav;
     width: 200px;
     margin-right: 20px;
 }
 
 .top-grid-container{
+  border: solid #ffc107;
+  grid-area: topp;
     display: grid;
-    grid-template-columns: 1fr,1fr;
-    align-items: center;
+    grid-template-columns: 1fr auto;
+    align-items: top;
     padding: 10px;
     gap: 10px;
     margin-bottom: 20px;
 
 }
 .search-container{
+  border: solid sienna;
     text-align: center;
 }
 .logo-container{
-    display: flex;
+border: solid green;
+  display: flex;
     justify-content: center;
+}
+.griddy{
+  display: grid;
+  grid-template-columns: 2000px 3000px;
+  grid-template-areas: 
+  "nav topp"
+  "nav main";
+
+
 }
 </style>
