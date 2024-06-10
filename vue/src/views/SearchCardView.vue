@@ -34,7 +34,7 @@
 
 import NavTool from '../components/NavTool.vue';
 import CardServices from '../services/CardServices';
-import CardIcon from '../components/CardIcon';
+import CardIcon from '../components/CardIcon.vue';
 import Logo from '../components/Logo.vue';
 
 export default{
