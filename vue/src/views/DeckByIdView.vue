@@ -90,6 +90,7 @@ toggleDeleting(){
 
 removeCard(cardId){
         CardServices.removeCardFromDeck(this.localDeck.deckId, cardId)
+        
     },
 
     deleteDeck(){
