@@ -90,7 +90,7 @@ export default {
 
     },
 
-    getCardsbyDeckId(deckId) {
+    getCardsByDeckId(deckId) {
       CardServices.getCardsByDeckId(deckId)
         .then(response => {
           this.cards = response.data;
@@ -114,7 +114,7 @@ export default {
   created() {
     const deckId = parseInt(this.$route.params.id);
     this.getDeck(deckId);
-    this.getCardsbyDeckId(deckId);
+    this.getCardsByDeckId(deckId);
     
   }
 };

@@ -118,6 +118,7 @@ public class JdbcDeckDao implements DeckDao{
     Deck deleteDeck = getDeckByDeckId(deckId);
     int deleteDeckUserId = deleteDeck.getUserId();
     boolean isDeleted = false;
+
     if(deleteDeckUserId == user.getId()) {
 
         String sql = "DELETE FROM cards_to_decks WHERE deck_id = ?;\n" +

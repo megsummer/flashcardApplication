@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
           <label for="description">Tags:</label>
-          <input id="description" type="text" class="form-control" v-model="editCard.tags" />
+          <input id="description" type="text" class="form-control" v-model="tagsAsString" />
         </div>
         <button class="btn btn-submit">Submit</button>
         <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
@@ -43,7 +43,8 @@
         cardImg: this.card.cardImg,
         tags: this.card.tags,
         
-        }
+        },
+        tagsAsString: "",
       };
     },
     methods: {
@@ -56,44 +57,49 @@
         }
       },
       submitForm() {
-        if (!this.validateForm()) {
-          return;
+        if(this.tagsAsString != ""){
+        this.editCard.tags = this.tagsAsString.split(",");}
+
+        console.log(this.editCard);
+
+       if (!this.validateForm()) {
+         return;
         }
-        if (this.editCard.id === 0) {
-          CardServices.addCard(this.editCard)
-            .then(response => {
-              if (response.status === 201) {
-                this.$store.commit(
-                    'SET_NOTIFICATION',
-                     {
-                        message: 'A new card was added.',
-                        type: 'success'
-                    }
-                );
-                this.$router.push({ name: 'CardView', params: { id: this.editCard.id  } });
-              }
-            })
-            .catch(error => {
-              this.handleErrorResponse(error, 'adding');
-            });
-        } else {
+        //if (this.editCard.cardId === 0) {
+         // CardServices.addCard(this.editCard)
+           // .then(response => {
+             // if (response.status === 201) {
+               // this.$store.commit(
+                 //   'SET_NOTIFICATION',
+                   //  {
+                     //   message: 'A new card was added.',
+                       // type: 'success'
+                   // }
+              //  );
+            //    this.$router.push({ name: 'CardView', params: { id: this.editCard.cardId  } });
+        //      }
+          //  })
+           // .catch(error => {
+            //  this.handleErrorResponse(error, 'adding');
+           // });
+        //} else {
           CardServices
-          .updateCardById(this.editCard)
+          .updateCardById(this.card.cardId, this.editCard)
           .then(response => {
               if (response.status === 200) {
                 this.$store.commit(
                     'SET_NOTIFICATION', {
-                        message: `Card ${this.editCard.id} was updated.`,
+                        message: `Card was updated.`,
                         type: 'success'
                     }
-                );
-                this.$router.push({ name: 'cardById', params: { id: this.editCard.id  } });
+                  );
+
+               // this.$router.push({ name: 'cardById', params: {id: } });
               }
             })
             .catch(error => {
               this.handleErrorResponse(error, 'updating');
             });
-        }
       },
       handleErrorResponse(error, verb) {
         if (error.response) {

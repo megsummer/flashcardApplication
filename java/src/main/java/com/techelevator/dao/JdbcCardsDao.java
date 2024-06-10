@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -83,14 +84,14 @@ public class JdbcCardsDao implements CardsDao {
     }
 
     @Override
-    public boolean updateCard(Cards card) {
+    public boolean updateCard(Cards card, int userId) {
+
         List<String> tags = card.getTags();
 
-        int updatedCardUserId = card.getUserId();
         Cards currentCard = getCardById(card.getCardId());
         int currentCardUserId = currentCard.getUserId();
-        if (updatedCardUserId != currentCardUserId) {
-            saveCard(card);
+        if (userId != currentCardUserId) {
+            int newId = saveCard(card);
         } else {
 
             try {
