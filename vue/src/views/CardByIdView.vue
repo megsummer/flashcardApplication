@@ -18,12 +18,6 @@
       
       <img :src="localCard.coverImg" alt="Card Image" />
 
-
-
-
-
-
-
       <div class="CardById">
         <div id="showCard" class="showCard">
           
@@ -50,18 +44,21 @@ import NavTool from '../components/NavTool.vue';
 import CardServices from '../services/CardServices';
 import UpdateCard from '../components/UpdateCard.vue';
 import Logo from '../components/Logo.vue';
+import CardIcon from '../components/CardIcon.vue';
 
 export default {
   name: 'CardById',
   components: {
     NavTool,
     UpdateCard,
-    Logo
+    Logo, 
+    CardIcon
 },
   data() {
     return {
       isLoading: true,
       localCard: {},
+      hasImage: false,
     };
   },
   methods: {
@@ -87,6 +84,13 @@ export default {
     handleCardUpdate(updatedCard) {
       this.localCard = updatedCard;
     },
+    setHasImage(){
+        if(this.card.cardImg != null && this.card.cardImg.length != 0){
+          this.hasImage = true;}
+          else {
+            this.hasImage = false;
+          }
+        }
   },
   created() {
     const cardId = parseInt(this.$route.params.id, 10);

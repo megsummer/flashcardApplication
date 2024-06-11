@@ -85,13 +85,12 @@ export default {
         this.$store.commit('SET_NOTIFICATION', `Error ${verb} deck. Request could not be created.`);
       }
     },
-toggleDeleting(){
-  this.isDeleting = !this.isDeleting;
-},
+    toggleDeleting(){
+      this.isDeleting = !this.isDeleting;
+       },
 
-removeCard(cardId){
-        CardServices.removeCardFromDeck(this.localDeck.deckId, cardId)
-        
+    removeCard(cardId){
+      CardServices.removeCardFromDeck(this.localDeck.deckId, cardId)
     },
 
     deleteDeck(){
