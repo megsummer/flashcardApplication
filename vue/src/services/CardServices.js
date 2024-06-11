@@ -33,6 +33,7 @@ export default {
     getCardsByDeckId(deckId){
         return axios.get(`/decks/${deckId}/cards`);
     },
+    
     addCardToDeck(card, deckId){
         return axios.post(`/decks/${deckId}/cards`, card);
     },
