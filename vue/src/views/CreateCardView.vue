@@ -85,12 +85,12 @@ export default {
       if (error.response) {
         this.$store.commit('SET_NOTIFICATION',
           "Error " + verb + " CardView. Response received was '" + error.response.statusText + "'.");
-      } else if (error.request) {
+        } else if (error.request) {
         this.$store.commit('SET_NOTIFICATION', "Error " + verb + " card list. Server could not be reached.");
-      } else {
+        } else {
         this.$store.commit('SET_NOTIFICATION', "Error " + verb + " card list. Request could not be created.");
-      }
-    },
+        }
+      },
 
   
     resetForm (){
@@ -148,20 +148,21 @@ export default {
             window.alert('Card Added!');
           }
         
-          if(this.deckToAddTo.id != 0){CardServices.addCardToDeck(this.newCard, this.deckToAddTo.id)
-                    .then(response=> {
-                      if(response.status === 200) {
+          if(this.deckToAddTo.id != 0){
+            CardServices.addCardToDeck(this.newCard, this.deckToAddTo.id)
+               .then(response=> {
+                    if(response.status === 200) {
                         this.$store.commit('SET_NOTIFICATION', {
                         message: `Card was added to deck.`,
                         type: 'success'
-                    }); 
+                        }); 
                     //this.$router.push({ name: 'deckById', params: { deckId: this.deckToAddTo.id } });
-                }
-           this.isLoading=false;
-                  }
-           ).catch(error => {
-            this.handleError(error, 'adding');
-           });
+                    }
+                      this.isLoading = false;
+                    }
+                    ).catch(error => {
+                      this.handleError(error, 'adding');
+                    });
           }//end of if
 
           }).catch(error => {

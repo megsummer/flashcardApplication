@@ -59,23 +59,24 @@
         deckToAddTo: {},
       };
     },
+
     methods: {
       toggleForm() {
         this.formShowing = !this.formShowing;
-    
       },
 
       addCardToDeck(){
-        if(this.deckToAddTo.id != 0){CardServices.addCardToDeck(this.editCard, this.deckToAddTo.id)
-                    .then(response=> {
-                      if(response.status === 200) {
-                        this.$store.commit(
-                    'SET_NOTIFICATION', {
-                        message: `Card was added to deck.`,
-                        type: 'success'
-                    }
-           ) }}
-           ).catch(error => {
+        if(this.deckToAddTo.id != 0){
+          CardServices.addCardToDeck(this.editCard, this.deckToAddTo.id)
+            .then(response=> {
+             if(response.status === 200) {
+              this.$store.commit(
+              'SET_NOTIFICATION', {
+               message: `Card was added to deck.`,
+                type: 'success'
+              }
+              ) }}
+            ).catch(error => {
             this.handleErrorResponse(error, 'updating');
            });
           }
@@ -90,8 +91,7 @@
          return;
         }
        
-          CardServices
-          .updateCardById(this.card.cardId, this.editCard)
+          CardServices.updateCardById(this.card.cardId, this.editCard)
           .then(response => {
               if (response.status === 200) {
                 this.$store.commit(
@@ -144,16 +144,15 @@
         this.isLoading = false;
       }
     },
+
     },
     
 
-  created() { 
- 
+    created() { 
       this.retrieveDecks();
-      
-  
   }
-    }
+
+  }
 
   </script>
   
