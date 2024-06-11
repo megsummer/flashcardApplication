@@ -5,13 +5,10 @@
       <NavTool />
   </div>
 
-  
-
- 
   <div id="create-card">
     <h2>
       Create New Card
-
+      {{ this.newCard }}
     </h2>
       <form v-on:submit.prevent="createCard">
         <div class="card-form">
@@ -79,6 +76,7 @@ export default {
           tagsAsString: "",
           deckToAddTo: {},
           decks: [],
+          isLoading: false,
     };
   },
     
@@ -108,10 +106,10 @@ export default {
     
     validateForm() {
         let msg = '';
-        if (this.editCard.frontQuestion.length === 0) {
+        if (this.newCard.frontQuestion.length === 0) {
           msg += 'The new card must have a front question. ';
         }
-        if (this.editCard.backAnswer.length === 0) {
+        if (this.newCard.backAnswer.length === 0) {
           msg += 'The new card must have a back answer.';
         }
         if (msg.length > 0) {
@@ -128,43 +126,41 @@ export default {
         const response = await DeckServices.getDecksByUserId();
         this.decks = response.data;
       } catch (error) {
-        this.handleErrorResponse(error, 'retrieving');
+        this.handleError(error, 'retrieving');
       } finally {
         this.isLoading = false;
       }
       },
-    },
-    
-    createCard() {
+
+      createCard() {
       this.isLoading = true;
       if(this.tagsAsString != ""){
         this.newCard.tags = this.tagsAsString.split(",");}
 
         if (!this.validateForm()) {
+          this.isLoading = false;
          return;
         }
 
       CardServices.createNewCard(this.newCard)
         .then(response => {
           if(response.status === 201) {
-           
             window.alert('Card Added!');
           }
         
           if(this.deckToAddTo.id != 0){CardServices.addCardToDeck(this.newCard, this.deckToAddTo.id)
                     .then(response=> {
                       if(response.status === 200) {
-                        this.$store.commit(
-                    'SET_NOTIFICATION', {
+                        this.$store.commit('SET_NOTIFICATION', {
                         message: `Card was added to deck.`,
                         type: 'success'
-                    }
-                  
-           ) }
+                    }); 
+                    //this.$router.push({ name: 'deckById', params: { deckId: this.deckToAddTo.id } });
+                }
            this.isLoading=false;
                   }
            ).catch(error => {
-            this.handleErrorResponse(error, 'adding');
+            this.handleError(error, 'adding');
            });
           }//end of if
 
@@ -172,11 +168,9 @@ export default {
             this.handleError(error, 'adding');
           });
         },
+    },
     
-  
-
-  created() { 
- 
+    created() { 
       this.retrieveDecks();
       
   
