@@ -33,7 +33,6 @@
 import NavTool from '../components/NavTool.vue';
 import CardServices from '../services/CardServices.js';
 import CardIcon from '../components/CardIcon.vue';
-import CardIconVue from '../components/CardIcon.vue';
 import Logo from '../components/Logo.vue';
 
 export default{
@@ -48,6 +47,7 @@ Logo
             searchedCards: [],
             isLoading: false,
             searchTags: {searchTags: ""},
+            hasImage: false
         };
     },
     methods:{
@@ -69,6 +69,13 @@ Logo
             this.isLoading = false;
         })
     },
+    setHasImage(){
+        if(this.card.cardImg != null && this.card.cardImg.length != 0){
+          this.hasImage = true;}
+          else {
+            this.hasImage = false;
+          }
+        },
     search(){
         console.log("searching for cards...")
         console.log(this.searchTags)

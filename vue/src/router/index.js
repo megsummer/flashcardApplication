@@ -6,7 +6,7 @@ import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
-import AdminDeckView from '../views/AdminDeckView.vue';
+import AdminDeckView from '../views/adminDeckView.vue';
 import CardByIdView from '../views/CardByIdView.vue';
 import CreateCardView from '../views/CreateCardView.vue';
 import CreateDeckView from '../views/CreateDeckView.vue';

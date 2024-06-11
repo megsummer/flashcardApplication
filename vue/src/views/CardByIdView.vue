@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import NavTool from '@/components/NavTool.vue';
+import NavTool from '../components/NavTool.vue';
 import CardServices from '../services/CardServices';
-import UpdateCard from '@/components/UpdateCard.vue';
+import UpdateCard from '../components/UpdateCard.vue';
 import Logo from '../components/Logo.vue';
 
 export default {
