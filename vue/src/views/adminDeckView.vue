@@ -1,47 +1,50 @@
 <template>
+  <div class="griddy-container">
+    <NavTool class="nav-tool"/>
+    <div class="first-row">
+      <div class="search-container">
+        THESE ARE THE ADMIN DECKS
+      </div>
+      
+      <div class="logo-container">
+        <Logo />
+      </div>
+    </div>
 
 
-<Logo/>
-
-<NavTool/>
+    <div class="main-container">
   <div class = "loading" v-if="isLoading">Loading...</div>
 
 
-  <div v-else>
-    
+  <div v-else class="grid-container">
   
-THESE ARE THE ADMIN DECKS
-     
-  Click a deck to see more!
-   <p class="register-link"></p>
 
     <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
-          v-bind:to="{name: 'deckById', params: {id: deck.deckId}}">
+          v-bind:to="{name: 'deckById', params: {id: deck.deckId}}"
+          class="grid-item"
+          >
           <DeckIcon v-bind:deck="deck"/> 
   </router-link>
-
-  
    
 
 
-
-    
+  </div>
+  </div> 
   </div>
 </template>
 
 <script>
 import DeckService from '../services/DeckServices';
 import DeckIcon from '../components/DeckIcon.vue';
-import Logo from '../components/Logo.vue';
 import NavTool from '../components/NavTool.vue';
-
+import Logo from '../components/Logo.vue';
 
 
 export default {
   components: {
     DeckIcon,
-    Logo,
-    NavTool
+    NavTool,
+    Logo
 },
   data() {
     return {
@@ -78,50 +81,101 @@ export default {
 
 }
 </script>
+
 <style scoped>
-.loading{
+.loading {
   text-align: center;
   font-size: 2em;
   margin-top: 20px;
 }
 
-form{
+form {
   text-align: center;
   margin-bottom: 20px;
 }
 
+#search-bar {
+  margin-top: 50px;
+  padding: 10px;
+  margin-right: 5px;
+  border-radius: 20px;
+  border: 1px solid black;
 
-.grid-container{
+}
+
+button {
+  background-color: #ffd966;
+  color: black;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ffc107;
+}
+
+.grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
-  flex-grow: 1;
 }
 
-.grid-item{
-  text-decoration: none;
+.grid-item {
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff;
 }
 
-p{
-  text-align: left center;
+p {
+  text-align: center;
   color: black;
 }
-.main-container{
-  display: flex;
+
+.main-container {
+  grid-area: main;
   padding: 10px;
 }
 
-.top-grid-container{
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  padding: 10px;
-  gap: 10px;
-  margin-bottom: 20px;
-
+.nav-tool {
+  grid-area: nav;
+  margin-right: 20px;
 }
-.logo-container{
+
+.search-container {
+  text-align: center;
+  margin: auto;
+}
+
+.logo-container {
   display: flex;
   justify-content: center;
 }
+
+.first-row {
+  grid-area: first-row;
+  display: flex;
+  justify-content: right;
+  
+}
+
+.griddy-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas: 
+    "nav first-row"
+    "nav main";
+  gap: 15px;
+}
+/* .griddy-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas: 
+    "nav first-row"
+    "main main";
+  gap: 15px;
+} */
 </style>
