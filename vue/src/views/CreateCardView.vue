@@ -33,6 +33,8 @@
                 <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{ deck.deckTitle }}</option>
             </select>
 
+            <button v-on:click="upload">Upload</button><br>
+
           <input type="submit" value="Save Card"/>
         </div>
       
@@ -82,6 +84,10 @@ export default {
   },
     
     methods: {
+
+      upload() {
+        this.myWidget.open();
+      },
       handleError(error, verb) {
       if (error.response) {
         this.$store.commit('SET_NOTIFICATION',
@@ -178,7 +184,28 @@ export default {
       this.retrieveDecks();
       
   
-  }}
+  },
+  mounted() {
+       this.myWidget = window.cloudinary.createUploadWidget(
+      {
+        // Insert your cloud name and presets here, 
+        // see the documentation
+        cloudName: 'dvxtx3qq6', 
+        uploadPreset: 'fqofg0ln'
+      }, 
+      (error, result) => { 
+        if (!error && result && result.event === "success") { 
+          console.log('Done! Here is the image info: ', result.info); 
+          console.log("Image URL: " + result.info.url);
+          this.newCard.cardImg = result.info.url;
+        }
+      }
+    );
+
+  }
+
+
+}
  
 </script>
 
