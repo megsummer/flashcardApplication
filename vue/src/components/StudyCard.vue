@@ -68,10 +68,15 @@ export default{
             this.isFlipped = false;}
         },
         wrong(){
-          this.cardIndex ++;
-          this.currentCard = this.cards[this.cardIndex];
-          this.isFlipped = false;
-        }
+            this.cardIndex ++;
+            if(this.cardIndex == this.cards.length - 1){
+                this.$store.commit('END_SESSION');
+                this.sessionOver = true;
+                this.cardIndex = 0;
+            }else{
+            this.currentCard = this.cards[this.cardIndex];
+            this.isFlipped = false;}
+        },
       
 
     },
