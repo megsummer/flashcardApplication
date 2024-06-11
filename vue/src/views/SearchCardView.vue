@@ -1,35 +1,33 @@
 <template>
-  <div class="griddy">
-    <div class="loading" v-if="isLoading">Loading...</div>
-    <div v-else>
-      <NavTool class="nav-tool" />
-        <div class="search-container">
-          <form v-on:submit.prevent="search">
-            <input type="text" id="search-bar" v-model="searchTags.searchTags" />
-            <button v-on:click="search">Search</button>
-            <p>Please separate your keywords with a comma. Example: science, chemistry, lipids</p>
-          </form>
-        </div>
-        <div class="logo-container">
-          <Logo />
-        </div>
-      <div class="main-container">
-        
-        <div class="grid-container">
-          <router-link
-            v-for="card in cards"
-            v-bind:key="card.cardId"
-            v-bind:to="{ name: 'cardById', params: { id: card.cardId } }"
-            class="grid-item"
-          >
-            <CardIcon v-bind:card="card" />
-          </router-link>
-        </div>
+  <div class="griddy-container">
+    <NavTool class="nav-tool"/>
+    <div class="first-row">
+      <div class="search-container">
+        <form v-on:submit.prevent="search">
+          <input type="text" id="search-bar" v-model="searchTags.searchTags" />
+          <button v-on:click="search">Search</button>
+          <p>Please separate your keywords with a comma. Example: science, chemistry, lipids</p>
+        </form>
+      </div>
+      <div class="logo-container">
+        <Logo />
+      </div>
+    </div>
+    <div class="main-container">
+      <div v-if="isLoading" class="loading">Loading...</div>
+      <div v-else class="grid-container">
+        <router-link 
+          v-for="card in cards"
+          :key="card.cardId"
+          :to="{ name: 'cardById', params: { id: card.cardId } }"
+          class="grid-item"
+        >
+          <CardIcon :card="card" />
+        </router-link>
       </div>
     </div>
   </div>
-  </template>
-
+</template>
 <script>
 
 import NavTool from '../components/NavTool.vue';
@@ -96,26 +94,27 @@ Logo
 </script>
 
 <style scoped>
-/* .loading{
-    text-align: center;
-    font-size: 2em;
-    margin-top: 20px;
-} */
+.loading {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 20px;
+}
 
-/* form{
-    text-align: center;
-     margin-bottom: 20px;
-}  */
+form {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-/* #search-bar{
-    width: 50%;
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: 1px solid black;
-} */
+#search-bar {
+  margin-top: 50px;
+  padding: 10px;
+  margin-right: 5px;
+  border-radius: 20px;
+  border: 1px solid black;
 
-/* button {
+}
+
+button {
   background-color: #ffd966;
   color: black;
   text-align: center;
@@ -127,51 +126,59 @@ Logo
 
 button:hover {
   background-color: #ffc107;
-} */
-
-
-/* .grid-item{
-    text-decoration: none;
 }
 
-p{
-    text-align: center;
-    text-align: top;
-    color: black;
-} */
-.main-container{
-  border: solid #ffc107;
-  grid-area: main;
-    /* display: flex; */
-    padding: 10px;
-}
-
-.nav-tool{
-  border: solid;
-  grid-area: nav;
-    /* width: 200px;
-    margin-right: 20px; */
-}
-
-
-.search-container{
-  grid-area: search;
-  border: solid sienna;
-    /* text-align: center; */
-}
-.logo-container{
-  grid-area: logo;
-border: solid green;
-  /* display: flex; */
-    /* justify-content: center; */
-}
-.griddy{
+.grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.grid-item {
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff;
+}
+
+p {
+  text-align: center;
+  color: black;
+}
+
+.main-container {
+  grid-area: main;
+  padding: 10px;
+}
+
+.nav-tool {
+  grid-area: nav;
+  margin-right: 20px;
+}
+
+.search-container {
+  text-align: center;
+  margin: auto;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.first-row {
+  grid-area: first-row;
+  display: flex;
+  justify-content: right;
+  
+}
+
+.griddy-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
   grid-template-areas: 
-  "nav search logo"
-  "nav main main";
-
-
+    "nav first-row"
+    "nav main";
+  gap: 15px;
 }
 </style>
