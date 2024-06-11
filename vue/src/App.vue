@@ -9,6 +9,7 @@
 </template>
 
 <style scoped>
+
 #nav {
   display: flex;
   justify-content: space-between;
