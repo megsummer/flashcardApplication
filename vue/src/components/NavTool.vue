@@ -17,7 +17,7 @@ export default {
 .nav-tool {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  /* width: 200px; */
 }
 
 .nav-button {
