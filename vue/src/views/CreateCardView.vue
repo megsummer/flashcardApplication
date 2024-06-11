@@ -28,7 +28,7 @@
           <input type="text" id="card-tags" v-model="tagsAsString" />
 
           <label for="deck-to-add">Add this card to a deck:</label>
-            <select name="deckToAddTo" id="deck-to-add"  v-model="deckToAddTo.id">
+            <select name="deckToAddTo" id="deck-to-add"  v-model="deckToAddTo.deckId">
               <option v-bind:value="0">Please Select a Deck</option>
                 <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{ deck.deckTitle }}</option>
             </select>
@@ -77,6 +77,7 @@ export default {
           deckToAddTo: {},
           decks: [],
           isLoading: false,
+          
     };
   },
     
@@ -131,6 +132,22 @@ export default {
         this.isLoading = false;
       }
       },
+      addCardToDeck(){
+        if(this.deckToAddTo.id != 0){
+          CardServices.addCardToDeck(this.newCard, this.deckToAddTo.deckId)
+            .then(response=> {
+             if(response.status === 200) {
+              this.$store.commit(
+              'SET_NOTIFICATION', {
+               message: `Card was added to deck.`,
+                type: 'success'
+              }
+              ) }}
+            ).catch(error => {
+            this.handleError(error, 'updating');
+           });
+          }
+      },
 
       createCard() {
       this.isLoading = true;
@@ -145,26 +162,12 @@ export default {
       CardServices.createNewCard(this.newCard)
         .then(response => {
           if(response.status === 201) {
+            this.newCard.cardId = response.data;
             window.alert('Card Added!');
+           this.addCardToDeck();
+
           }
         
-          if(this.deckToAddTo.id != 0){
-            CardServices.addCardToDeck(this.newCard, this.deckToAddTo.id)
-               .then(response=> {
-                    if(response.status === 200) {
-                        this.$store.commit('SET_NOTIFICATION', {
-                        message: `Card was added to deck.`,
-                        type: 'success'
-                        }); 
-                    //this.$router.push({ name: 'deckById', params: { deckId: this.deckToAddTo.id } });
-                    }
-                      this.isLoading = false;
-                    }
-                    ).catch(error => {
-                      this.handleError(error, 'adding');
-                    });
-          }//end of if
-
           }).catch(error => {
             this.handleError(error, 'adding');
           });

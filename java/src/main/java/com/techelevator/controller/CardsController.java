@@ -93,6 +93,7 @@ public List<Cards> getCardByTags(@RequestBody SearchTags tags)  {
 
     @RequestMapping(path = "/decks/{deckId}/cards", method = RequestMethod.POST)
     public boolean addCardToDeck(@RequestBody Cards card, @PathVariable Integer deckId){
+        System.out.println(deckId);
         return cardsDao.addCardToDeck(card, deckId);
     }
 
