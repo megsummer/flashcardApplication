@@ -51,7 +51,7 @@ INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What happens i
 INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (2, 'Mitosis Review', 'Review the stages of mitosis', true);
 INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (1, 'Economics Vocab', 'Review terms from chapter two.', true);
 INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (2, 'Renaissance Art Midterm', 'Study Guide for midterm art 2300', true);
-INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (1, 'Lacrosse', 'Lacross terms, rules, and history', true);
+INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (1, 'Lacrosse', 'Lacrosse terms, rules, and history', true);
 INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (1, 'Software Developer Interview Questions', 'Prepare for your upcoming interview!', true);
 
 

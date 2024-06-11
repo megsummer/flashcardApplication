@@ -3,8 +3,12 @@
     <div id="card" class="card">
         <img src=""/>
         <p>{{ card.frontQuestion }}</p>
-        <img :src="card.imageUrl" alt="Card Image" />
+<div  v-if="hasImage" id="image">
+        <img :src="card.cardImg" alt="Card Image" /> </div>
+    <div v-else>
+      
 
+    </div>
     </div>
    
 </template>
@@ -18,12 +22,25 @@ export default{
     props: ['card'],
     data(){
         return {
+          hasImage: false
 
         };
     },
     methods:{
+ 
+      setHasImage(){
+        if(this.card.cardImg != null){
+          this.hasImage = true;}
+          else {
+            this.hasImage = false;
+          }
+        }
+      
 
     },
+    created(){
+      this.setHasImage();
+    }
 }
 
 </script>
