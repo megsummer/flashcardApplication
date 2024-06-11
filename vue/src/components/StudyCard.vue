@@ -3,7 +3,7 @@
 <div class="loading" v-if="sessionOver">Session is Over...
 Your final score is {{ this.$store.state.scoreCard }} correct.</div>
     <div v-else>
-<div  v-if="!isFlipped" id="front">
+<div  v-if="!isFlipped" class="front">
         
         <h1>{{ currentCard.frontQuestion }}</h1>
 <div  v-if="hasImage" id="image">
@@ -13,7 +13,7 @@ Your final score is {{ this.$store.state.scoreCard }} correct.</div>
         <button v-on:click="flip()">Flip!</button>
         </div>
     
- <div v-else id="back">
+ <div v-else class="back">
 <h1>{{ currentCard.backAnswer }}</h1>
     
 
@@ -95,7 +95,22 @@ export default{
 
 
 
-.card{
+.front{
+  background-color: rgb(241, 237, 237);
+  color: black;
+  text-align: top;
+  text-transform: none;
+  text-decoration: none;
+  margin: 10px;
+  padding: 35px;
+  border-radius: 20px;
+  width: 500px;
+  height: 500px;
+  border: .2px solid black;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform .2s, box-shadow .2s;
+}
+.back{
   background-color: rgb(241, 237, 237);
   color: black;
   text-align: top;
