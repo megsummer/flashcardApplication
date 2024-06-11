@@ -170,12 +170,4 @@ p {
     "nav main";
   gap: 15px;
 }
-/* .griddy-container {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-template-areas: 
-    "nav first-row"
-    "main main";
-  gap: 15px;
-} */
 </style>
