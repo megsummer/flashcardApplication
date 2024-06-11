@@ -2,14 +2,39 @@
   <div id="deck" class="deck">
     <p id="title" class="title">{{ deck.deckTitle }}</p>
     <p id="description" class="description">{{ deck.deckDescription }}</p>
-    <img :src="deck.imageUrl" alt="Deck Image" />
+    
+  <div v-if="hasImage" id="image">
+    <img :src="deck.imageUrl" alt="Deck Image" /> </div>
+    <div v-else>
+
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['deck']
-};
+  props: ['deck'],
+
+  data () {
+    return {
+      hasImage: false
+
+    };
+  },
+
+  methods: {
+    setHasImage(){
+        if(this.deck.coverImg != null && this.deck.coverImg.length != 0){
+          this.hasImage = true;}
+          else {
+            this.hasImage = false;
+          }
+        }
+  },
+  created(){
+      this.setHasImage();
+    }
+}
 </script>
 
 <style>

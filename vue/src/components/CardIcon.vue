@@ -29,7 +29,7 @@ export default{
     methods:{
  
       setHasImage(){
-        if(this.card.cardImg != null){
+        if(this.card.cardImg != null && this.card.cardImg.length != 0){
           this.hasImage = true;}
           else {
             this.hasImage = false;
