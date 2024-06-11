@@ -1,27 +1,31 @@
 <template>
-  <div class="grid-container">
+  <div class="griddy-container">
+    <NavTool class="nav-tool"/>
+    <div class="first-row">
+      <div class="search-container">
+        <h1>My Decks</h1>
+      </div>
+      <div class="logo-container">
+        <Logo />
+      </div>
+      </div>
+      <div class="main-container">
+
       <div class="loading" v-if="isLoading">
     Loading...
  
       </div>
-      <div v-else>
-        <div class="deck-view">
-    <NavTool class="nav-tool" />
-    <Logo class="logo"/>
-    <div class="deck-content">
-      
-        <h1>My Decks</h1>
-        <div class="deck-grid">
+      <div v-else class="grid-container">
           <router-link v-for="deck in decks" v-bind:key="deck.deckId" 
-          v-bind:to="{name: 'deckById',  params:{ id: deck.deckId }}">
+          v-bind:to="{name: 'deckById',  params:{ id: deck.deckId }}"
+          class="grid-item"
+          >
           <DeckIcon v-bind:deck="deck"/> 
     </router-link>
-          </div>
+         
+  </div>
         </div>
       </div>
-      
-    </div>
-  </div>
 </template>
 
 <script>
@@ -76,41 +80,91 @@ export default {
 }
 </script>
 <style scoped>
-.grid-container {
-    display: grid;
-    grid-template-columns: 200px 1fr 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: 
-        "nav-tool logo ."
-        "mydeck mydeck mydeck";
-    gap: 15px;
+.loading {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 20px;
 }
 
-.logo {
-    grid-area: logo;
-    display: flex;
-    justify-content: center; /* center content horizontally */
-    align-items: center; /* center content vertically */
+form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#search-bar {
+  margin-top: 50px;
+  padding: 10px;
+  margin-right: 5px;
+  border-radius: 20px;
+  border: 1px solid black;
+
+}
+
+button {
+  background-color: #ffd966;
+  color: black;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ffc107;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.grid-item {
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff;
+}
+
+p {
+  text-align: center;
+  color: black;
+}
+
+.main-container {
+  grid-area: main;
+  padding: 10px;
 }
 
 .nav-tool {
-    grid-area: nav-tool;
-    display: flex;
-    justify-content: center; /* center content horizontally */
-    align-items: center; /* center content vertically */
+  grid-area: nav;
+  margin-right: 20px;
 }
 
-.loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-area: mydeck; /* place loading within deck area */
+.search-container {
+  text-align: center;
+  margin: auto;
 }
 
-.deck-content {
-    grid-area: mydeck;
-    display: flex;
-    justify-content: center; /* center content horizontally */
-    align-items: center; /* center content vertically */
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.first-row {
+  grid-area: first-row;
+  display: flex;
+  justify-content: right;
+  
+}
+
+.griddy-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas: 
+    "nav first-row"
+    "nav main";
+  gap: 15px;
 }
 </style>

@@ -3,12 +3,58 @@
     <div v-else>
    
   <div class="study-grid"> 
-  <div class = "card-display"> CARD DISPLAY
-
-<StudyCard v-bind:cards="cards"/>
-  </div>
  
-  <div class = "score-card" v-bind:score="score">SCORE CARD: {{ score}}</div>
+
+<div class="card-display">
+      <div class="loading" v-if="sessionOver">Session is Over...
+       <p class="cardText">Your final score is {{ score }} correct.</p>
+        
+      </div>
+      
+        <div v-else class ="card-contents">
+    <div  v-if="!isFlipped" class="front">
+        
+        <p class="cardText">{{ currentCard.frontQuestion }}</p>
+          <div  v-if="hasImage" id="image">
+           <img :src="currentCard.cardImg" alt="Card Image" /></div>
+          <div v-else></div>
+       
+        </div>  
+    <div v-else class="back">
+        <p class="cardTest">{{ currentCard.backAnswer }}</p>
+  
+
+    </div>
+    
+</div>
+    
+  </div>
+ <div class="button-display">
+  <div class="over" v-if="sessionOver">
+    <router-link v-bind:to="{ name: 'myDecks' }">
+      <button id="return">Return to Deck!</button>
+    </router-link> </div>
+      <div v-else>
+
+  <div class="over" v-if="!isFlipped">
+     <button id="flip" v-on:click="flip()">Flip!</button></div><div v-else>
+
+    <button id="right" v-on:click="right()">Right!</button> 
+    <button id="wrong" v-on:click="wrong()">Wrong!</button></div>
+
+   </div>
+
+
+
+ </div>
+ 
+  <div class = "score-card" v-bind:score="score">
+ 
+    <button id="end-session" v-on:click="endSession()">End Session</button>
+    <p id="score">
+    SCORE CARD: {{ score}}</p>
+  
+  </div>
   <div class = "logo"> <Logo/></div>
 
   </div>
@@ -21,12 +67,12 @@
 import Logo from '../components/Logo.vue';
 import CardServices from '../services/CardServices';
 import DeckServices from '../services/DeckServices';
-import StudyCard from '../components/StudyCard.vue';
+
 
 export default {
   name: 'StudySession',
   components: {
-   StudyCard,
+ 
     Logo
 },  
 data() {
@@ -34,12 +80,53 @@ data() {
       isLoading: true,
       localDeck: {},
       cards: [],
-      score: this.$store.state.scoreCard,
+      score: 0,
+      hasImage: false,
+      isFlipped: false,
+      currentCard: {},
+      cardIndex: 0,
+      sessionOver: false,
+     
      
     };
   },
 
 methods: {
+  endSession(){
+    this.sessionOver = true;
+  },
+
+  setHasImage(){
+        if(this.currentCard.cardImg != null){
+          this.hasImage = true;}
+          else {
+            this.hasImage = false;
+          }
+        },
+        flip(){
+            this.isFlipped = true;
+
+        },
+        right(){
+            this.score++;
+            this.cardIndex ++;
+            if(this.cardIndex == this.cards.length - 1){
+                this.sessionOver = true;
+                this.cardIndex = 0;
+            }else{
+            this.currentCard = this.cards[this.cardIndex];
+            this.isFlipped = false;}
+        },
+        wrong(){
+            this.cardIndex ++;
+            if(this.cardIndex == this.cards.length - 1){
+                this.sessionOver = true;
+                this.cardIndex = 0;
+            }else{
+            this.currentCard = this.cards[this.cardIndex];
+            this.isFlipped = false;}
+        },
+
   handleError(error, verb) {
       if (error.response) {
         this.$store.commit('SET_NOTIFICATION', `Error ${verb} deck. Response received was ${error.response.statusText}.`);
@@ -55,7 +142,12 @@ methods: {
         .then(response => {
           this.cards = response.data;
           this.isLoading = false;
-          this.currentCard= this.cards[0];
+          this.cardIndex = 0;
+          this.currentCard= this.cards[this.cardIndex];
+          this.setHasImage();
+          this.isFlipped= false;
+          this.sessionOver= false;
+          this.score=0;
         })
         .catch(error => {
           this.handleError(error, 'retrieving');
@@ -76,6 +168,7 @@ methods: {
     const deckId = parseInt(this.$route.params.id);
     this.getDeck(deckId);
     this.getCardsByDeckId(deckId);
+
     
     
   }
@@ -87,6 +180,23 @@ methods: {
 
 .card-display{
   grid-area: card-display;
+  background-color: rgb(241, 237, 237);
+  color: black;
+  text-align: center;
+  text-justify: auto;
+  text-transform: none;
+  font-size:xx-large;
+  text-decoration: none;
+  margin: auto;
+  padding: 35px;
+  border-radius: 20px;
+  width: 500px;
+  height: 450px;
+  border: .2px solid black;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform .2s, box-shadow .2s;
+  justify-content: center;
+
 }
 .logo{
   grid-area: logo;
@@ -102,7 +212,29 @@ methods: {
   grid-template-areas: 
   "card-display logo"
   "card-display score-card"
-  "card-display .";
+  "button-display .";
 }
+
+button{
+  width: 150px;
+  height: 40px;
+  font-size: large;
+}
+#end-session{
+  background-color: #ffd966;
+}
+#flip{
+  background-color: #ffd966;
+}
+#wrong{
+  background-color: #e28080;
+}
+#right{
+  background-color: #4fb368;
+}
+#return{
+  background-color: #ffd966;
+}
+
 
 </style>
