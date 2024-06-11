@@ -49,7 +49,7 @@
 
 <script>
 
-import NavTool from '@/components/NavTool.vue';
+import NavTool from '../components/NavTool.vue';
 import DeckServices from '../services/DeckServices.js';
 import UpdateDeck from '../components/UpdateDeck.vue';
 import Logo from '../components/Logo.vue';
@@ -71,7 +71,8 @@ export default {
       isLoading: true,
       isDeleting: false,
       localDeck: {},
-      cards: []
+      cards: [], 
+      hasImage: false,
     };
   },
   methods: {
@@ -111,6 +112,15 @@ removeCard(cardId){
 
     },
 
+    methods: {
+    setHasImage(){
+        if(this.deck.coverImg != null && this.deck.coverImg.length != 0){
+          this.hasImage = true;}
+          else {
+            this.hasImage = false;
+          }
+        }
+    },
     getCardsByDeckId(deckId) {
       CardServices.getCardsByDeckId(deckId)
         .then(response => {
