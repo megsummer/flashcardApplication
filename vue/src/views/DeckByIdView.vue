@@ -15,7 +15,7 @@
       <p></p>
       <UpdateDeck :deck="localDeck" />
       <p></p>
-      <router-link class="nav-button" v-bind:to="{ name: 'studySession' }">Study Session</router-link>
+      <router-link class="nav-button" v-bind:to="{ name: 'studySession', params:{id: localDeck.deckId} }">Study Session</router-link>
       <p></p>
       <router-link class="nav-button" v-bind:to="{ name: 'createCard' }">Create Cards</router-link>
       <p></p>

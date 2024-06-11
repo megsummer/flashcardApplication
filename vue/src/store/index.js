@@ -7,9 +7,19 @@ export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
-      user: currentUser || {}
+      user: currentUser || {},
+      scoreCard: 0,
     },
     mutations: {
+
+      ADD_SCORE(state){
+        state.scoreCard = state.scoreCard + 1;
+      },
+
+      END_SESSION(state){
+        state.scoreCard = 0;
+      },
+
       SET_AUTH_TOKEN(state, token) {
         state.token = token;
         localStorage.setItem('token', token);

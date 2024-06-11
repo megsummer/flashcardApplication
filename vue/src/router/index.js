@@ -95,7 +95,7 @@ const routes = [
     
   },
   { 
-    path: "/studysession",
+    path: "/studysession/:id",
     name: "studySession",
     component: StudySessionView,
   } 
