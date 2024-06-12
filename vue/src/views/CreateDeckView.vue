@@ -2,7 +2,7 @@
   <div class = "deckById-container"> 
       <NavTool class="nav-tool"/>
 <div class ="first-row">
-  <div class="search-container">
+  <div class="searchh-container">
         <h2>Create New Deck</h2>
         <h3>Please Complete All Required Fields</h3>
         </div>
@@ -247,7 +247,7 @@ form {
 
 }
 
-.search-container {
+.searchh-container {
   text-align: center;
   margin: auto;
 }

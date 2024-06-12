@@ -4,7 +4,7 @@
 
       <div class="search-container">
           <div class="image">
-            <DeckIcon :deck="localDeck"/>
+            <img :src="localDeck.coverImg" alt="Deck Image" />
           </div>
         </div>
       <div class="logo-container">
@@ -19,10 +19,10 @@
       </div>
 
       <div class="image">
-        <img :src="localDeck.coverImg" alt="Deck Image" />
+        
       </div>
 
-      <UpdateDeck class="updateDeck-button" :deck="localDeck" />
+      
 
       <div class="deckDetails"><div v-if="cards.length != 0">
         <router-link class="study-button" v-bind:to="{ name: 'studySession', params: { id: localDeck.deckId } }">
@@ -34,7 +34,7 @@
         </router-link>
         
         <button class="deleteDeck-button" @click="deleteDeck">Delete Deck</button>
-        <button @click="toggleDeleting">Delete Cards From This Deck</button>
+        <button @click="toggleDeleting">Delete Cards</button>
       </div>
 
       <div v-if="isDeleting" class="deleteCard-button">
@@ -50,6 +50,7 @@
           <router-link v-for="card in cards" :key="card.cardId" :to="{ name: 'cardById', params: { id: card.cardId } }" class="grid-item">
             <CardIcon :card="card" />
           </router-link>
+          <UpdateDeck class="updateDeck-button" :deck="localDeck" />
         </div>
       </div>
     </div>
@@ -225,7 +226,7 @@ export default {
   grid-area: deckDetails;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   flex: 1 1 45%;
 
@@ -235,9 +236,13 @@ export default {
 
 .cards-in-deck{
   grid-area: cards-in-deck;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+  gap: 20px;
 }
 
 .updateDeck-button{
