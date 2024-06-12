@@ -1,10 +1,22 @@
 <template>
+  <div class="deckgriddy-container">
+    <NavTool class="nav-toolbig"/>
+    <div class="first-roow">
+      <div class="search-containerr">
+        <div class = "image">   <img :src="localDeck.coverImg" alt="Deck Image" />
+          <Logo class="logoo"/>
+
+
+
+
+
+
   <div class="loading" v-if="isLoading">Loading...</div>
   <div v-else>
  
-    <div class="griddy-container"> 
-    <NavTool class="nav-tool"/>
-    <Logo class="logo"/>
+    
+    
+    
    
 
     <div class="deckHeader">
@@ -35,6 +47,9 @@
     </div> 
     <div v-else class="cards-in-deck"> <router-link v-for="card in cards" :key="card.cardId" :to="{ name: 'cardById', params: { id: card.cardId } }" class="grid-item"> <CardIcon :card="card" /> </router-link> </div> </div>
     </div>
+      </div>
+    </div>
+  </div>
     
   
   
@@ -50,6 +65,7 @@ import UpdateDeck from '../components/UpdateDeck.vue';
 import Logo from '../components/Logo.vue';
 import CardServices from '../services/CardServices.js';
 import CardIcon from '../components/CardIcon.vue';
+import DeckIcon from '../components/DeckIcon.vue';
 
 
 export default {
@@ -59,6 +75,7 @@ export default {
     UpdateDeck,
     Logo,
     CardIcon,
+    DeckIcon
 
 },
   data() {
@@ -167,9 +184,9 @@ export default {
 
 
 
-<style>
+<style scoped>
 
-.griddy-container {
+.deckgriddy-container {
   display: grid;
   grid-template-columns: 1fr 3fr 1 fr;
   grid-template-areas: 
@@ -186,7 +203,7 @@ export default {
   
 }
 
-.logo{
+.logoo{
   grid-area: logo;
   margin-left: auto;
 }
@@ -209,6 +226,12 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   flex: 1 1 45%;
+  
+}
+.first-roow {
+  grid-area: first-row;
+  display: flex;
+  justify-content: right;
   
 }
 
@@ -242,7 +265,7 @@ export default {
 }
 
 
-.nav-tool{
+.nav-toolbig{
   grid-area: nav;
   margin-right: 20px;
 }

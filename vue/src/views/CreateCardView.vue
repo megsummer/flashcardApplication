@@ -69,7 +69,7 @@ import NavTool from '@/components/NavTool.vue';
 import CardServices from '@/services/CardServices.js';
 import Logo from '../components/Logo.vue';
 import DeckServices from '../services/DeckServices';
-
+import DeckIcon from '../components/DeckIcon.vue';
 
 
 
@@ -80,6 +80,7 @@ export default {
 
     NavTool,
     Logo,
+    DeckIcon
   
 },
     
