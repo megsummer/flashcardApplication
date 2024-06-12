@@ -27,7 +27,7 @@
         <input id="image" type="text" class="form-control" v-model="editDeck.coverImg" />
       </div>
       <button class="btn btn-submit">Submit</button>
-      <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
+      <button class="btn btn-cancel" @click="toggleForm" type="button">Cancel</button>
     </div>
     </div>
     </form>
