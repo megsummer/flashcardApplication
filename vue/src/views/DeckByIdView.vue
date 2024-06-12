@@ -1,17 +1,16 @@
 <template>
-  <div class="DeckById"> 
-    <NavTool />
-    <div class="loading" v-if="isLoading">Loading...</div>
+   <div class="loading" v-if="isLoading">Loading...</div>
     <div v-else>
-      
+ 
+      <div class="griddy-container"> 
+    <NavTool class="nav-tool"/>
+   
 
-
-      <div class="deckDetails">
+    <div class="deckHead">
         <h2> Title: {{ localDeck.deckTitle }}</h2>
-        <p>Description: {{ localDeck.deckDescription }}</p>
-        <img :src="localDeck.coverImg" alt="Deck Image" />
-  
-      </div>
+        <p>Description: {{ localDeck.deckDescription }}</p></div>
+     <div class = "image">   <img :src="localDeck.coverImg" alt="Deck Image" /></div>
+  <div class = "deckDetails">
       <p></p>
       <UpdateDeck :deck="localDeck" />
       <p></p>
@@ -20,30 +19,33 @@
       <router-link class="nav-button" v-bind:to="{ name: 'createCard' }"><button>Create Cards</button></router-link>
       <p></p>
       <button class="nav-button" @click="deleteDeck">Delete Deck</button>
-     
-<p></p>
-      Cards In This Deck
+     </div>
+
+    <div class="cards-in-deck"> 
 
       <button v-on:click="toggleDeleting">Delete Cards From This Deck</button>
 
-      <div class="deleting" v-if="isDeleting">Click a card to delete from this deck.       
+      <div id="deleting" class="grid-container" v-if="isDeleting">
+        <div class="grid-item" id="delete-text">Click a card to delete from this deck.</div>       
         
-        <div v-for="card in cards" v-bind:key="card.cardId"
+        <div class= "grid-item" v-for="card in cards" v-bind:key="card.cardId"
         v-on:click="deleteCard(card.cardId)">
         <CardIcon class="deleting-cards" v-bind:card="card"/>
-      </div>
+      </div></div>
       
-      </div>
-    <div v-else>
-      <router-link v-for="card in cards" v-bind:key="card.cardId"
+    <div v-else class="grid-container">
+      <router-link class="grid-item" v-for="card in cards" v-bind:key="card.cardId"
         v-bind:to="{name: 'cardById', params : {id : card.cardId}}">
         <CardIcon v-bind:card="card"/>
      </router-link>
 </div>
+
+
   
 
     </div>
-    <Logo/>
+    <Logo class="logo"/>
+  </div>
   </div>
 </template>
 
@@ -171,4 +173,52 @@ export default {
 .deleting-cards{
   background-color: rgb(245, 130, 130);
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.grid-item {
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff;
+}
+
+#delete-text{
+  margin: auto;
+  font-size: larger;
+}
+
+.deckDetails{
+  grid-area: deckDetails;
+}
+.cards-in-deck{
+  grid-area: cards-in-deck;
+}
+
+.logo{
+  grid-area: logo;
+  margin-left: auto;
+}
+.deckHead{
+  grid-area: deckHead;
+}
+.griddy-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1 fr;
+  grid-template-areas: 
+    "nav deckHead  logo"
+    "nav deckDetails image "
+    ". cards-in-deck cards-in-deck";
+  gap: 15px;
+}
+.nav-tool{
+  grid-area: nav;
+  margin-right: 20px;
+}
+
+
 </style>

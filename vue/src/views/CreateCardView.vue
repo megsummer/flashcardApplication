@@ -108,6 +108,7 @@ export default {
         cardImg: "",
         tags: "",
         };
+      
        },
 
     
@@ -156,7 +157,7 @@ export default {
             ).catch(error => {
             this.handleError(error, 'updating');
            });
-          }
+          } this.resetForm();
       },
 
       createCard() {
@@ -175,6 +176,7 @@ export default {
             this.newCard.cardId = response.data;
             window.alert('Card Added!');
            this.addCardToDeck();
+          
 
           }
         
