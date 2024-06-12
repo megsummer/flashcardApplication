@@ -3,6 +3,17 @@
       <button class="update" @click="toggleForm">Update Card</button>
       <form v-if="formShowing" @submit.prevent="submitForm" class="cardForm">
         <div class="form-group">
+          <div v-if="!addImage">
+    
+    <button v-on:click="addImage = true">Add Image</button></div>
+   
+    <div class="uploadImage" v-if="addImage"> 
+      
+      <button v-on:click="upload">Upload Image</button><br>
+      <button v-on:click="addImage = false">Cancel</button>
+    </div>
+<div v-else>
+          <div>
           <label for="title">Front Question:</label>
           <input id="title" type="text" class="form-control" v-model="editCard.frontQuestion" autocomplete="off" />
         </div>
@@ -23,12 +34,17 @@
             </select>
         <button class="btn btn-submit">Submit</button>
         <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
-
+</div>   <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
+</div>
        
        
 
       </form>
-     
+
+      {{ editCard }}
+{{ card }}    
+
+{{ deckToAddTo }}
     </div>
   </template>
   
@@ -56,43 +72,32 @@
         
         },
         tagsAsString: "",
-        deckToAddTo: {},
+        deckToAddTo: {id:"",},
+        addImage: false,
+        errorMessage:"",
       };
     },
 
     methods: {
+      upload() {
+        this.myWidget.open();
+        this.addImage = false;
+      },
+
       toggleForm() {
         this.formShowing = !this.formShowing;
       },
 
-      addCardToDeck(){
-        if(this.deckToAddTo.id != 0){
-          CardServices.addCardToDeck(this.editCard, this.deckToAddTo.id)
-            .then(response=> {
-             if(response.status === 200) {
-              this.$store.commit(
-              'SET_NOTIFICATION', {
-               message: `Card was added to deck.`,
-                type: 'success'
-              }
-              ) }}
-            ).catch(error => {
-            this.handleErrorResponse(error, 'updating');
-           });
-          }
-          this.$router.go(0);
-      },
 
       submitForm() {
         if(this.tagsAsString != ""){
         this.editCard.tags = this.tagsAsString.split(",");}
 
-
        if (!this.validateForm()) {
-         return;
+         return false;
         }
        
-          CardServices.updateCardById(this.card.cardId, this.editCard)
+          CardServices.updateCardById(this.editCard.cardId, this.editCard, this.deckToAddTo.id)
           .then(response => {
               if (response.status === 200) {
                 this.$store.commit(
@@ -102,7 +107,7 @@
                     }
                   )
                   }
-                  this.addCardToDeck();
+                 
                 })
             .catch(error => {
               this.handleErrorResponse(error, 'updating');
@@ -121,22 +126,24 @@
         }
       },
       validateForm() {
-        let msg = '';
-        if (this.editCard.frontQuestion.length === 0) {
-          msg += 'The new card must have a front question. ';
+        this.errorMessage = "";
+        let isValid = true;
+        if (this.editCard.frontQuestion.length == 0) {
+          this.errorMessage += 'The card must have a front question. ';
+          isValid = false;
         }
-        if (this.editCard.backAnswer.length === 0) {
-          msg += 'The new card must have a back answer.';
+        if (this.editCard.backAnswer.length == 0) {
+          this.errorMessage += 'The card must have a back answer.  ';
+          isValid = false;
         }
-        if(this.deckToAddTo.id === 0){
-          msg += 'The new card must be assigned to a deck.';
+        if(this.deckToAddTo.id == 0 || this.deckToAddTo.id == null){
+          this.errorMessage += 'The card must be assigned to a deck. ';
+          isValid = false;
         }
-        if (msg.length > 0) {
-          this.$store.commit('SET_NOTIFICATION', msg);
-          return false;
-        }
-        return true;
+        return isValid;
+      
       },
+
       async retrieveDecks() {
       try {
         this.isLoading = true;
@@ -154,6 +161,25 @@
 
     created() { 
       this.retrieveDecks();
+  },  
+  
+  mounted() {
+       this.myWidget = window.cloudinary.createUploadWidget(
+      {
+        // Insert your cloud name and presets here, 
+        // see the documentation
+        cloudName: 'dvxtx3qq6', 
+        uploadPreset: 'fqofg0ln'
+      }, 
+      (error, result) => { 
+        if (!error && result && result.event === "success") { 
+          console.log('Done! Here is the image info: ', result.info); 
+          console.log("Image URL: " + result.info.url);
+          this.newCard.cardImg = result.info.url;
+        }
+      }
+    );
+
   }
 
   }

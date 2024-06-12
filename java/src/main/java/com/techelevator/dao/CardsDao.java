@@ -12,7 +12,7 @@ public interface CardsDao {
 
     public int saveCard(Cards card);
 
-    public boolean updateCard(Cards card, int userId);
+    public boolean updateCard(Cards card, int userId, int deckId);
 
     public List<String> getTagsByCardId(int cardId);
 

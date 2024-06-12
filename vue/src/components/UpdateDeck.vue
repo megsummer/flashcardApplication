@@ -1,11 +1,23 @@
 <template>
   <div>
+    
     <button class="update" @click="toggleForm">Update Deck</button>
     <form v-if="formShowing" @submit.prevent="submitForm" class="deckForm">
       <div class="form-group">
+
+        <div v-if="!addImage">
+    
+    <button v-on:click="addImage = true">Add Image</button></div>
+   
+    <div class="uploadImage" v-if="addImage"> 
+      
+      <button v-on:click="upload">Upload Image</button><br>
+      <button v-on:click="addImage = false">Cancel</button>
+    </div>
+<div v-else>
         <label for="title">Deck Title:</label>
         <input id="title" type="text" class="form-control" v-model="editDeck.deckTitle" autocomplete="off" />
-      </div>
+      
       <div class="form-group">
         <label for="description">Deck Description:</label>
         <textarea id="description" class="form-control" v-model="editDeck.deckDescription"></textarea>
@@ -16,6 +28,8 @@
       </div>
       <button class="btn btn-submit">Submit</button>
       <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
+    </div>
+    </div>
     </form>
  
   </div>
@@ -34,35 +48,22 @@ export default {
   data() {
     return {
       formShowing: false,
-      editDeck: {
-        
-        deckId: this.deck.deckId,
-        deckTitle: "",
-        deckDescription: "",
-        coverImg: "",
-      },
-      updatedDeck: {
-        deckId: 0,
-        deckTitle: "",
-        deckDescription: "",
-        coverImg: ""
-      },
+      editDeck: {},
+      addImage:false,
     };
   },
   methods: {
     toggleForm() {
     this.formShowing = !this.formShowing;
     if (this.formShowing) {
-      this.$store.commit('SET_NOTIFICATION', 'Update form is now visible.');
-    } else {
-      this.$store.commit('SET_NOTIFICATION', 'Update form is now hidden.');
+  this.editDeck = this.deck;
     }
   },
     submitForm() {
       if (!this.validateForm()) {
         return;
       }
-      this.updatedDeck = DeckServices.updateDeck(this.editDeck)
+      DeckServices.updateDeck(this.editDeck)
         .then(response => {
           if (response.status === 200) {
             this.$store.commit(
@@ -91,6 +92,12 @@ export default {
         this.$store.commit('SET_NOTIFICATION', "Error " + verb + " deck. Request could not be created.");
       }
     },
+
+    upload() {
+        this.myWidget.open();
+        this.addImage = false;
+      },
+
     validateForm() {
       let msg = '';
       if (this.editDeck.deckTitle.length === 0) {
@@ -102,8 +109,27 @@ export default {
       }
       return true;
     },
+  },
+  mounted() {
+       this.myWidget = window.cloudinary.createUploadWidget(
+      {
+        // Insert your cloud name and presets here, 
+        // see the documentation
+        cloudName: 'dvxtx3qq6', 
+        uploadPreset: 'fqofg0ln'
+      }, 
+      (error, result) => { 
+        if (!error && result && result.event === "success") { 
+          console.log('Done! Here is the image info: ', result.info); 
+          console.log("Image URL: " + result.info.url);
+          this.editDeck.coverImg = result.info.url;
+        }
+      }
+    );
   }
 }
+        
+  
 </script>
 
 <style scoped>

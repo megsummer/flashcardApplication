@@ -135,12 +135,12 @@ public class JdbcDeckDao implements DeckDao{
 
     @Override
 
-    public Deck updateDeck(Deck updateDeck){
-        Deck updatedDeck = null;
-        int updatedDeckUserId = updateDeck.getUserId();
+    public boolean updateDeck(Deck updateDeck){
+
+        int updateDeckUserId = updateDeck.getUserId();
         Deck currentDeck = getDeckByDeckId(updateDeck.getDeckId());
         int currentDeckUserId = currentDeck.getUserId();
-        if(updatedDeckUserId != currentDeckUserId) {
+        if(updateDeckUserId != currentDeckUserId) {
            int createdDeckId = createDeck(updateDeck);
             int currentDeckId = currentDeck.getDeckId();
             List<Integer> cardInts = new ArrayList<>();
@@ -171,7 +171,7 @@ public class JdbcDeckDao implements DeckDao{
                     }
 
                 }
-            } updatedDeck = getDeckByDeckId(createdDeckId);
+            }
 
         } else {
 
@@ -186,9 +186,9 @@ public class JdbcDeckDao implements DeckDao{
                 throw new DaoException("Unable to connect to server or database", e);
             } catch (DataIntegrityViolationException e) {
                 throw new DaoException("Data integrity violation", e);
-            }updatedDeck = getDeckByDeckId(updatedDeck.getDeckId());
+            }
         }
-return updatedDeck;
+return true;
     }
 
 
