@@ -1,5 +1,6 @@
 <template>
     <div>
+      
       <button class="update" @click="toggleForm">Update Card</button>
       <form v-if="formShowing" @submit.prevent="submitForm" class="cardForm">
         <div class="form-group">
