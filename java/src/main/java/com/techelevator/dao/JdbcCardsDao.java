@@ -84,14 +84,18 @@ public class JdbcCardsDao implements CardsDao {
     }
 
     @Override
-    public boolean updateCard(Cards card, int userId) {
+    public boolean updateCard(Cards card, int userId, int deckId) {
 
         List<String> tags = card.getTags();
 
         Cards currentCard = getCardById(card.getCardId());
-        int currentCardUserId = currentCard.getUserId();
+        int currentCardUserId = card.getUserId();
         if (userId != currentCardUserId) {
             int newId = saveCard(card);
+            Cards newCard = getCardById(newId);
+            addCardToDeck(newCard, deckId);
+
+
         } else {
 
             try {
@@ -111,6 +115,16 @@ public class JdbcCardsDao implements CardsDao {
                     } catch (DataAccessException e) {
                         throw new DaoException("Error saving tag: " + tag, e);
                     }
+                }
+            }
+            List<Cards> cardsCurrentlyInDeck = getCardsByDeckId(deckId);
+            boolean isInDeck = false;
+            for (Cards searchCard : cardsCurrentlyInDeck) {
+                if (searchCard.getCardId() == card.getCardId()) {
+                    isInDeck = true;
+                }
+                if (!isInDeck) {
+                    addCardToDeck(card, deckId);
                 }
             }
         }

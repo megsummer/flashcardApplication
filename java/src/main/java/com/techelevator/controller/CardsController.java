@@ -62,10 +62,10 @@ public class CardsController {
     }
 
     @RequestMapping(path = "/cards/{cardId}", method =RequestMethod.PUT)
-    public boolean updateCard (@RequestBody Cards updateCard, Principal principal, @PathVariable int cardId) {
+    public boolean updateCard (@RequestBody Cards updateCard, Integer deckId, Principal principal, @PathVariable int cardId) {
         User user = userDao.getUserByUsername(principal.getName());
         updateCard.setUserId(user.getId());
-        return cardsDao.updateCard(updateCard, user.getId());
+        return cardsDao.updateCard(updateCard, user.getId(), deckId);
     }
 
 
@@ -78,7 +78,6 @@ public boolean deleteCard(@PathVariable int cardId){
     @RequestMapping(path = "/cards/search", method=RequestMethod.PUT)
 public List<Cards> getCardByTags(@RequestBody SearchTags tags)  {
         List<String> tagsList = List.of((tags.getSearchTags()).split(", "));
-        System.out.println(tagsList);
         return cardsDao.getCardByTags(tagsList);
 }
 @RequestMapping(path = "/decks/{deckId}/cards", method = RequestMethod.GET)
@@ -93,7 +92,6 @@ public List<Cards> getCardByTags(@RequestBody SearchTags tags)  {
 
     @RequestMapping(path = "/decks/{deckId}/cards", method = RequestMethod.POST)
     public boolean addCardToDeck(@RequestBody Cards card, @PathVariable Integer deckId){
-        System.out.println(deckId);
         return cardsDao.addCardToDeck(card, deckId);
     }
 

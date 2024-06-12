@@ -1,64 +1,66 @@
 <template>
-   <!-- <div class="viewCardActions"> </div>-->
-   <div>
-  
-      <NavTool />
-  </div>
+   <div class="griddy-container">
+      <NavTool class="nav-tool"/>
+      <div class="first-row">
+        <div class="search-container">
+        <h2>Create New Card</h2>
+        <h3>Please Insert Image First</h3>
+        </div>
+      
+        <div class="logo-container">
+        <Logo />
+        </div>
+      </div>
 
-  <div id="create-card">
-    <h2>
-      Create New Card
-     
-    </h2>
-    <div v-if="!addImage">
+      <div class="main-container">
+    <div id="create-card">
     
-    <button v-on:click="addImage = true">Add Image</button></div>
+    <div v-if="!addImage">
+      <button v-on:click="addImage = true">Add Image</button>
+    </div>
    
     <div class="uploadImage" v-if="addImage"> 
-      
-      <button v-on:click="upload">Upload Image</button><br>
-      <button v-on:click="addImage = false">Cancel</button>
+      <button class= "move" v-on:click="upload">Upload Image</button><br>
+      <button class= "move" v-on:click="addImage = false">Cancel</button>
     </div>
-<div v-else>
+    
+    <div v-else>
       <form v-on:submit.prevent="createCard">
         <div class="card-form">
           <label for="card-frontQuestion">Front Question:</label>
           <textarea id="card-frontQuestion" v-model="newCard.frontQuestion"></textarea> 
         </div>
+
         <div class="card-form">
           <label for="card-backAnswer">Back Answer:</label>
           <textarea id="card-backAnswer" v-model="newCard.backAnswer"></textarea>
         </div>
   
         <div class="card-form">
-          <label for="card-tags">Tags: Please separate tags with a comma.  Example: biology, science, cells</label>
-          
+          <label for="card-tags">Tags: Please separate tags with a comma. Example: biology, science, cells</label>
           <textarea id="card-tags" v-model="tagsAsString"></textarea>
-          <div class="card-form">
+        </div> 
+
+        <div class="card-form">
           <label for="card-img">Card Image URL:</label>
           <input type="text" id="card-img" v-model="newCard.cardImg" />
         </div> 
 
+        <div class="card-form">
           <label for="deck-to-add">Add this card to a deck:</label>
-            <select name="deckToAddTo" id="deck-to-add"  v-model="deckToAddTo.deckId">
-              <option v-bind:value="0">Please Select a Deck</option>
-                <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{ deck.deckTitle }}</option>
-            </select>
-
-           
-
-          <input type="submit" value="Save Card"/>
-
-          <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
+          <select name="deckToAddTo" id="deck-to-add" v-model="deckToAddTo.deckId">
+            <option v-bind:value="0">Please Select a Deck</option>
+            <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{ deck.deckTitle }}</option>
+          </select>
         </div>
-        </form></div>
-      
-<div class="card-form">
- 
-</div>
 
-    
-      <Logo/>
+        <input type="submit" value="Save Card"/>
+        
+        <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
+      </form>
+      </div>
+        </div>
+  </div>
   </div>
 </template>
 
@@ -235,16 +237,86 @@ export default {
  
 </script>
 
-<style >
+<style scoped>
+
+form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#search-bar {
+  margin-top: 50px;
+  padding: 10px;
+  margin-right: 5px;
+  border-radius: 20px;
+  border: 1px solid black;
+
+}
+
+button {
+  background-color: #ffd966;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+button:hover {
+  background-color: #ffc107;
+}
+.main-container {
+  grid-area: main;
+  padding: 10px;
+  justify-content: center
+}
+
+.nav-tool {
+  grid-area: nav;
+  margin-right: 20px;
+}
+
+.search-container {
+  text-align: center;
+  margin: auto;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.first-row {
+  grid-area: first-row;
+  display: flex;
+  justify-content: right;
+  
+}
+
+.griddy-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: 
+    "nav first-row"
+    "nav main";
+  gap: 25px;
+}
 .card-form {
-  margin-top: 10px;
+  gap: 10px;
+  margin-left: 15px;
+  margin-bottom: .5%;
 }
 
 .card-form label{
-display: block
+display: flex;
+gap: 10px;
+
 }
 
 .card-form textarea {
+  text-align: center;
   height: 60px;
   width: 300px;
 }

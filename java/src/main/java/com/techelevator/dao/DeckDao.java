@@ -13,6 +13,6 @@ public interface DeckDao {
     public List<Deck> getAllAdminDecks();
     public int createDeck(Deck deckToCreate);
     public boolean deleteDeck(int deckId, User user);
-    public Deck updateDeck(Deck updateDeck);
+    public boolean updateDeck(Deck updateDeck);
 
 }

@@ -3,7 +3,7 @@
     <NavTool class="nav-tool"/>
     <div class="first-row">
       <div class="search-container">
-        THESE ARE THE ADMIN DECKS
+        Use these decks to study at anytime. 
       </div>
       
       <div class="logo-container">
