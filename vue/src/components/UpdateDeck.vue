@@ -17,7 +17,7 @@
       <button class="btn btn-submit">Submit</button>
       <button class="btn btn-cancel" @click="cancelForm" type="button">Cancel</button>
     </form>
-  
+ 
   </div>
 </template>
 
@@ -40,7 +40,13 @@ export default {
         deckTitle: "",
         deckDescription: "",
         coverImg: "",
-      }
+      },
+      updatedDeck: {
+        deckId: 0,
+        deckTitle: "",
+        deckDescription: "",
+        coverImg: ""
+      },
     };
   },
   methods: {
@@ -56,7 +62,7 @@ export default {
       if (!this.validateForm()) {
         return;
       }
-      DeckServices.updateDeck(this.editDeck)
+      this.updatedDeck = DeckServices.updateDeck(this.editDeck)
         .then(response => {
           if (response.status === 200) {
             this.$store.commit(
@@ -65,13 +71,16 @@ export default {
                 type: 'success'
               }
             );
-            this.$router.push({ name: 'DeckView', params: { id: this.editDeck.id } });
+            this.$router.push({ name: 'myDecks' });
+          
           }
         })
         .catch(error => {
           this.handleErrorResponse(error, 'updating');
         });
+        
     },
+
     handleErrorResponse(error, verb) {
       if (error.response) {
         this.$store.commit('SET_NOTIFICATION',

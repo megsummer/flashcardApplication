@@ -15,9 +15,9 @@
       <p></p>
       <UpdateDeck :deck="localDeck" />
       <p></p>
-      <router-link class="nav-button" v-bind:to="{ name: 'studySession', params:{id: localDeck.deckId} }">Study Session</router-link>
+      <router-link class="nav-button" v-bind:to="{ name: 'studySession', params:{id: localDeck.deckId} }"><button>Study Session</button> </router-link>
       <p></p>
-      <router-link class="nav-button" v-bind:to="{ name: 'createCard' }">Create Cards</router-link>
+      <router-link class="nav-button" v-bind:to="{ name: 'createCard' }"><button>Create Cards</button></router-link>
       <p></p>
       <button class="nav-button" @click="deleteDeck">Delete Deck</button>
      
@@ -28,10 +28,10 @@
 
       <div class="deleting" v-if="isDeleting">Click a card to delete from this deck.       
         
-        <p v-for="card in cards" v-bind:key="card.cardId"
-        v-on:click="removeCard(card.cardId)">
-        <CardIcon v-bind:card="card"/>
-      </p>
+        <div v-for="card in cards" v-bind:key="card.cardId"
+        v-on:click="deleteCard(card.cardId)">
+        <CardIcon class="deleting-cards" v-bind:card="card"/>
+      </div>
       
       </div>
     <div v-else>
@@ -87,6 +87,7 @@ export default {
     },
     toggleDeleting(){
       this.isDeleting = !this.isDeleting;
+
        },
 
     removeCard(cardId){
@@ -96,6 +97,7 @@ export default {
     deleteDeck(){
       
       const shouldDelete = confirm("Are you sure you want to delete this deck?");
+
 
       if(shouldDelete){
         DeckServices.deleteDeckById(this.localDeck.deckId)
@@ -110,15 +112,30 @@ export default {
       }
 
     },
+    deleteCard(cardId){
+      
+      const shouldDelete = confirm("Are you sure you want to delete this card?");
 
-    methods: {
+      if(shouldDelete){
+        CardServices.removeCardFromDeck(this.localDeck.deckId, cardId)
+        .then(response => {
+          if(response.status === 200){
+            this.$store.commit('SET_NOTIFICATION', {message: "Successfully deleted board.", type: 'success'})
+            this.$router.go(0);
+          }
+        }).catch(error => {
+          this.handleError(error, 'deleting');
+        });
+      }
+    },
+    
     setHasImage(){
         if(this.deck.coverImg != null && this.deck.coverImg.length != 0){
           this.hasImage = true;}
           else {
             this.hasImage = false;
           }
-        }
+        
     },
     getCardsByDeckId(deckId) {
       CardServices.getCardsByDeckId(deckId)
@@ -139,8 +156,9 @@ export default {
         .catch(error => {
           this.handleError(error, 'retrieving');
         });
-    }
+    
   },
+},
   created() {
     const deckId = parseInt(this.$route.params.id);
     this.getDeck(deckId);
@@ -149,3 +167,8 @@ export default {
   }
 };
 </script>
+<style>
+.deleting-cards{
+  background-color: rgb(245, 130, 130);
+}
+</style>

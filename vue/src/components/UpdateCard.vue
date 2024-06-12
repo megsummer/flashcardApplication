@@ -80,6 +80,7 @@
             this.handleErrorResponse(error, 'updating');
            });
           }
+          this.$router.go(0);
       },
 
       submitForm() {
@@ -126,6 +127,9 @@
         }
         if (this.editCard.backAnswer.length === 0) {
           msg += 'The new card must have a back answer.';
+        }
+        if(this.deckToAddTo.id === 0){
+          msg += 'The new card must be assigned to a deck.';
         }
         if (msg.length > 0) {
           this.$store.commit('SET_NOTIFICATION', msg);

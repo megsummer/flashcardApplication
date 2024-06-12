@@ -100,7 +100,7 @@ public class DeckController {
 
      @PreAuthorize("isAuthenticated()")
 @RequestMapping(path = BASE_URL, method = RequestMethod.PUT)
-     public boolean updateDeck(@RequestBody Deck updateDeck, Principal principal) {
+     public Deck updateDeck(@RequestBody Deck updateDeck, Principal principal) {
          User user = userDao.getUserByUsername(principal.getName());
          updateDeck.setUserId(user.getId());
 

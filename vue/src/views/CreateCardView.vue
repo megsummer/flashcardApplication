@@ -113,16 +113,20 @@ export default {
     
     validateForm() {
         let msg = '';
-        if (this.newCard.frontQuestion.length === 0) {
+        if (this.newCard.frontQuestion.length == 0) {
           msg += 'The new card must have a front question. ';
         }
-        if (this.newCard.backAnswer.length === 0) {
+        if (this.newCard.backAnswer.length == 0) {
           msg += 'The new card must have a back answer.';
+        }
+        if(this.deckToAddTo.id == 0){
+          msg += 'The new card must be assigned to a deck.';
         }
         if (msg.length > 0) {
           this.$store.commit('SET_NOTIFICATION', msg);
           return false;
         }
+        
         return true;
       },
 
