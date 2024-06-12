@@ -111,7 +111,7 @@ button {
 }
 
 button:hover {
-  background-color: #ffc107;
+  background-color: hsl(45, 100%, 51%);
 }
 
 .grid-container {

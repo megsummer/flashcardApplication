@@ -1,19 +1,14 @@
 <template>
   <div class="griddy-container">
-    <NavTool class="nav-tool"/>
-    <div class="first-row">
-      <div class="search-container">
-        These flash card study decks are provided by your school administration.  To view the decks in full, please
-        <a id="Register" class = "register">
-      <router-link v-bind:to="{ name: 'register' }">Register Here!</router-link></a>
-      <p class="register-link"></p>
-      </div>
-      
+    
       <div class="logo-container">
         <Logo />
-      </div>
     </div>
-
+    <div class="register"> 
+      
+      <router-link v-bind:to="{ name: 'register' }">These flash card study decks are provided by your school administration.  
+       <p></p> To view the decks in full, please Register Here!</router-link></div>
+     
 
 <div class="main-container">
   <div class = "loading" v-if="isLoading">Loading...</div>
@@ -24,8 +19,8 @@
     <div v-for="deck in decks" v-bind:key="deck.deckId" 
           v-bind:to="{name: 'deckById', params :{id: deck.deckId}}"
           class="grid-item"
-          >
-          <DeckIcon v-bind:deck="deck"/> 
+          > <router-link v-bind:to="{ name: 'register' }">
+          <DeckIcon v-bind:deck="deck"/> </router-link>
     </div>
    
 
@@ -142,19 +137,34 @@ p {
   padding: 10px;
 }
 
-.nav-tool {
+.register {
   grid-area: nav;
   margin-right: 20px;
-}
-
-.search-container {
+  grid-area: register;
+  background-color: rgb(241, 214, 11);
+  color: black;
+  text-align: top;
+  text-transform: none;
+  text-decoration: none;
+  margin: 10px;
+  padding: 35px;
+  border-radius: 20px;
+  width: 225px;
+  height: 225px;
+  border: .2px solid black;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform .2s, box-shadow .2s;
   text-align: center;
   margin: auto;
+  font-size: x-large;
 }
+
+
 
 .logo-container {
   display: flex;
   justify-content: center;
+  grid-area: logo;
 }
 
 .first-row {
@@ -168,8 +178,8 @@ p {
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-areas: 
-    "nav first-row"
-    "nav main";
+    ". logo"
+    "register main";
   gap: 15px;
 }
 /* .griddy-container {

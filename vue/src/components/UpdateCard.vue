@@ -41,10 +41,6 @@
 
       </form>
 
-      {{ editCard }}
-{{ card }}    
-
-{{ deckToAddTo }}
     </div>
   </template>
   
@@ -72,7 +68,7 @@
         
         },
         tagsAsString: "",
-        deckToAddTo: {id:"",},
+        deckToAddTo: {id:0,},
         addImage: false,
         errorMessage:"",
       };
@@ -90,6 +86,9 @@
 
 
       submitForm() {
+
+       
+
         if(this.tagsAsString != ""){
         this.editCard.tags = this.tagsAsString.split(",");}
 
@@ -97,21 +96,25 @@
          return false;
         }
        
-          CardServices.updateCardById(this.editCard.cardId, this.editCard, this.deckToAddTo.id)
-          .then(response => {
+          CardServices.updateCardById(this.editCard, this.deckToAddTo.id)
+          .then((response) => {
+              
               if (response.status === 200) {
-                this.$store.commit(
-                    'SET_NOTIFICATION', {
-                        message: `Card was updated.`,
-                        type: 'success'
-                    }
-                  )
+                 this.$store.commit(
+                     'SET_NOTIFICATION', {
+                         message: `Card was updated.`,
+                         type: 'success'
+                     }
+                   );
+                  
                   }
                  
                 })
             .catch(error => {
+          
               this.handleErrorResponse(error, 'updating');
             });
+            this.$router.push({ name: 'deckById', params: {id: this.deckToAddTo.id} });
       },
 
 

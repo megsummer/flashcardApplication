@@ -89,14 +89,16 @@ public class JdbcCardsDao implements CardsDao {
         List<String> tags = card.getTags();
 
         Cards currentCard = getCardById(card.getCardId());
-        int currentCardUserId = card.getUserId();
+        int currentCardUserId = currentCard.getUserId();
         if (userId != currentCardUserId) {
+
             int newId = saveCard(card);
             Cards newCard = getCardById(newId);
             addCardToDeck(newCard, deckId);
-
+            return true;
 
         } else {
+
 
             try {
                 String sql1 = "UPDATE cards SET front_question=?, back_answer=?, card_img=? WHERE card_id=?; ";
@@ -123,12 +125,13 @@ public class JdbcCardsDao implements CardsDao {
                 if (searchCard.getCardId() == card.getCardId()) {
                     isInDeck = true;
                 }
+            }
                 if (!isInDeck) {
                     addCardToDeck(card, deckId);
-                }
-            }
+
+            } return true;
         }
-        return true;
+
     }
 
     @Override

@@ -18,8 +18,9 @@ export default {
         return axios.post('/cards/new', newCard);
     },
 
-    updateCardById(cardId, updatedCard, deckId){
-        return axios.put(`/cards/${cardId}`, updatedCard, deckId);
+    updateCardById(updatedCard, deckId){
+        return axios.put(`/decks/${deckId}/cards`, updatedCard);
+    
     },
 
     deleteCardById(cardId){
