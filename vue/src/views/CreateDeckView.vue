@@ -265,11 +265,11 @@ form {
 }
 .deckById-container {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 250px 1fr;
   grid-template-areas: 
     "nav first-row"
     "nav main";
-  gap: 25px;
+  gap: 15px;
 }
 
 </style>
