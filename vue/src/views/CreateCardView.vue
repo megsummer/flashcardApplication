@@ -4,7 +4,7 @@
       <div class="first-row">
         <div class="search-container">
         <h2>Create New Card</h2>
-        <h3>Please Complete All Required Fields </h3>
+        <h3>Please Insert Image First</h3>
         </div>
       
         <div class="logo-container">
@@ -69,7 +69,7 @@ import NavTool from '@/components/NavTool.vue';
 import CardServices from '@/services/CardServices.js';
 import Logo from '../components/Logo.vue';
 import DeckServices from '../services/DeckServices';
-
+import DeckIcon from '../components/DeckIcon.vue';
 
 
 

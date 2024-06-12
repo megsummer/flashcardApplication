@@ -1,47 +1,59 @@
 <template>
-  <div class="loading" v-if="isLoading">Loading...</div>
-  <div v-else>
- 
-    <div class="griddy-container"> 
-    <NavTool class="nav-tool"/>
-    <Logo class="logo"/>
-   
+  <div class="deckgriddy-container">
+    <NavTool class="nav-toolbig"/>
 
-    <div class="deckHeader">
+      <div class="search-container">
+          <div class="image">
+            <DeckIcon :deck="localDeck"/>
+          </div>
+        </div>
+      <div class="logo-container">
+          <Logo />
+      </div>
+
+    <div v-if="isLoading" class="loading">Loading...</div>
+    <div v-else>
+      <div class="deckHeader">
         <h2> Title: {{ localDeck.deckTitle }}</h2>
         <p>Description: {{ localDeck.deckDescription }}</p>
+      </div>
+
+      <div class="image">
+        <img :src="localDeck.coverImg" alt="Deck Image" />
+      </div>
+
+      <UpdateDeck class="updateDeck-button" :deck="localDeck" />
+
+      <div class="deckDetails">
+        <router-link class="study-button" v-bind:to="{ name: 'studySession', params: { id: localDeck.deckId } }">
+          <button>Study Session</button>
+        </router-link>
+        
+        <router-link class="card-button" v-bind:to="{ name: 'createCard' }">
+          <button>Create Cards</button>
+        </router-link>
+        
+        <button class="deleteDeck-button" @click="deleteDeck">Delete Deck</button>
+        <button @click="toggleDeleting">Delete Cards From This Deck</button>
+      </div>
+
+      <div v-if="isDeleting" class="deleteCard-button">
+        <div id="delete-text" class="grid-item">Click a card to delete from this deck.</div>
+        <div v-for="card in cards" :key="card.cardId" @click="deleteCard(card.cardId)" class="grid-item">
+          <CardIcon class="deleting-cards" :card="card" />
+        </div>
+      </div>
+
+      <div v-else class="cards-in-deck">
+        <div v-if="cards.length === 0">There Are No Cards In This Deck.</div>
+        <div v-else>
+          <router-link v-for="card in cards" :key="card.cardId" :to="{ name: 'cardById', params: { id: card.cardId } }" class="grid-item">
+            <CardIcon :card="card" />
+          </router-link>
+        </div>
+      </div>
     </div>
-
-     <div class = "image">   <img :src="localDeck.coverImg" alt="Deck Image" />
-    </div>
-
-    <UpdateDeck class="updateDeck-button" :deck="localDeck" />
-
-
-    <div class = "deckDetails">
-      
-      <router-link class="study-button" v-bind:to="{ name: 'studySession', params:{id: localDeck.deckId} }"><button>Study Session</button> </router-link>
-      
-      <router-link class="card-button" v-bind:to="{ name: 'createCard' }"><button>Create Cards</button></router-link>
-      
-      <button class="deleteDeck-button" @click="deleteDeck">Delete Deck</button>
-      <button v-on:click="toggleDeleting">Delete Cards From This Deck</button>
-    </div>
-      <div v-if="isDeleting" class="deleteCard-button"> <div id="delete-text" class="grid-item">Click a card to delete from this deck.
-
-      </div> 
-      <div v-for="card in cards" :key="card.cardId" @click="deleteCard(card.cardId)" class="grid-item"> <CardIcon class="deleting-cards" :card="card" /> 
-      </div> 
-    </div> 
-    <div v-else class="cards-in-deck"> 
-      <div v-if="cards.length === 0">There Are No Cards In This Deck.</div>
-      <div v-else>
-      <router-link v-for="card in cards" :key="card.cardId" :to="{ name: 'cardById', params: { id: card.cardId } }" class="grid-item"> 
-      <CardIcon :card="card" /> </router-link></div> </div> </div>
-    </div>
-    
-  
-  
+  </div>
 </template>
 
 
@@ -54,6 +66,7 @@ import UpdateDeck from '../components/UpdateDeck.vue';
 import Logo from '../components/Logo.vue';
 import CardServices from '../services/CardServices.js';
 import CardIcon from '../components/CardIcon.vue';
+import DeckIcon from '../components/DeckIcon.vue';
 
 
 export default {
@@ -63,6 +76,7 @@ export default {
     UpdateDeck,
     Logo,
     CardIcon,
+    DeckIcon
 
 },
   data() {
@@ -171,15 +185,15 @@ export default {
 
 
 
-<style>
+<style scoped>
 
-.griddy-container {
+.deckgriddy-container {
   display: grid;
-  grid-template-columns: 1fr 3fr 1 fr;
+  grid-template-columns: 1fr 4fr;
   grid-template-areas: 
-    "nav deckHeader  logo"
-    "nav image deckDetails"
-    ". cards-in-deck cards-in-deck";
+    "nav deckicon logo"
+    "nav deckDetails deckDetails"
+    "cards-in-deck cards-in-deck cards-in-deck";
   gap: 15px;
 }
 
@@ -190,9 +204,10 @@ export default {
   
 }
 
-.logo{
+.logo-container{
   grid-area: logo;
-  margin-left: auto;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -213,6 +228,8 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   flex: 1 1 45%;
+
+  
   
 }
 
@@ -234,7 +251,8 @@ export default {
 }
 
 .study-button{
-  grid-area: study-button
+  grid-area: study-button;
+  
 }
 
 .deleteDeck-button{
@@ -246,7 +264,7 @@ export default {
 }
 
 
-.nav-tool{
+.nav-toolbig{
   grid-area: nav;
   margin-right: 20px;
 }
@@ -263,6 +281,11 @@ export default {
 #delete-text{
   margin: auto;
   font-size: larger;
+}
+.search-container {
+  grid-area: deckicon;
+  text-align: center;
+  margin: auto;
 }
 
 
