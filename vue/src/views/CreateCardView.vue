@@ -126,7 +126,7 @@ export default {
         frontQuestion: "", 
         backAnswer: "", 
         cardImg: "",
-        tags: "",
+        tags: [],
         };
       
        },
