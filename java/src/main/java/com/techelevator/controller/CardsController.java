@@ -61,11 +61,14 @@ public class CardsController {
         return cardsDao.saveCard(card);
     }
 
-    @RequestMapping(path = "/cards/{cardId}", method =RequestMethod.PUT)
-    public boolean updateCard (@RequestBody Cards updateCard, Integer deckId, Principal principal, @PathVariable int cardId) {
+    @RequestMapping(path = "/decks/{deckId}/cards", method =RequestMethod.PUT)
+    public boolean updateCard (@RequestBody Cards updateCard, Principal principal, @PathVariable int deckId) {
         User user = userDao.getUserByUsername(principal.getName());
         updateCard.setUserId(user.getId());
         return cardsDao.updateCard(updateCard, user.getId(), deckId);
+
+
+
     }
 
 
