@@ -1,26 +1,58 @@
 <template>
-  <div class = form> 
-  <div>
-      <NavTool/>
-  </div>
-  <form v-on:submit.prevent="createDeck">
+  <div class = "deckById-container"> 
+      <NavTool class="nav-tool"/>
+<div class ="first-row">
+  <div class="search-container">
+        <h2>Create New Deck</h2>
+        <h3>Please Complete All Required Fields</h3>
+        </div>
+
+        <div class="logo-container">
+        <Logo/>
+      </div>
+</div>
     
+<div class = "main-container">
+<div class="create-deck">
+
+    <div v-if="!addImage">
+    <button v-on:click="addImage = true">Add Image</button>
+  </div>
+   
+    <div class="uploadImage" v-if="addImage"> 
+      <button v-on:click="upload">Upload Image</button><br>
+      <button v-on:click="addImage = false">Cancel</button>
+    </div>
+
+<div v-else>
+  <form v-on:submit.prevent="createDeck">
       <div class="deck-form">
         <label for="deck-title">Deck Title:</label>
-        <input type="text" id="deck-title" v-model="newDeck.deckTitle" />
+        <textarea id="deck-title" v-model="newDeck.deckTitle"></textarea>
       </div>
 
       <div class="deck-form">
         <label for="deck-description">Description:</label>
-        <input type="text" id="deck-description" v-model="newDeck.deckDescription" />
+        <textarea id="deck-description" v-model="newDeck.deckDescription"></textarea> 
+      </div>
+
+      <div class="deck-form">
+        <input type="text" id="imgurl" v-model="newDeck.coverImg" />
       </div>
 
       <input class = 'submit-button' type="submit" value="Save Deck"/>
+
+      <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
+      
+      
       
     </form>
-    <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
-    <Logo/>
   </div>
+  </div>
+
+   </div>
+  </div>
+
 </template>
 
 <script>
@@ -50,6 +82,7 @@ export default {
         deckDescription: "",
       },
       errorMessage: "",
+      addImage: false,
     };
   },
   methods: {
@@ -85,6 +118,10 @@ export default {
         
       
       },
+      upload() {
+        this.myWidget.open();
+        this.addImage = false;
+      },
 
 
     createDeck() {
@@ -104,6 +141,23 @@ export default {
    
 
 
+  },
+  mounted() {
+       this.myWidget = window.cloudinary.createUploadWidget(
+      {
+        // Insert your cloud name and presets here, 
+        // see the documentation
+        cloudName: 'dvxtx3qq6', 
+        uploadPreset: 'fqofg0ln'
+      }, 
+      (error, result) => { 
+        if (!error && result && result.event === "success") { 
+          console.log('Done! Here is the image info: ', result.info); 
+          console.log("Image URL: " + result.info.url);
+          this.newDeck.coverImg = result.info.url;
+        }
+      }
+    );
   }
 
 };
@@ -112,23 +166,29 @@ export default {
 <style>
 
 
-
-
 .form {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  color: black;
   text-align: center;
-  border-radius: 10px;
-  margin: 10px;
-  padding: 10px;
-  align-items: center;
+  margin-bottom: 20px;
   
 }
 
 
 .deck-form {
+  gap: 10px;
+  margin-left: 15px;
+  margin-bottom: .5%;
+}
 
+.deck-form label{
+display: flex;
+gap: 10px;
+
+}
+
+.deck-form textarea {
+  text-align: center;
+  height: 60px;
+  width: 300px;
 }
 
 .submit-button {
@@ -139,17 +199,77 @@ export default {
   border-radius: 10px;
   
 }
+.alert{
+  color:crimson
+}
 
 .submit-button:hover {
   background-color: #ffc107;
 }
 
+
 .NavTool{
+  grid-area: nav;
+  margin-right: 20px;
+}
+
+button {
+  background-color: #ffd966;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+button:hover {
+  background-color: #ffc107;
+}
+.main-container {
+  grid-area: main;
+  padding: 10px;
+  justify-content: center
+}
+
+form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#search-bar {
+  margin-top: 50px;
+  padding: 10px;
+  margin-right: 5px;
+  border-radius: 20px;
+  border: 1px solid black;
 
 }
 
+.search-container {
+  text-align: center;
+  margin: auto;
+}
 
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
 
-
+.first-row {
+  grid-area: first-row;
+  display: flex;
+  justify-content: right;
+  
+}
+.deckById-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: 
+    "nav first-row"
+    "nav main";
+  gap: 25px;
+}
 
 </style>
