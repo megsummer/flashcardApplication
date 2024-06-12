@@ -4,7 +4,7 @@
       <div class="first-row">
         <div class="search-container">
         <h2>Create New Card</h2>
-        <h3>Please Complete All Required Fields </h3>
+        <h3>Please Insert Image First</h3>
         </div>
       
         <div class="logo-container">
@@ -80,7 +80,6 @@ export default {
 
     NavTool,
     Logo,
-    DeckIcon
   
 },
     
@@ -127,7 +126,7 @@ export default {
         frontQuestion: "", 
         backAnswer: "", 
         cardImg: "",
-        tags: "",
+        tags: [],
         };
       
        },

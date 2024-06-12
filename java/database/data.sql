@@ -3,56 +3,49 @@ BEGIN TRANSACTION;
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
-
-
-
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What happens in prophase?', 'DNA is copied when spindles form.', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What happens in prometaphase?', 'A copy is made of the centrosome', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What happens in metaphase?', 'The chromosones line up at the metaphase plate.', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What happens in Anaphase?', 'The microtublies push the poles apart and pull the chromosones to the poles.', 1);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What happens in Telophase?', 'The chromosomes start to decondense, the spindles disappear, and nucleolus reforms', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Who is Leonardo da Vinci?:', 'Renaissance artist and inventor', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Who painted the Mona Lisa?', 'Leonardo da Vinci', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Explain the Law of Supply and Demand.', 'When supply is low and demand is high, price is high.', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Define microeconomics:', 'The study of economic decisions made by individual consumers and businesses', 1);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What is the invisible hand theory', 'An idea by English economist Adam Smith. The idea is that individuals follow their own self-interest in economic matters, but that doing so may lead to the best results for society as a whole.', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What is market economy?', 'An economy in which the "marketplace" of consumers determines supply and demand; which affects investments, spending, and pricing', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What is a static property or method?', 'It belongs to the class as opposed to a specific object', 2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('What happens in prophase?', 'DNA is copied when spindles form.', 'https://upload.wikimedia.org/wikipedia/commons/3/39/Prophase_eukaryotic_mitosis.svg',2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('What happens in prometaphase?', 'A copy is made of the centrosome', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Prometaphase.svg/220px-Prometaphase.svg.png',2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('What happens in metaphase?', 'The chromosones line up at the metaphase plate.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Spindle_chromosomes-en.png/250px-Spindle_chromosomes-en.png', 2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('What happens in Anaphase?', 'The microtublies push the poles apart and pull the chromosones to the poles.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Spindle_chromosomes-en.png/250px-Spindle_chromosomes-en.png', 1);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('What happens in Telophase?', 'The chromosomes start to decondense, the spindles disappear, and nucleolus reforms', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Telophase_eukaryotic_mitosis.svg/300px-Telophase_eukaryotic_mitosis.svg.png',2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Who is Leonardo da Vinci?:', 'Renaissance artist and inventor', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Francesco_Melzi_-_Portrait_of_Leonardo.png/800px-Francesco_Melzi_-_Portrait_of_Leonardo.png',2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Who painted the Mona Lisa?', 'Leonardo da Vinci', 'https://cdn.pixabay.com/photo/2024/05/19/02/49/ai-generated-8771371_1280.png',2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Explain the Law of Supply and Demand.', 'When supply is low and demand is high, price is high.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Supply-and-demand.svg/260px-Supply-and-demand.svg.png',2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Define microeconomics:', 'The study of economic decisions made by individual consumers and businesses', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Production_Possibilities_Frontier_Curve.svg/220px-Production_Possibilities_Frontier_Curve.svg.png', 1);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('What is the invisible hand theory', 'An idea by English economist Adam Smith. The idea is that individuals follow their own self-interest in economic matters, but that doing so may lead to the best results for society as a whole.', 'https://t3.ftcdn.net/jpg/01/26/45/40/240_F_126454005_SVhIzfDGujWYTbcCzGTojeVH0erpdRVv.jpg', 2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('What is market economy?', 'An economy in which the "marketplace" of consumers determines supply and demand; which affects investments, spending, and pricing', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Pike_Place_Market%2C_Economy_Market_arcade%2C_1968.jpg/300px-Pike_Place_Market%2C_Economy_Market_arcade%2C_1968.jpg', 2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('What is a static property or method?', 'It belongs to the class as opposed to a specific object', 'https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2019/07/Static-Method-In-Java.jpg', 2);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Last element of an array of unknown length?', 'Element is the one at index .length -1', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What does the protected mean', 'Access modifier that allows properties or methods to be accessed by sub-classes', 1);
+INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What does the protected mean', 'Access modifier that allows properties or methods to be accessed by sub-classes',1);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Difference between = and ==', 'Single is assignment double is comparison', 1);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Should you use == to check for a String value?', 'No use the equals method instead', 1);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('How are maps and sets related?', 'The keys of the map are unique therefore the list of keys is a set', 1);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What makes the do-while loop special?', 'It is guaranteed to run once', 1);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What is a primary key?', 'Unique identifier for a row', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What is a foreign key?', 'A column that is a primary key on some other table', 2);
+INSERT INTO cards (front_question, back_answer, user_id) VALUES ('How are maps and sets related?', 'The keys of the map are unique therefore the list of keys is a set',1);
+INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What makes the do-while loop special?', 'It is guaranteed to run once',1);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('What is a primary key?', 'Unique identifier for a row', 'https://support.content.office.net/en-us/media/2b3f79b2-7629-44f8-a0c5-2c6f72bfd935.gif',2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('What is a foreign key?', 'A column that is a primary key on some other table', 'https://cdn.educba.com/academy/wp-content/uploads/2020/03/oracle-foriegn-key.jpg',2);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What is a transaction?', 'A block of related sql statements that must all succeed or fail together', 1);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What is an associative table?', 'A table that results from the many to many relationship between two entities', 1);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What is the DAO pattern?', ' A Java design pattern that encapsulates communication with the database into a single class', 1);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Similarities between Baroque architecture and ancient Greek architecture', 'Both of these architectural styles used optical illusions.', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('The Basilica of St. Peter, in this area of Rome, was designed by Baroque architects.?', 'The Vatican', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('The Palace of Versailles', 'This residence of Louis XIV can be considered to be the premier example of Baroque architecture in Europe.', 2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Similarities between Baroque architecture and ancient Greek architecture', 'Both of these architectural styles used optical illusions.','https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/St_Paul%27s_Cathedral%2C_London%2C_UK.jpg/420px-St_Paul%27s_Cathedral%2C_London%2C_UK.jpg', 2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('The Basilica of St. Peter, in this area of Rome, was designed by Baroque architects.?', 'The Vatican','https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Basilica_di_San_Pietro_in_Vaticano_September_2015-1a.jpg/270px-Basilica_di_San_Pietro_in_Vaticano_September_2015-1a.jpg', 2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('The Palace of Versailles', 'This residence of Louis XIV can be considered to be the premier example of Baroque architecture in Europe.','https://cdn.britannica.com/65/114465-050-8C96BD81/Hall-of-Mirrors-ceiling-Jules-Hardouin-Mansart-Charles.jpg',2);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Examples of cultural blending in art from Medieval Europe', 'The Franks Casket and the Book of Durrow', 2);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Define: clamp', 'A face-off move where the player pushes his stick down on top of the ball to gain control.', 2);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Define: cradling', 'Rocking the stick back and forth in the hands to create centrifugal force that keeps the ball in the pocket.', 2);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Define: back door', 'An offensive cuts behind their defender to receive a pass.', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ( 'Define: Baggataway', 'A form of lacrosse as played originally by the Ojibwa Indians.', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Crease dimensions', 'Men’s game: 9 feet. Women’s game: 8.5 feet. In the National Lacrosse League: 9 feet, 3 inches.', 2);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Define: goose', 'Leonardo da Vinci', 1);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Define: Baggataway', 'A form of lacrosse as played originally by the Ojibwa Indians.', 'https://timothykestrel.com/wp-content/uploads/2016/02/The-Catch-by-Robert-Griffing.jpg',2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Crease dimensions', 'Mens game: 9 feet. Womens game: 8.5 feet. In the National Lacrosse League: 9 feet, 3 inches.', 'https://www.trumarkathletics.com/Userfiles/Page-Images/LacrosseYouthnHSDimensions.jpg',2);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Define: goose', 'A large waterbird with a long neck, short legs, webbed feet, and a short broad bill.', 'https://media.istockphoto.com/id/157427656/photo/canada-goose-on-white.jpg?s=612x612&w=0&k=20&c=Uh_C6VinyMFQrPtHRI9MBwsBhRvIPPxHIOV-MzPFVkc=',1);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('Long Stick Midfielder', 'Leonardo da Vinci', 1);
-INSERT INTO cards (front_question, back_answer, user_id) VALUES ('NCAA stands for:', 'Leonardo da Vinci', 1);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('NCAA stands for:', 'National Collegiate Athletic Association', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/NCAA_logo.svg/150px-NCAA_logo.svg.png', 1);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('On the Hop means:', 'When a player uses his stick to knock a ground ball to an open teammate, rather than picking it up.', 2);
 INSERT INTO cards (front_question, back_answer, user_id) VALUES ('What happens in a slow break?', 'A transition opportunity for the offense in which the defense has at least an equal number of defenders to offensive players in position and ready to defend.', 2);
 
-
-
-
-
-INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (2, 'Mitosis Review', 'Review the stages of mitosis', true);
-INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (1, 'Economics Vocab', 'Review terms from chapter two.', true);
-INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (2, 'Renaissance Art Midterm', 'Study Guide for midterm art 2300', true);
-INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (1, 'Lacrosse', 'Lacrosse terms, rules, and history', true);
-INSERT INTO decks (user_id, deck_title, deck_description, is_approved) VALUES (1, 'Software Developer Interview Questions', 'Prepare for your upcoming interview!', true);
+INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved) VALUES (2, 'Mitosis Review', 'Review the stages of mitosis', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Major_events_in_mitosis.svg/350px-Major_events_in_mitosis.svg.png',true);
+INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved) VALUES (1, 'Economics Vocab', 'Review terms from chapter two.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Supply-demand-right-shift-demand.svg/220px-Supply-demand-right-shift-demand.svg.png',true);
+INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved) VALUES (2, 'Renaissance Art Midterm', 'Study Guide for midterm art 2300', 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/400px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg', true);
+INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved) VALUES (1, 'Lacrosse', 'Lacrosse terms, rules, and history', 'https://t3.ftcdn.net/jpg/02/72/57/60/360_F_272576042_Sf8uuMwjnoUpmrx3s7kBOi72iWKMd6Hv.jpg', true);
+INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved) VALUES (1, 'Software Developer Interview Questions', 'Prepare for your upcoming interview!', 'https://www.techelevator.com/wp-content/uploads/2022/02/Students-Columbus-program_i-scaled.jpeg', true);
 
 
 
@@ -139,11 +132,5 @@ INSERT INTO cards_tags (card_id, tag) VALUES (22, 'tech');
 INSERT INTO cards_tags (card_id, tag) VALUES (22, 'software development');
 INSERT INTO cards_tags (card_id, tag) VALUES (23, 'tech');
 INSERT INTO cards_tags (card_id, tag) VALUES (23, 'software development');
-
-
-
-
-
-
 
 COMMIT TRANSACTION;
