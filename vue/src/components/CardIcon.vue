@@ -73,14 +73,9 @@ a{
   max-width: 100px;
   max-height: 100px;
   border-radius: 10px;
+  border: .2px solid black;
 }
 
-img{
-max-width: 100px;
-max-height: 100px;
-  border: .2px solid black;
- 
-  
-}
+
 
 </style>

@@ -14,7 +14,7 @@
       <div  v-if="!isFlipped" class="front">
         
           <div  v-if="hasImage" id="card-image">
-           <img :src="currentCard.cardImg" alt="Card Image" /></div>
+           <img class= "study-image" :src="currentCard.cardImg" alt="Card Image" /></div>
           <div v-else></div>
           <p class="cardText">{{ currentCard.frontQuestion }}</p>
        
@@ -248,9 +248,6 @@ button{
   justify-content: center;
   gap: 10px; 
 
-
-
-
 }
 
 .card-display{
@@ -259,12 +256,10 @@ button{
   align-items: center;
 }
 
-img{
+.study-image{
 max-width: 450px;
 max-height: 450px;
-  border: .2px solid black;
- 
-  
+border: .2px solid black;  
 }
 
 </style>

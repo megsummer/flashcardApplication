@@ -45,10 +45,10 @@ export default {
   text-transform: none;
   text-decoration: none;
   margin: 10px;
-  padding: 35px;
+  padding: 15px;
   border-radius: 20px;
-  width: 125px;
-  height: 125px;
+  width: 200px;
+  height: 200px;
   border: .2px solid black;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: transform .2s, box-shadow .2s;
@@ -58,8 +58,8 @@ export default {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 .deck img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 100px;
+  max-height: 100px;
   border-radius: 10px;
 }
 
