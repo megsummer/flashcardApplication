@@ -33,7 +33,11 @@
       <div v-for="card in cards" :key="card.cardId" @click="deleteCard(card.cardId)" class="grid-item"> <CardIcon class="deleting-cards" :card="card" /> 
       </div> 
     </div> 
-    <div v-else class="cards-in-deck"> <router-link v-for="card in cards" :key="card.cardId" :to="{ name: 'cardById', params: { id: card.cardId } }" class="grid-item"> <CardIcon :card="card" /> </router-link> </div> </div>
+    <div v-else class="cards-in-deck"> 
+      <div v-if="cards.length === 0">There Are No Cards In This Deck.</div>
+      <div v-else>
+      <router-link v-for="card in cards" :key="card.cardId" :to="{ name: 'cardById', params: { id: card.cardId } }" class="grid-item"> 
+      <CardIcon :card="card" /> </router-link></div> </div> </div>
     </div>
     
   

@@ -44,7 +44,7 @@
 
       <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
       
-      <input type="text" id="imgurl" v-model="newDeck.coverImg" /> 
+      
       
     </form>
   </div>
