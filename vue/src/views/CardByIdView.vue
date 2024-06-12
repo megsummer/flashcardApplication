@@ -90,7 +90,7 @@ export default {
           else {
             this.hasImage = false;
           }
-        }
+    },
   },
   created() {
     const cardId = parseInt(this.$route.params.id, 10);

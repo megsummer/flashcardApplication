@@ -2,17 +2,16 @@
    <div class="loading" v-if="isLoading">Loading...</div>
     <div v-else>
    
-  <div class="study-grid"> 
+    <div class="study-grid"> 
  
 
-<div class="card-display">
+    <div class="card-display">
       <div class="loading" v-if="sessionOver">Session is Over...
        <p class="cardText">Your final score is {{ score }} correct.</p>
-        
       </div>
       
-        <div v-else class ="card-contents">
-    <div  v-if="!isFlipped" class="front">
+      <div v-else class ="card-contents">
+      <div  v-if="!isFlipped" class="front">
         
         <p class="cardText">{{ currentCard.frontQuestion }}</p>
           <div  v-if="hasImage" id="image">
@@ -28,7 +27,7 @@
     
 </div>
     
-  </div>
+    </div>
  <div class="button-display">
   <div class="over" v-if="sessionOver">
     <router-link v-bind:to="{ name: 'myDecks' }">
@@ -169,8 +168,6 @@ methods: {
     this.getDeck(deckId);
     this.getCardsByDeckId(deckId);
 
-    
-    
   }
 }
 
@@ -188,7 +185,7 @@ methods: {
   font-size:xx-large;
   text-decoration: none;
   margin: auto;
-  padding: 35px;
+  padding: 50px;
   border-radius: 20px;
   width: 500px;
   height: 450px;
@@ -203,6 +200,8 @@ methods: {
 }
 .score-card{
   grid-area: score-card;
+  margin-right: 30px;
+  text-align: center;
 }
 
 
@@ -216,25 +215,41 @@ methods: {
 }
 
 button{
-  width: 150px;
+  width: 200px;
   height: 40px;
   font-size: large;
+  justify-content: right;
+  
 }
 #end-session{
   background-color: #ffd966;
+  
 }
 #flip{
   background-color: #ffd966;
+  
 }
 #wrong{
   background-color: #e28080;
+  
 }
 #right{
   background-color: #4fb368;
+  
 }
 #return{
   background-color: #ffd966;
 }
 
+.button-display{
+  grid-area: button-display;
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+
+
+
+
+}
 
 </style>
