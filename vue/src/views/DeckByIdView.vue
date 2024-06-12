@@ -15,18 +15,15 @@
      <div class = "image">   <img :src="localDeck.coverImg" alt="Deck Image" />
     </div>
 
-  <div class = "deckDetails">
-      <p></p>
+    <UpdateDeck class="updateDeck-button" :deck="localDeck" />
 
-      <UpdateDeck :deck="localDeck" />
-      <p></p>
 
+    <div class = "deckDetails">
+      
       <router-link class="study-button" v-bind:to="{ name: 'studySession', params:{id: localDeck.deckId} }"><button>Study Session</button> </router-link>
-      <p></p>
-
+      
       <router-link class="card-button" v-bind:to="{ name: 'createCard' }"><button>Create Cards</button></router-link>
-      <p></p>
-
+      
       <button class="deleteDeck-button" @click="deleteDeck">Delete Deck</button>
       <button v-on:click="toggleDeleting">Delete Cards From This Deck</button>
     </div>
@@ -207,27 +204,29 @@ export default {
 
 .deckDetails{
   grid-area: deckDetails;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: 
-  "study-button card-button"
-  "deleteDeck-button deleting-cards"
-
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1 1 45%;
   
 }
 
 .cards-in-deck{
   grid-area: cards-in-deck;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
 }
 
 .updateDeck-button{
+  display: grid;
   grid-area: updateDeck-button;
+   
 }
 .card-button{
   grid-area: card-button;
+   
 }
 
 .study-button{
