@@ -24,10 +24,10 @@
 
       <UpdateDeck class="updateDeck-button" :deck="localDeck" />
 
-      <div class="deckDetails">
+      <div class="deckDetails"><div v-if="cards.length != 0">
         <router-link class="study-button" v-bind:to="{ name: 'studySession', params: { id: localDeck.deckId } }">
           <button>Study Session</button>
-        </router-link>
+        </router-link></div><div v-else></div>
         
         <router-link class="card-button" v-bind:to="{ name: 'createCard' }">
           <button>Create Cards</button>
