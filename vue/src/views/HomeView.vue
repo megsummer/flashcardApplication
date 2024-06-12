@@ -42,7 +42,7 @@ export default {
 
 .home-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 250px 1fr 1fr;
   grid-template-areas: 
     "nav home logo"
     "nav aboutUs aboutUs"
