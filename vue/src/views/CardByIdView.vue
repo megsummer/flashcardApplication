@@ -16,27 +16,14 @@
     <div class="loading" v-if="isLoading">Loading...</div>
     <div v-else class="grid-container">
       
-      <img :src="localCard.coverImg" alt="Card Image" />
-
-      <div class="CardById">
-        <div id="showCard" class="showCard">
+      <CardIcon :card="localCard"/>
+  
+          <UpdateCard class="updatecard" :card="localCard" @update-card="handleCardUpdate" />
           
-          <div id="Question" class="question">
-            <h1>{{ localCard.frontQuestion }}</h1>
-            
-          </div>
-          <div id="Answer" class="answer">
-            <h1>{{ localCard.backAnswer }}</h1>
-          </div>
-          <div id="Tags" class="tags">
-            <h1>{{ localCard.tags }}</h1>
-          </div>
-          <p>********************************</p>
-          <UpdateCard :card="localCard" @update-card="handleCardUpdate" />
         </div>
       </div>
-    </div>
-  </div>
+
+
 </template>
 
 <script>
@@ -141,25 +128,17 @@ button:hover {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+  gap: 60px;
+  grid-area: main;
 }
 
-.grid-item {
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  background-color: #fff;
-}
 
 p {
   text-align: center;
   color: black;
 }
 
-.main-container {
-  grid-area: main;
-  padding: 10px;
-}
+
 
 .nav-tool {
   grid-area: nav;
@@ -185,10 +164,14 @@ p {
 
 .griddy-container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 3fr;
   grid-template-areas: 
     "nav first-row"
     "nav main";
-  gap: 15px;
+    column-gap: 100px;
+}
+.updatecard{
+  display: flex;
+
 }
 </style>
