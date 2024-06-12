@@ -1,5 +1,5 @@
 <template>
-  <div class="adminDeck-container">
+  <div class="adminDeck">
     <NavTool class="nav-tool"/>
     <div class="first-row">
       <div class="search-container">
@@ -162,7 +162,7 @@ p {
   
 }
 
-.adminDeck-container {
+.adminDeck {
   display: grid;
   grid-template-columns: 250px 1fr;
   grid-template-areas: 
