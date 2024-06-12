@@ -1,14 +1,12 @@
 <template>
     
     <div id="card" class="card">
-        <img src=""/>
-        <p>{{ card.frontQuestion }}</p>
+      
+       
 <div  v-if="hasImage" id="image">
         <img :src="card.cardImg" alt="Card Image" /> </div>
-    <div v-else>
-      
-
-    </div>
+    <div v-else></div>
+    <p>{{ card.frontQuestion }}</p>
     </div>
    
 </template>
@@ -72,10 +70,17 @@ a{
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 .card img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 100px;
+  max-height: 100px;
   border-radius: 10px;
 }
 
+img{
+max-width: 100px;
+max-height: 100px;
+  border: .2px solid black;
+ 
+  
+}
 
 </style>

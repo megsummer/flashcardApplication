@@ -1,12 +1,12 @@
 <template>
   <div id="deck" class="deck">
     <p id="title" class="title">{{ deck.deckTitle }}</p>
-    <p id="description" class="description">{{ deck.deckDescription }}</p>
+  
     
   <div v-if="hasImage" id="image">
-    <img :src="deck.imageUrl" alt="Deck Image" /> </div>
+    <img :src="deck.coverImg" alt="Deck Image" /> </div>
     <div v-else>
-
+      <p id="description" class="description">{{ deck.deckDescription }}</p>
     </div>
   </div>
 </template>
