@@ -153,6 +153,7 @@ export default {
       DeckServices.getDeckById(deckId)
         .then(response => {
           this.localDeck = response.data;
+          this.localDeck.deckId = parseInt(this.$route.params.id);
           
         })
         .catch(error => {

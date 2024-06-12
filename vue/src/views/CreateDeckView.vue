@@ -18,6 +18,7 @@
       <input class = 'submit-button' type="submit" value="Save Deck"/>
       
     </form>
+    <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
     <Logo/>
   </div>
 </template>
@@ -48,6 +49,7 @@ export default {
         coverImg: "",
         deckDescription: "",
       },
+      errorMessage: "",
     };
   },
   methods: {
@@ -63,11 +65,30 @@ export default {
       }
     },
     createCards(){
+      
       this.$router.push({name: 'saveCard'})
     },
+    validateForm() {
+        this.errorMessage = "";
+        let isValid = true;
+        if (this.newDeck.deckTitle.length == 0) {
+          this.errorMessage += 'The new deck must have a title. ';
+          isValid = false;
+        }
+        if (this.newDeck.deckDescription.length == 0) {
+          this.errorMessage += 'The new deck must have a description.  ';
+          isValid = false;
+        
+        }
+        return isValid;
+      
+        
+      
+      },
 
 
     createDeck() {
+      if(this.validateForm()){
       DeckServices.createNewDeck(this.newDeck)
         .then(response => {
           if(response.status === 201) {
@@ -78,6 +99,7 @@ export default {
           }).catch(error => {
             this.handleError(error, 'adding');
           });
+        }return false;
     },
    
 
