@@ -1,5 +1,5 @@
 <template>
-  <div class="griddy-container">
+  <div class="searchCards-container">
     <NavTool class="nav-tool"/>
     <div class="first-row">
       <div class="search-container">
@@ -180,9 +180,9 @@ p {
   
 }
 
-.griddy-container {
+.searchCards-container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 250px 1fr;
   grid-template-areas: 
     "nav first-row"
     "nav main";

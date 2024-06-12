@@ -1,5 +1,5 @@
 <template>
-  <div class="griddy-container">
+  <div class="myDeck-container">
     <NavTool class="nav-tool"/>
     <div class="first-row">
       <div class="search-container">
@@ -116,7 +116,7 @@ button:hover {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 10px;
 }
 
@@ -159,9 +159,9 @@ p {
   
 }
 
-.griddy-container {
+.myDeck-container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 250px 1fr;
   grid-template-areas: 
     "nav first-row"
     "nav main";

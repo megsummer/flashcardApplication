@@ -42,7 +42,7 @@ export default {
 
 .home-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 250px 1fr 1fr;
   grid-template-areas: 
     "nav home logo"
     "nav aboutUs aboutUs"
@@ -59,7 +59,7 @@ export default {
 
 .home-logo {
   grid-area: logo;
-  justify-content: center;
+  justify-self: right;
 }
 
 .home-view {
@@ -72,7 +72,6 @@ export default {
   grid-area: aboutUs;
   display:grid;
   flex-direction:column;
-  justify-content: left;
   text-align: center;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 

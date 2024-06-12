@@ -13,10 +13,10 @@
       <div v-else class ="card-contents">
       <div  v-if="!isFlipped" class="front">
         
-        <p class="cardText">{{ currentCard.frontQuestion }}</p>
-          <div  v-if="hasImage" id="image">
-           <img :src="currentCard.cardImg" alt="Card Image" /></div>
+          <div  v-if="hasImage" id="card-image">
+           <img class= "study-image" :src="currentCard.cardImg" alt="Card Image" /></div>
           <div v-else></div>
+          <p class="cardText">{{ currentCard.frontQuestion }}</p>
        
         </div>  
     <div v-else class="back">
@@ -96,17 +96,17 @@ methods: {
   },
 
   setHasImage(){
-        if(this.currentCard.cardImg != null){
+        if(this.currentCard.cardImg != null && this.currentCard.cardImg != ""){
           this.hasImage = true;}
           else {
             this.hasImage = false;
           }
         },
-        flip(){
+    flip(){
             this.isFlipped = true;
 
         },
-        right(){
+     right(){
             this.score++;
             this.cardIndex ++;
             if(this.cardIndex == this.cards.length - 1){
@@ -114,9 +114,10 @@ methods: {
                 this.cardIndex = 0;
             }else{
             this.currentCard = this.cards[this.cardIndex];
+            this.setHasImage();
             this.isFlipped = false;}
         },
-        wrong(){
+     wrong(){
             this.cardIndex ++;
             if(this.cardIndex == this.cards.length - 1){
                 this.sessionOver = true;
@@ -185,7 +186,7 @@ methods: {
   font-size:xx-large;
   text-decoration: none;
   margin: auto;
-  padding: 50px;
+  padding: 90px;
   border-radius: 20px;
   width: 500px;
   height: 450px;
@@ -247,9 +248,18 @@ button{
   justify-content: center;
   gap: 10px; 
 
+}
 
+.card-display{
+  max-width: 450px;
+  max-height: 450px;
+  align-items: center;
+}
 
-
+.study-image{
+max-width: 450px;
+max-height: 450px;
+border: .2px solid black;  
 }
 
 </style>

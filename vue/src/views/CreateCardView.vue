@@ -1,5 +1,5 @@
 <template>
-   <div class="griddy-container">
+   <div class="CreateCard-container">
       <NavTool class="nav-tool"/>
       <div class="first-row">
         <div class="search-container">
@@ -126,7 +126,7 @@ export default {
         frontQuestion: "", 
         backAnswer: "", 
         cardImg: "",
-        tags: "",
+        tags: [],
         };
       
        },
@@ -295,9 +295,9 @@ button:hover {
   
 }
 
-.griddy-container {
+.CreateCard-container {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 250px 1fr;
   grid-template-areas: 
     "nav first-row"
     "nav main";
