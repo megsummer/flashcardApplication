@@ -12,7 +12,8 @@
     
       <p class="victor-notes">notes about victor</p>
       
-      <p class="nimo-notes">notes about nimo</p> 
+      <p class="nimo-notes">notes about nimo</p>
+      https://www.linkedin.com/in/nimensiojohnson/
 
       <p class="megan-notes">notes about megan</p> 
   
