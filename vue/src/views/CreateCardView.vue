@@ -8,24 +8,36 @@
   <div id="create-card">
     <h2>
       Create New Card
-      {{ this.newCard }}
+     
     </h2>
+    <div v-if="!addImage">
+    
+    <button v-on:click="addImage = true">Add Image</button></div>
+   
+    <div class="uploadImage" v-if="addImage"> 
+      
+      <button v-on:click="upload">Upload Image</button><br>
+      <button v-on:click="addImage = false">Cancel</button>
+    </div>
+<div v-else>
       <form v-on:submit.prevent="createCard">
         <div class="card-form">
           <label for="card-frontQuestion">Front Question:</label>
-          <input type="text" id="card-frontQuestion" v-model="newCard.frontQuestion" />
+          <textarea id="card-frontQuestion" v-model="newCard.frontQuestion"></textarea> 
         </div>
         <div class="card-form">
           <label for="card-backAnswer">Back Answer:</label>
-          <input type="text" id="card-backAnswer" v-model="newCard.backAnswer"/>
+          <textarea id="card-backAnswer" v-model="newCard.backAnswer"></textarea>
         </div>
+  
         <div class="card-form">
-          <label for="card-img">Card Image:</label>
+          <label for="card-tags">Tags: Please separate tags with a comma.  Example: biology, science, cells</label>
+          
+          <textarea id="card-tags" v-model="tagsAsString"></textarea>
+          <div class="card-form">
+          <label for="card-img">Card Image URL:</label>
           <input type="text" id="card-img" v-model="newCard.cardImg" />
-        </div>
-        <div class="card-form">
-          <label for="card-tags">Tags:</label>
-          <input type="text" id="card-tags" v-model="tagsAsString" />
+        </div> 
 
           <label for="deck-to-add">Add this card to a deck:</label>
             <select name="deckToAddTo" id="deck-to-add"  v-model="deckToAddTo.deckId">
@@ -33,16 +45,19 @@
                 <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{ deck.deckTitle }}</option>
             </select>
 
-            <button v-on:click="upload">Upload</button><br>
+           
 
           <input type="submit" value="Save Card"/>
+
+          <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
         </div>
+        </form></div>
       
 <div class="card-form">
  
 </div>
 
-      </form>
+    
       <Logo/>
   </div>
 </template>
@@ -79,6 +94,8 @@ export default {
           deckToAddTo: {},
           decks: [],
           isLoading: false,
+          errorMessage: "",
+          addImage: false,
           
     };
   },
@@ -87,6 +104,7 @@ export default {
 
       upload() {
         this.myWidget.open();
+        this.addImage = false;
       },
       handleError(error, verb) {
       if (error.response) {
@@ -113,22 +131,24 @@ export default {
 
     
     validateForm() {
-        let msg = '';
+        this.errorMessage = "";
+        let isValid = true;
         if (this.newCard.frontQuestion.length == 0) {
-          msg += 'The new card must have a front question. ';
+          this.errorMessage += 'The new card must have a front question. ';
+          isValid = false;
         }
         if (this.newCard.backAnswer.length == 0) {
-          msg += 'The new card must have a back answer.';
+          this.errorMessage += 'The new card must have a back answer.  ';
+          isValid = false;
         }
-        if(this.deckToAddTo.id == 0){
-          msg += 'The new card must be assigned to a deck.';
+        if(this.deckToAddTo.deckId == 0 || this.deckToAddTo.deckId == null){
+          this.errorMessage += 'The new card must be assigned to a deck. ';
+          isValid = false;
         }
-        if (msg.length > 0) {
-          this.$store.commit('SET_NOTIFICATION', msg);
-          return false;
-        }
+        return isValid;
+      
         
-        return true;
+      
       },
 
 
@@ -227,5 +247,9 @@ display: block
 .card-form textarea {
   height: 60px;
   width: 300px;
+}
+
+.alert{
+  color:crimson
 }
 </style>
