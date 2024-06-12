@@ -228,6 +228,8 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   flex: 1 1 45%;
+
+  
   
 }
 
@@ -249,7 +251,8 @@ export default {
 }
 
 .study-button{
-  grid-area: study-button
+  grid-area: study-button;
+  
 }
 
 .deleteDeck-button{
