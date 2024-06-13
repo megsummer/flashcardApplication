@@ -4,7 +4,7 @@
       <div class="first-row">
         <div class="search-container">
         <h2>Create New Card</h2>
-        <h3>Please Insert Image First</h3>
+        <h3>Please Complete All Required Fields</h3>
         </div>
       
         <div class="logo-container">
@@ -53,8 +53,8 @@
             <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{ deck.deckTitle }}</option>
           </select>
         </div>
-
-        <input type="submit" value="Save Card"/>
+        <br>
+        <button class="btn btn-submit">Save Card</button>
         
         <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
       </form>
@@ -240,7 +240,7 @@ export default {
 <style scoped>
 
 form {
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 20px;
 }
 
@@ -270,7 +270,8 @@ button:hover {
 .main-container {
   grid-area: main;
   padding: 10px;
-  justify-content: center
+  /* justify-content: center */
+  margin-left: 310px;
 }
 
 .nav-tool {

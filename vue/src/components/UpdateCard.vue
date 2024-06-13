@@ -32,6 +32,7 @@
               <option v-bind:value="0">Please Select a Deck</option>
                 <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{ deck.deckTitle }}</option>
             </select>
+            <br>
         <button class="btn btn-submit">Submit</button>
         <button class="btn btn-cancel" @click="toggleForm" type="button">Cancel</button>
 </div>   <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
