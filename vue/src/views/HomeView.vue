@@ -22,8 +22,8 @@
       <p id="nimo-notes" class= "dev-card">
         <a href="https://www.linkedin.com/in/nimensiojohnson/">Nimo Johnson</a><br/>
         <img src="@/assets/Nimo.jpg" alt="image of Nimo" class="dev-photo"/><br/>
-        Junior Software Developer <br/> Accessibility Enthusiast | Story Devourer <br/>
-         Cozy Gamer | Cat Mom | Auntie
+        Top/down lover of the technological world from gamer to coder,
+        " Junior Software Developer"
       <br/><br/>
       https://www.linkedin.com/in/nimensiojohnson/
       </p> 
