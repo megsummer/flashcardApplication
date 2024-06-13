@@ -105,7 +105,7 @@
                          type: 'success'
                      }
                    );
-                  
+                   this.$router.push({ name: 'deckById', params: {id: this.deckToAddTo.id} });
                   }
                  
                 })
@@ -113,7 +113,7 @@
           
               this.handleErrorResponse(error, 'updating');
             });
-            this.$router.push({ name: 'deckById', params: {id: this.deckToAddTo.id} });
+            
       },
 
 
