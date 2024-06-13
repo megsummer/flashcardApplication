@@ -248,161 +248,6 @@ INSERT INTO cards_tags (card_id, tag) VALUES (22, 'tech');
 INSERT INTO cards_tags (card_id, tag) VALUES (22, 'software development');
 INSERT INTO cards_tags (card_id, tag) VALUES (23, 'tech');
 INSERT INTO cards_tags (card_id, tag) VALUES (23, 'software development');
-<<<<<<< HEAD
-
-INSERT INTO cards_tags (card_id, tag) VALUES (38, 'Stephen');
-INSERT INTO cards_tags (card_id, tag) VALUES (38, 'Stephen Herzog');
-INSERT INTO cards_tags (card_id, tag) VALUES (38, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (38, 'message board');
-
-INSERT INTO cards_tags (card_id, tag) VALUES (39, 'Chris');
-INSERT INTO cards_tags (card_id, tag) VALUES (39, 'Chris Cook');
-INSERT INTO cards_tags (card_id, tag) VALUES (39, 'Restaurant Tinder');
-INSERT INTO cards_tags (card_id, tag) VALUES (39, 'Blue');
-
-INSERT INTO cards_tags (card_id, tag) VALUES (40, 'Devon');
-INSERT INTO cards_tags (card_id, tag) VALUES (40, 'Devon Mercadante');
-INSERT INTO cards_tags (card_id, tag) VALUES (40, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (40, 'campaign crowdfunding');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (41, 'Dinda');
-INSERT INTO cards_tags (card_id, tag) VALUES (41, 'Dinda O''Brien');
-INSERT INTO cards_tags (card_id, tag) VALUES (41, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (41, 'meal planner');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (42, 'Jake');
-INSERT INTO cards_tags (card_id, tag) VALUES (42, 'Jake Stephens');
-INSERT INTO cards_tags (card_id, tag) VALUES (42, 'Animal Shelter');
-INSERT INTO cards_tags (card_id, tag) VALUES (42, 'Blue');
-
-INSERT INTO cards_tags (card_id, tag) VALUES (43, 'Jessica');
-INSERT INTO cards_tags (card_id, tag) VALUES (43, 'Jessica Ford');
-INSERT INTO cards_tags (card_id, tag) VALUES (43, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (43, 'message board');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (44, 'Megan');
-INSERT INTO cards_tags (card_id, tag) VALUES (44, 'Megan Trigg');
-INSERT INTO cards_tags (card_id, tag) VALUES (44, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (44, 'flashcard');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (45, 'Mike');
-INSERT INTO cards_tags (card_id, tag) VALUES (45, 'Mike Gatta');
-INSERT INTO cards_tags (card_id, tag) VALUES (45, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (45, 'city tours');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (46, 'Nathan');
-INSERT INTO cards_tags (card_id, tag) VALUES (46, 'Nathan Dickinson');
-INSERT INTO cards_tags (card_id, tag) VALUES (46, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (46, 'meal planner');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (47, 'Nimensio');
-INSERT INTO cards_tags (card_id, tag) VALUES (47, 'Nimensio Johnson');
-INSERT INTO cards_tags (card_id, tag) VALUES (47, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (47, 'flashcard');
-INSERT INTO cards_tags (card_id, tag) VALUES (47, 'Nimo');
-
-INSERT INTO cards_tags (card_id, tag) VALUES (48, 'Quinn');
-INSERT INTO cards_tags (card_id, tag) VALUES (48, 'Quinn Kacirek');
-INSERT INTO cards_tags (card_id, tag) VALUES (48, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (48, 'ranked choice voting');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (49, 'Suvichada');
-INSERT INTO cards_tags (card_id, tag) VALUES (49, 'Suvichada Pinittanond');
-INSERT INTO cards_tags (card_id, tag) VALUES (49, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (49, 'ranked choice voting');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (50, 'Zachary');
-INSERT INTO cards_tags (card_id, tag) VALUES (50, 'Zachary Evans');
-INSERT INTO cards_tags (card_id, tag) VALUES (50, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (50, 'pizza ordering');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (51, 'Victor');
-INSERT INTO cards_tags (card_id, tag) VALUES (51, 'Victor Cushman');
-INSERT INTO cards_tags (card_id, tag) VALUES (51, 'Blue');
-INSERT INTO cards_tags (card_id, tag) VALUES (51, 'flashcard');
-
-INSERT INTO cards_tags (card_id, tag) VALUES (52, 'Adil');
-INSERT INTO cards_tags (card_id, tag) VALUES (52, 'Adil Shad');
-INSERT INTO cards_tags (card_id, tag) VALUES (52, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (52, 'campaign crowdfunding');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (53, 'Alex');
-INSERT INTO cards_tags (card_id, tag) VALUES (53, 'Alex Mauriz');
-INSERT INTO cards_tags (card_id, tag) VALUES (53, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (53, 'meal planner');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (54, 'Daniel');
-INSERT INTO cards_tags (card_id, tag) VALUES (54, 'Daniel Ammerman');
-INSERT INTO cards_tags (card_id, tag) VALUES (54, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (54, 'meal planner');
-
-INSERT INTO cards_tags (card_id, tag) VALUES (55, 'Iqra');
-INSERT INTO cards_tags (card_id, tag) VALUES (55, 'Iqra Shad');
-INSERT INTO cards_tags (card_id, tag) VALUES (55, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (55, 'campaign crowdfunding');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (56, 'Jack');
-INSERT INTO cards_tags (card_id, tag) VALUES (56, 'Jack Ciafardo');
-INSERT INTO cards_tags (card_id, tag) VALUES (56, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (56, 'city tours');
-
-INSERT INTO cards_tags (card_id, tag) VALUES (57, 'Jamar');
-INSERT INTO cards_tags (card_id, tag) VALUES (57, 'Jamar Watson');
-INSERT INTO cards_tags (card_id, tag) VALUES (57, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (57, 'meal planner');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (58, 'jesse');
-INSERT INTO cards_tags (card_id, tag) VALUES (58, 'jesse stewart');
-INSERT INTO cards_tags (card_id, tag) VALUES (58, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (58, 'ranked choice voting');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (59, 'Karla');
-INSERT INTO cards_tags (card_id, tag) VALUES (59, 'Karla Wallace');
-INSERT INTO cards_tags (card_id, tag) VALUES (59, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (59, 'city tours');
-
-INSERT INTO cards_tags (card_id, tag) VALUES (60, 'Kevin Oswald');
-INSERT INTO cards_tags (card_id, tag) VALUES (60, 'Kevin Oswald');
-INSERT INTO cards_tags (card_id, tag) VALUES (60, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (60, 'ranked choice voting');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (61, 'Kinsey Christensen');
-INSERT INTO cards_tags (card_id, tag) VALUES (61, 'Kinsey Christensen');
-INSERT INTO cards_tags (card_id, tag) VALUES (61, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (61, 'flashcard');
-
-INSERT INTO cards_tags (card_id, tag) VALUES (62, 'Sean McMann');
-INSERT INTO cards_tags (card_id, tag) VALUES (62, 'Sean McMann');
-INSERT INTO cards_tags (card_id, tag) VALUES (62, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (62, 'meal planner');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (63, 'Sonali Panda');
-INSERT INTO cards_tags (card_id, tag) VALUES (63, 'Sonali Panda');
-INSERT INTO cards_tags (card_id, tag) VALUES (63, 'Purple');
-INSERT INTO cards_tags (card_id, tag) VALUES (63, 'city tours');
-
-
-INSERT INTO cards_tags (card_id, tag) VALUES (64, 'Melvina');
-INSERT INTO cards_tags (card_id, tag) VALUES (64, 'Melvina Jacobs');
-INSERT INTO cards_tags (card_id, tag) VALUES (64, 'Restaurant Tinder');
-INSERT INTO cards_tags (card_id, tag) VALUES (64, 'Purple');
-=======
 INSERT INTO cards_tags (card_id, tag) VALUES (38, 'stephen');
 INSERT INTO cards_tags (card_id, tag) VALUES (38, 'stephen herzog');
 INSERT INTO cards_tags (card_id, tag) VALUES (38, 'blue');
@@ -446,6 +291,7 @@ INSERT INTO cards_tags (card_id, tag) VALUES (50, 'blue');
 INSERT INTO cards_tags (card_id, tag) VALUES (51, 'victor');
 INSERT INTO cards_tags (card_id, tag) VALUES (51, 'victor cushman');
 INSERT INTO cards_tags (card_id, tag) VALUES (51, 'blue');
+
 INSERT INTO cards_tags (card_id, tag) VALUES (52, 'adil');
 INSERT INTO cards_tags (card_id, tag) VALUES (52, 'adil shad');
 INSERT INTO cards_tags (card_id, tag) VALUES (52, 'purple');
@@ -485,7 +331,6 @@ INSERT INTO cards_tags (card_id, tag) VALUES (63, 'purple');
 INSERT INTO cards_tags (card_id, tag) VALUES (64, 'melvina');
 INSERT INTO cards_tags (card_id, tag) VALUES (64, 'melvina jacobs');
 INSERT INTO cards_tags (card_id, tag) VALUES (64, 'purple');
->>>>>>> 8fdfadfb0ee598836c441af1f095a67c561f7a71
 
 INSERT INTO cards_tags (card_id, tag) VALUES (65, 'barrett cahalen');
 INSERT INTO cards_tags (card_id, tag) VALUES (65, 'barrett cahalen');
@@ -573,13 +418,11 @@ INSERT INTO cards_tags (card_id, tag) VALUES (79, 'shyee meng');
 INSERT INTO cards_tags (card_id, tag) VALUES (79, 'green');
 INSERT INTO cards_tags (card_id, tag) VALUES (79, 'campaign crowdfunding');
 
-
 INSERT INTO cards_tags (card_id, tag) VALUES (80, 'andy chong sam');
 INSERT INTO cards_tags (card_id, tag) VALUES (80, 'instructor');
 
 INSERT INTO cards_tags (card_id, tag) VALUES (81, 'christopher guarnera');
 INSERT INTO cards_tags (card_id, tag) VALUES (81, 'instructor');
-
 
 INSERT INTO cards_tags (card_id, tag) VALUES (82, 'yoav morahg');
 INSERT INTO cards_tags (card_id, tag) VALUES (82, 'instructor');
@@ -590,13 +433,11 @@ INSERT INTO cards_tags (card_id, tag) VALUES (83, 'instructor');
 INSERT INTO cards_tags (card_id, tag) VALUES (84, 'rachel rysz');
 INSERT INTO cards_tags (card_id, tag) VALUES (84, 'pathway');
 
-
 INSERT INTO cards_tags (card_id, tag) VALUES (85, 'lisa sydney');
 INSERT INTO cards_tags (card_id, tag) VALUES (85, 'relationship manager');
 
 INSERT INTO cards_tags (card_id, tag) VALUES (86, 'robert schleper');
 INSERT INTO cards_tags (card_id, tag) VALUES (86, 'pathway');
-
 
 INSERT INTO cards_tags (card_id, tag) VALUES (87, 'aj page');
 INSERT INTO cards_tags (card_id, tag) VALUES (87, 'academic fellow');
