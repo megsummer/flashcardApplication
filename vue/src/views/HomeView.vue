@@ -7,7 +7,12 @@
     </div>
     <Logo class="home-logo"/>
     <div class="about-us">
-      <p class="kinsey-notes">notes about kinsey</p> 
+      <p id="kinsey-notes" class="dev-card">
+        <a href="https://www.linkedin.com/in/kinsey-christensen/">Kinsey Christensen</a><br/>
+        <img src="@/assets/kinsey.jpg" alt="image of Kinsey" class="dev-photo"/><br/>
+        Junior Software Developer | Accessibility Enthusiast | Story Devourer 
+        <br/> Cozy Gamer | Cat Mom | Auntie
+      </p> 
       
     
       <p class="victor-notes">notes about victor</p>
@@ -81,7 +86,7 @@ export default {
     ;
 }
 
-.kinsey-notes{
+#kinsey-notes{
   grid-area: kinsey;
 }
 
@@ -97,6 +102,30 @@ export default {
   grid-area: megan;
 }
 
+.dev-photo {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 10px;
+}
+a{
+  font-size:x-large;
+}
+
+.dev-card{
+  background-color: rgb(241, 237, 237);
+  color: black;
+  text-align: top;
+  text-transform: none;
+  text-decoration: none;
+  margin: 10px;
+  padding: 35px;
+  border-radius: 20px;
+  width: 300px;
+  height: 300px;
+  border: .2px solid black;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform .2s, box-shadow .2s;
+}
 
 </style>
 
