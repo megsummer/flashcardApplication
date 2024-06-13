@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 @Component
 
@@ -72,6 +73,7 @@ public class JdbcCardsDao implements CardsDao {
             throw new DaoException("Error saving card: " + card, e);
         }
         for (String tag : tags) {
+            tag = tag.toLowerCase(Locale.ROOT);
 
             try {
                 String sql = "INSERT INTO cards_tags (card_id, tag) VALUES (?,?);";
@@ -110,7 +112,7 @@ public class JdbcCardsDao implements CardsDao {
             }
             if (tags != null) {
                 for (String tag : tags) {
-
+                    tag = tag.toLowerCase(Locale.ROOT);
                     try {
                         String sql = "INSERT INTO cards_tags (card_id, tag) VALUES (?,?);";
                         jdbcTemplate.update(sql, card.getCardId(), tag);
@@ -183,9 +185,11 @@ public class JdbcCardsDao implements CardsDao {
     public List<Cards> getCardByTags(List<String> tags) {
         List<Cards> cards = new ArrayList<>();
         for (String tag : tags) {
-            String sql = "SELECT * FROM cards WHERE card_id IN (SELECT card_id FROM cards_tags WHERE tag = ?);";
+            tag = tag.toLowerCase(Locale.ROOT);
+            String modTag = "%" + tag + "%";
+            String sql = "SELECT * FROM cards WHERE card_id IN (SELECT card_id FROM cards_tags WHERE tag LIKE ?);";
             try {
-                SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tag);
+                SqlRowSet results = jdbcTemplate.queryForRowSet(sql, modTag);
 
                 while (results.next()) {
                     Cards card = mapRowToCard(results);
