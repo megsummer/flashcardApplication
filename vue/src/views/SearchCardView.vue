@@ -116,7 +116,7 @@ form {
   margin-top: 50px;
   padding: 10px;
   margin-right: 5px;
-  border-radius: 20px;
+  border-radius: 25px;
   border: 1px solid black;
 
 }
@@ -155,7 +155,7 @@ p {
 
 .main-container {
   grid-area: main;
-  padding: 10px;
+  padding: 4px;
 }
 
 .nav-tool {
