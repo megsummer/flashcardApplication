@@ -10,8 +10,10 @@
       <p id="kinsey-notes" class="dev-card">
         <a href="https://www.linkedin.com/in/kinsey-christensen/">Kinsey Christensen</a><br/>
         <img src="@/assets/kinsey.jpg" alt="image of Kinsey" class="dev-photo"/><br/>
-        Junior Software Developer | Accessibility Enthusiast | Story Devourer 
-        <br/> Cozy Gamer | Cat Mom | Auntie
+        Junior Software Developer <br/> Accessibility Enthusiast | Story Devourer <br/>
+         Cozy Gamer | Cat Mom | Auntie
+      <br/><br/>
+      www.linkedin.com/in/kinsey-christensen/
       </p> 
       
     
