@@ -4,7 +4,7 @@
 
     <div class="deckidrow-container">
       <div class="image">
-        <img :src="localDeck.coverImg" alt="Deck Image" />
+        <img class="deckImage" :src="localDeck.coverImg" alt="Deck Image" />
       </div>
     
     <div class="decklogo-container">
@@ -18,45 +18,69 @@
         <p>Description: {{ localDeck.deckDescription }}</p>
       </div>
 
-      <div class="image">
-        
-      </div>
-
+    
       
 
-      <div class="deckDetails"><div v-if="cards.length != 0">
-        <router-link class="study-button" v-bind:to="{ name: 'studySession', params: { id: localDeck.deckId } }">
+      <div class="deckDetails">
+
+ 
+       
+      <div class="study-button">
+        <div v-if="cards.length != 0">
+        <router-link v-bind:to="{ name: 'studySession', params: { id: localDeck.deckId } }">
           <button>Study Session</button>
         </router-link></div><div v-else></div>
-        
-        <router-link class="card-button" v-bind:to="{ name: 'createCard' }">
-          <button>Create Cards</button>
-        </router-link>
-        
-        <button class="deleteDeck-button" @click="deleteDeck">Delete Deck</button>
-        <UpdateDeck class="updateDeck-button" :deck="localDeck" />
-        
       </div>
 
-      <div v-if="isDeleting" class="deleteCard-section">
-        <div id="delete-text" class="deckgrid-item">Click a card to delete from this deck.</div>
+        <div class="create-cards-button">
+        <router-link v-bind:to="{ name: 'createCard' }">
+          <button>Create Cards</button>
+        </router-link>
+      </div>
+        
+        <div class = "delete-deck-button">
+        <button @click="deleteDeck">Delete Deck</button>
+        </div>
+
+        <div class = "update-deck-button">
+        <UpdateDeck class="updateDeck-button" :deck="localDeck" />
+      </div>
+        
+      </div><!--end of deck details-->
+
+
+    
+
+      <div v-if="isDeleting" class="delete-cards-section">
+
+        <!--<div id="delete-text" class="deckgrid-item">Click a card to delete from this deck.</div>-->
+
         <div v-for="card in cards" :key="card.cardId" @click="deleteCard(card.cardId)" class="deckgrid-item">
           <CardIcon class="deleting-cards" :card="card" />
         </div>
         
       </div>
       
+     
 
-      <div v-else class="cards-in-deck">
-        <div v-if="cards.length === 0">There Are No Cards In This Deck.</div>
-        <div class="cardindeck" v-else>
-          <router-link v-for="card in cards" :key="card.cardId" :to="{ name: 'cardById', params: { id: card.cardId } }" class="maindeckgrid-item">
-            <CardIcon :card="card" />
-          </router-link>
-          <button class="deletecard" @click="toggleDeleting">Delete Cards</button>
+      <div v-else class="regular-cards-section"> <!--regular cards-->
+
+         <div class="single-cards-reg">
+          <router-link v-for="card in cards" :key="card.cardId" :to="{ name: 'cardById', params: { id: card.cardId } }">
+            <CardIcon :card="card" /></router-link></div>
+         </div>
+
+
+
+
+
+            <div v-if="cards.length === 0">There Are No Cards In This Deck.</div><div else></div>
+
+            <div class = "delete-cards-button">
+            <button class="deletecard" @click="toggleDeleting">{{deleteMsg}}</button></div>
          
-        </div>
-      </div>
+         
+      
     </div>
   </div>
 </template>
@@ -71,7 +95,6 @@ import UpdateDeck from '../components/UpdateDeck.vue';
 import Logo from '../components/Logo.vue';
 import CardServices from '../services/CardServices.js';
 import CardIcon from '../components/CardIcon.vue';
-import DeckIcon from '../components/DeckIcon.vue';
 
 
 export default {
@@ -81,7 +104,7 @@ export default {
     UpdateDeck,
     Logo,
     CardIcon,
-    DeckIcon
+   
 
 },
   data() {
@@ -91,6 +114,7 @@ export default {
       localDeck: {},
       cards: [], 
       hasImage: false,
+      deleteMsg: "Delete Cards"
     };
   },
   methods: {
@@ -105,6 +129,11 @@ export default {
     },
     toggleDeleting(){
       this.isDeleting = !this.isDeleting;
+      if(this.deleteMsg === "Delete Cards"){
+        this.deleteMsg = "Cancel";
+      }else {
+        this.deleteMsg = "Delete Cards";
+      }
 
        },
 
@@ -219,17 +248,12 @@ export default {
   display: flex;
   justify-content: center;
 }
-.maindeckgrid-item {
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  background-color: #fff;
-}
+
 .deckgrid-item {
   border-radius: 10px;
   padding: px;
   text-align: center;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 
@@ -239,48 +263,51 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas: 
-  "study cards deldeck updateDeck"
-  "carddeck carddeck carddeck deletecard";
-
-
-  
-  
+  "study createCard deldeck updateDeck"
+  "carddeck carddeck carddeck deletecards"; 
 }
 
-.cards-in-deck{
-  grid-area: cards-in-deck;
+
+.regular-cards-section{
+  padding: 4px;
+}
+
+.single-cards-reg{
+  grid-area: carddeck;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: flex-start;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  
   gap: 20px;
 }
 
-.updateDeck-button{
+.update-deck-button{
   display: grid;
   grid-area: updateDeck;
 }
-.card-button{
-  grid-area: card-button;
+.create-cards-button{
+  grid-area: createCard;
    
 }
 
 .study-button{
-  grid-area: study-button;
+  grid-area: study;
   
 }
 
-.deleteDeck-button{
-  grid-area: deleteDeck-button
+.delete-deck-button{
+  grid-area: deldeck
 }
 
-.deletecard {
-  grid-area: deletecard;
+.delete-cards-button {
+  grid-area: deletecards;
   
 }
-.deleteCard-section {
+.regular-card-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;}
+.delete-cards-section {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -304,6 +331,9 @@ export default {
 #delete-text{
   margin: auto;
   font-size: larger;
+}
+.deckImage{
+  max-width: 600px;
 }
 
 
