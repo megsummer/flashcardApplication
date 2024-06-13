@@ -16,9 +16,14 @@
         www.linkedin.com/in/kinsey-christensen/
       </p> 
       
-    
-      <p class="victor-notes">notes about victor</p>
-      
+      <p id="victor-notes" class="dev-card">
+        <a href="https://www.linkedin.com/in/vtcushman/">Victor Cushman</a><br/>
+        <img src="@/assets/VTCushman.jpg" alt="image of Victor" class="dev-photo"/><br/>
+        Biodiversity & Social justice advocate. <br/>
+        Father | Innovator| Grey-Hat Hacker<br/>
+      <br/><br/>
+        www.linkedin.com/in/VTCushman/
+      </p> 
       <p id="nimo-notes" class= "dev-card">
         <a href="https://www.linkedin.com/in/nimensiojohnson/">Nimo Johnson</a><br/>
         <img src="@/assets/Nimo.jpg" alt="image of Nimo" class="dev-photo"/><br/>
