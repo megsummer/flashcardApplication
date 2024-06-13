@@ -29,7 +29,15 @@
       </p> 
     
 
-      <p class="megan-notes">notes about megan</p> 
+      <p id ="megan-notes" class= "dev-card">
+        <a href="https://www.linkedin.com/in/megantrigg1/">Megan Trigg</a><br/>
+        <img src="@/assets/Megan.jpg" alt="image of Megan" class="dev-photo"/><br/>
+        Junior Software Developer <br/> Experienced in Supply Chain Management <br>
+        Bookworm | Cat Mama
+      <br/><br/>
+        www.linkedin.com/in/megantrigg1/
+
+      </p> 
   
   
     </div>
