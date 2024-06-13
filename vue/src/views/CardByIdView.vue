@@ -3,7 +3,7 @@
     <NavTool class="nav-tool"/>
     <div class="first-row">
     <div class="search-container">
-      <h1>{{localCard.tags}}</h1>
+      <h1>Tags:{{localCard.tags}}</h1>
       </div>
       <div class="logo-container">
         <Logo />

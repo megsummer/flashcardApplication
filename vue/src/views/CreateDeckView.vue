@@ -40,8 +40,8 @@
         <label for="deck-img">Image URL:</label>
         <input type="text" id="imgurl" v-model="newDeck.coverImg" />
       </div>
-
-      <input class = 'submit-button' type="submit" value="Save Deck"/>
+      <br>
+      <button class="btn btn-submit">Save Deck</button>
 
       <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
       
@@ -203,7 +203,7 @@ gap: 10px;
 }
 
 .image-button{
-  margin: auto;
+  margin-left: 30px;
 }
 .alert{
   color:#F24E29
@@ -236,12 +236,13 @@ button:hover {
 .create-deck-main-container{
   grid-area: main;
   padding: 10px;
-  justify-content: center;
-  margin: auto;
+  /* justify-content: left; */
+  margin-left: 300px;
+  
 }
 
 form {
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 20px;
 }
 
