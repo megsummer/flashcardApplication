@@ -1,8 +1,7 @@
 <template>
-    <div>
-      
-      <button class="update" @click="toggleForm">Update Card</button>
-      <form v-if="formShowing" @submit.prevent="submitForm" class="cardForm">
+  
+     <div v-if="formShowing">
+      <form @submit.prevent="submitForm" class="cardForm">
         <div class="form-group">
           <div v-if="!addImage">
     
@@ -37,12 +36,10 @@
         <button class="btn btn-cancel" @click="toggleForm" type="button">Cancel</button>
 </div>   <p class="alert" v-if="errorMessage != ''">{{errorMessage}}</p>
 </div>
-       
-       
-
-      </form>
-
-    </div>
+      </form></div>
+      <div v-if="!formShowing">
+       <button class="update" @click="toggleForm">Update Card</button></div>
+    
   </template>
   
   <script>

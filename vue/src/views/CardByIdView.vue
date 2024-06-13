@@ -3,7 +3,7 @@
     <NavTool class="nav-tool"/>
     <div class="first-row">
     <div class="search-container">
-      <h1>CardView</h1>
+      <h1>{{localCard.tags}}</h1>
       </div>
       <div class="logo-container">
         <Logo />
@@ -17,6 +17,7 @@
     <div v-else class="grid-container">
       
       <CardIcon :card="localCard"/>
+      <BackCardIcon :card="localCard"/>
   
           <UpdateCard class="updatecard" :card="localCard" @update-card="handleCardUpdate" />
           
@@ -32,6 +33,7 @@ import CardServices from '../services/CardServices';
 import UpdateCard from '../components/UpdateCard.vue';
 import Logo from '../components/Logo.vue';
 import CardIcon from '../components/CardIcon.vue';
+import BackCardIcon from '../components/BackCardIcon.vue';
 
 export default {
   name: 'CardById',
@@ -39,7 +41,8 @@ export default {
     NavTool,
     UpdateCard,
     Logo, 
-    CardIcon
+    CardIcon,
+    BackCardIcon,
 },
   data() {
     return {
