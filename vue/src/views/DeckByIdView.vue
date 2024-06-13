@@ -3,9 +3,12 @@
     <NavTool class="nav-toolbig"/>
 
     <div class="deckidrow-container">
-      <div class="image">
+      
+      <div v-if="hasImage" class="image">
+      
         <img class="deckImage" :src="localDeck.coverImg" alt="Deck Image" />
-      </div>
+  </div>
+      
     
     <div class="decklogo-container">
       <Logo />
@@ -177,7 +180,7 @@ export default {
     },
     
     setHasImage(){
-        if(this.deck.coverImg != null && this.deck.coverImg.length != 0){
+        if(this.localDeck.coverImg != null && this.localDeck.coverImg.length != 0){
           this.hasImage = true;}
           else {
             this.hasImage = false;
@@ -188,6 +191,7 @@ export default {
       CardServices.getCardsByDeckId(deckId)
         .then(response => {
           this.cards = response.data;
+          this.setHasImage();
           this.isLoading = false;
         })
         .catch(error => {
@@ -211,6 +215,7 @@ export default {
     const deckId = parseInt(this.$route.params.id);
     this.getDeck(deckId);
     this.getCardsByDeckId(deckId);
+    
     
   }
 };
