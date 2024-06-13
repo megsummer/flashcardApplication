@@ -13,14 +13,21 @@
         Junior Software Developer <br/> Accessibility Enthusiast | Story Devourer <br/>
          Cozy Gamer | Cat Mom | Auntie
       <br/><br/>
-      www.linkedin.com/in/kinsey-christensen/
+        www.linkedin.com/in/kinsey-christensen/
       </p> 
       
     
       <p class="victor-notes">notes about victor</p>
       
-      <p class="nimo-notes">notes about nimo</p>
+      <p id="nimo-notes" class= "dev-card">
+        <a href="https://www.linkedin.com/in/nimensiojohnson/">Nimo Johnson</a><br/>
+        <img src="@/assets/Nimo.jpg" alt="image of Nimo" class="dev-photo"/><br/>
+        Junior Software Developer <br/> Accessibility Enthusiast | Story Devourer <br/>
+         Cozy Gamer | Cat Mom | Auntie
+      <br/><br/>
       https://www.linkedin.com/in/nimensiojohnson/
+      </p> 
+    
 
       <p class="megan-notes">notes about megan</p> 
   
