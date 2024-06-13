@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Cards;
+import com.techelevator.model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 @Component
 
@@ -72,6 +74,7 @@ public class JdbcCardsDao implements CardsDao {
             throw new DaoException("Error saving card: " + card, e);
         }
         for (String tag : tags) {
+            tag = tag.toLowerCase(Locale.ROOT);
 
             try {
                 String sql = "INSERT INTO cards_tags (card_id, tag) VALUES (?,?);";
@@ -110,7 +113,7 @@ public class JdbcCardsDao implements CardsDao {
             }
             if (tags != null) {
                 for (String tag : tags) {
-
+                    tag = tag.toLowerCase(Locale.ROOT);
                     try {
                         String sql = "INSERT INTO cards_tags (card_id, tag) VALUES (?,?);";
                         jdbcTemplate.update(sql, card.getCardId(), tag);
@@ -150,12 +153,16 @@ public class JdbcCardsDao implements CardsDao {
     }
 
     @Override
-    public boolean deleteCard(int cardId) {
+    public boolean deleteCard(int cardId, User user) {
+    Cards card = getCardById(cardId);
+    int deleteCardUserId = card.getUserId();
+    boolean isDeleted = false;
 
+    if(deleteCardUserId == user.getId()) {
 
         String sql1 = "DELETE from cards_tags where card_id = ?;";
         try {
-        jdbcTemplate.update(sql1, cardId);
+            jdbcTemplate.update(sql1, cardId);
         } catch (DataAccessException e) {
             throw new DaoException("Error deleting tags for this card");
         }
@@ -175,7 +182,9 @@ public class JdbcCardsDao implements CardsDao {
             throw new DaoException("Error deleting card with id: " + cardId, e);
 
         }
-        return true;
+        isDeleted = true;
+    }
+        return isDeleted;
 
     }
 
@@ -183,9 +192,11 @@ public class JdbcCardsDao implements CardsDao {
     public List<Cards> getCardByTags(List<String> tags) {
         List<Cards> cards = new ArrayList<>();
         for (String tag : tags) {
-            String sql = "SELECT * FROM cards WHERE card_id IN (SELECT card_id FROM cards_tags WHERE tag = ?);";
+            tag = tag.toLowerCase(Locale.ROOT);
+            String modTag = "%" + tag + "%";
+            String sql = "SELECT * FROM cards WHERE card_id IN (SELECT card_id FROM cards_tags WHERE tag LIKE ?);";
             try {
-                SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tag);
+                SqlRowSet results = jdbcTemplate.queryForRowSet(sql, modTag);
 
                 while (results.next()) {
                     Cards card = mapRowToCard(results);

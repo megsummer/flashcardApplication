@@ -141,7 +141,7 @@ p {
   grid-area: nav;
   margin-right: 20px;
   grid-area: register;
-  background-color: rgb(241, 214, 11);
+  background-color: #ffd966;
   color: black;
   text-align: top;
   text-transform: none;
