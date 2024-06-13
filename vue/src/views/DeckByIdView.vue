@@ -117,7 +117,8 @@ export default {
       localDeck: {},
       cards: [], 
       hasImage: false,
-      deleteMsg: "Delete Cards"
+      deleteMsg: "Delete Cards",
+      isUser: false,
     };
   },
   methods: {

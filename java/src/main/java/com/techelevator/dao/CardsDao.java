@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Cards;
+import com.techelevator.model.User;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface CardsDao {
     public List<String> getTagsByCardId(int cardId);
 
 
-    public boolean deleteCard(int cardId);
+    public boolean deleteCard(int cardId, User user);
 
     List<Cards> getCardByTags(List<String> tags);
 

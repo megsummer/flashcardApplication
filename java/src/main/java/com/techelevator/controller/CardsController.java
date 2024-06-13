@@ -73,8 +73,9 @@ public class CardsController {
 
 
 @RequestMapping(path = "/cards/{cardId}", method = RequestMethod.DELETE)
-public boolean deleteCard(@PathVariable int cardId){
-        return cardsDao.deleteCard(cardId);
+public boolean deleteCard(@PathVariable int cardId, Principal principal){
+    User user = userDao.getUserByUsername(principal.getName());
+        return cardsDao.deleteCard(cardId, user);
 }
 
 
