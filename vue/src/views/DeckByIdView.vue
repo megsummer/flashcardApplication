@@ -280,7 +280,7 @@ export default {
 }
 
 .deleting-cards{
-  background-color: rgb(245, 130, 130);
+  background-color: #F24E29;
 }
 
 #delete-text{

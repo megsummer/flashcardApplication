@@ -102,7 +102,7 @@ label{
 }
 
 button.btn{
-
+  margin-left: auto;
   width: 170px;
   padding: 2px;
   height: 30px;
@@ -113,7 +113,8 @@ button.btn{
   font-size: 15px;
   cursor: pointer;
   transition: background-color .3s ease;
-  font-weight: bold;  
+  font-weight: bold; 
+
 }
 
 button.btn:hover{

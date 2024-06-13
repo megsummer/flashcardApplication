@@ -200,7 +200,7 @@ gap: 10px;
   
 }
 .alert{
-  color:crimson
+  color:#F24E29
 }
 
 .submit-button:hover {

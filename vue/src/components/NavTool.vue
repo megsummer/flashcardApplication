@@ -30,6 +30,6 @@ export default {
 }
 
 .nav-button:hover {
-  background-color: rgb(59, 190, 238);
+  background-color: rgb(4, 157, 217, 1);
 }
 </style>

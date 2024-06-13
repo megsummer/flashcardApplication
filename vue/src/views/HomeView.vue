@@ -2,8 +2,8 @@
   <div class="home-container">
     <NavTool class="home-nav-tool"/>
     <div class = "home-view">
-      <h1 class="page-title">Home</h1>
-      <p class="logged-in-title">Welcome, you are logged in!</p>
+      <h1 class="page-title">Home Page</h1>
+      <p class="logged-in-title">Welcome to Flip Flash, a website created by four developers with the goal of enhancing your study skills.</p>
     </div>
     <Logo class="home-logo"/>
     <div class="about-us">
@@ -28,9 +28,9 @@
         <a href="https://www.linkedin.com/in/nimensiojohnson/">Nimo Johnson</a><br/>
         <img src="@/assets/Nimo.jpg" alt="image of Nimo" class="dev-photo"/><br/>
         Top/down lover of the technological world from gamer to coder,
-        " Junior Software Developer"
+        " Junior Software Developer" 
       <br/><br/>
-      https://www.linkedin.com/in/nimensiojohnson/
+      www.linkedin.com/in/nimensiojohnson/
       </p> 
     
 
@@ -134,7 +134,7 @@ a{
 }
 
 .dev-card{
-  background-color: rgb(241, 237, 237);
+  background-color: rgb(211, 208, 208);
   color: black;
   text-align: top;
   text-transform: none;

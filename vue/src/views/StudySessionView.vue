@@ -231,11 +231,11 @@ button{
   
 }
 #wrong{
-  background-color: #e28080;
+  background-color: #F24E29;
   
 }
 #right{
-  background-color: #4fb368;
+  background-color: #03A64A;
   
 }
 #return{
