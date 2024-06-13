@@ -1,22 +1,22 @@
 <template>
   <div class = "deckById-container"> 
-      <NavTool class="nav-tool"/>
-<div class ="first-row">
-  <div class="searchh-container">
+      <NavTool class="deck-nav-tool"/>
+<div class ="create-deck-first-row">
+  <div class="top-deck-container">
         <h2>Create New Deck</h2>
         <h3>Please Complete All Required Fields</h3>
         </div>
 
-        <div class="logo-container">
+        <div class="deck-logo-container">
         <Logo/>
       </div>
 </div>
     
-<div class = "main-container">
-<div class="create-deck">
+<div class = "create-deck-main-container">
+  <div class="create-deck">
 
     <div v-if="!addImage">
-    <button v-on:click="addImage = true">Add Image</button>
+    <button class = "image-button" v-on:click="addImage = true">Add Image</button>
   </div>
    
     <div class="uploadImage" v-if="addImage"> 
@@ -37,6 +37,7 @@
       </div>
 
       <div class="deck-form">
+        <label for="deck-img">Image URL:</label>
         <input type="text" id="imgurl" v-model="newDeck.coverImg" />
       </div>
 
@@ -197,7 +198,12 @@ gap: 10px;
   margin: 10px;
   padding: 5px;
   border-radius: 10px;
+ 
   
+}
+
+.image-button{
+  margin: auto;
 }
 .alert{
   color:#F24E29
@@ -208,7 +214,7 @@ gap: 10px;
 }
 
 
-.NavTool{
+.deck-nav-tool{
   grid-area: nav;
   margin-right: 20px;
 }
@@ -227,10 +233,11 @@ button {
 button:hover {
   background-color: #ffc107;
 }
-.main-container {
+.create-deck-main-container{
   grid-area: main;
   padding: 10px;
-  justify-content: center
+  justify-content: center;
+  margin: auto;
 }
 
 form {
@@ -247,17 +254,17 @@ form {
 
 }
 
-.searchh-container {
+.top-deck-container {
   text-align: center;
   margin: auto;
 }
 
-.logo-container {
+.deck-logo-container {
   display: flex;
   justify-content: center;
 }
 
-.first-row {
+.create-deck-first-row {
   grid-area: first-row;
   display: flex;
   justify-content: right;
@@ -271,5 +278,7 @@ form {
     "nav main";
   gap: 15px;
 }
+
+
 
 </style>
