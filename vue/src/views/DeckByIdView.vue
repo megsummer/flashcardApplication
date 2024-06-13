@@ -2,14 +2,14 @@
   <div class="deckgriddy-container">
     <NavTool class="nav-toolbig"/>
 
-    <div class="search-container">
-      <div class="image">
-        <img :src="localDeck.coverImg" alt="Deck Image" />
+      <div class="search-container">
+          <div class="image">
+            <img :src="localDeck.coverImg" alt="Deck Image" />
+          </div>
+        </div>
+      <div class="logo-container">
+          <Logo />
       </div>
-    </div>
-    <div class="logo-container">
-      <Logo />
-    </div>
 
     <div v-if="isLoading" class="loading">Loading...</div>
     <div v-else>
@@ -18,29 +18,36 @@
         <p>Description: {{ localDeck.deckDescription }}</p>
       </div>
 
-      <div class="deckDetails">
-        <div v-if="cards.length != 0">
-          <router-link class="study-button" v-bind:to="{ name: 'studySession', params: { id: localDeck.deckId } }">
-            <button>Study Session</button>
-          </router-link>
-        </div>
+      <div class="image">
+        
+      </div>
+
+      
+
+      <div class="deckDetails"><div v-if="cards.length != 0">
+        <router-link class="study-button" v-bind:to="{ name: 'studySession', params: { id: localDeck.deckId } }">
+          <button>Study Session</button>
+        </router-link></div><div v-else></div>
+        
         <router-link class="card-button" v-bind:to="{ name: 'createCard' }">
           <button>Create Cards</button>
         </router-link>
+        
         <button class="deleteDeck-button" @click="deleteDeck">Delete Deck</button>
-        <button @click="toggleDeleting">Delete Cards</button>
+        <button class="deleteCard-button" @click="toggleDeleting">Delete Cards</button>
       </div>
 
-      <div v-if="isDeleting" class="deleteCard-button">
+      <div v-if="isDeleting">
+
         <div id="delete-text" class="grid-item">Click a card to delete from this deck.</div>
         <div v-for="card in cards" :key="card.cardId" @click="deleteCard(card.cardId)" class="grid-item">
           <CardIcon class="deleting-cards" :card="card" />
         </div>
       </div>
 
-      <div v-else class="carddeck">
+      <div v-else class="cards-in-deck">
         <div v-if="cards.length === 0">There Are No Cards In This Deck.</div>
-        <div class="cardindeck" v-else>
+        <div v-else>
           <router-link v-for="card in cards" :key="card.cardId" :to="{ name: 'cardById', params: { id: card.cardId } }" class="grid-item">
             <CardIcon :card="card" />
           </router-link>
@@ -188,20 +195,24 @@ export default {
   grid-template-areas: 
     "nav deckicon logo"
     "nav deckDetails deckDetails"
-    ". deckDetails deckDetails";
-  gap: 10px;
+    "cards-in-deck cards-in-deck cards-in-deck";
+  gap: 15px;
 }
 
-.deckHeader {
+
+.deckHeader{
   grid-area: deckHeader;
   text-align: center;
+  
 }
 
-.logo-container {
+.logo-container{
   grid-area: logo;
   display: flex;
   justify-content: center;
 }
+
+
 
 .grid-item {
   border-radius: 10px;
@@ -210,70 +221,78 @@ export default {
   background-color: #fff;
 }
 
-.deckDetails {
+
+
+.deckDetails{
   grid-area: deckDetails;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-areas: 
-  "study cards deldeck deletecard"
-  "carddeck carddeck carddeck carddeck";
-}
-
-.carddeck {
-  padding: 4px;
-}
-
-.cardindeck {
-  grid-area: carddeck;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex: 1 1 45%;
+
+  
+  
 }
 
-.updateDeck-button {
+.cards-in-deck{
+  grid-area: cards-in-deck;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.updateDeck-button{
   display: grid;
   grid-area: updateDeck-button;
+   
+}
+.card-button{
+  grid-area: card-button;
+   
 }
 
-.card-button {
-  grid-area: cards;
+.study-button{
+  grid-area: study-button;
+  
 }
 
-.study-button {
-  grid-area: study;  
+.deleteDeck-button{
+  grid-area: deleteDeck-button
 }
 
-.deleteDeck-button {
-  grid-area: deldeck;
+.deleteCard-button{
+  grid-area: deleteCard-button
 }
 
-.deleteCard-button {
-  grid-area: deletecard;
-}
 
-.nav-toolbig {
+.nav-toolbig{
   grid-area: nav;
   margin-right: 20px;
 }
 
-.image {
+.image{
   max-width: 100%;
   height: auto;
 }
 
-.deleting-cards {
-  background-color: #F24E29;
+.deleting-cards{
+  background-color: rgb(245, 130, 130);
 }
 
-#delete-text {
+#delete-text{
   margin: auto;
   font-size: larger;
 }
-
 .search-container {
   grid-area: deckicon;
   text-align: center;
   margin: auto;
 }
+
 
 </style>
