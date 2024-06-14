@@ -109,7 +109,7 @@ methods: {
      right(){
             this.score++;
             this.cardIndex ++;
-            if(this.cardIndex == this.cards.length - 1){
+            if(this.cardIndex >= this.cards.length){
                 this.sessionOver = true;
                 this.cardIndex = 0;
             }else{
@@ -119,7 +119,7 @@ methods: {
         },
      wrong(){
             this.cardIndex ++;
-            if(this.cardIndex == this.cards.length - 1){
+            if(this.cardIndex >= this.cards.length){
                 this.sessionOver = true;
                 this.cardIndex = 0;
             }else{

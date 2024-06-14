@@ -77,19 +77,19 @@ Logo
           }
         },
     search(){
-        console.log("searching for cards...")
-        console.log(this.searchTags)
+     
+    
         this.isLoading=false;
         CardServices.getCardsByTag(this.searchTags).then(response =>{
             this.searchedCards=response.data;
-            console.log("search complete.")
+         
             this.isLoading = false;
-            console.log("search complete.")
+          
             this.cards = this.searchedCards;
         }).catch(error => {
             this.handleError(error, "searching");
         })
-        console.log("exiting search.")
+        
         
 }
 
