@@ -55,6 +55,7 @@ INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Quin
 INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Suvichada Pinittanond', 'Suvichada Pinittanond', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718300636/iybkldswgnfsrdwjtafa.jpg',3);
 INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Zachary Evans', 'Zachary Evans', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718300877/o4jbzqedkbeogreaueyt.jpg',3);
 INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Victor Cushman', 'Victor Cushman', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718301025/hlgw74v653wwwb0xyjte.jpg',3);
+
 INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Adil Shad', 'Adil Shad', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718301404/xzpkkx7hupan5yon2vct.jpg',3);
 INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Alex Mauriz', 'Alex Mauriz', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718301529/dnl3azmgavsls20molby.jpg',3);
 INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Daniel Ammerman', 'Daniel Ammerman', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718301731/p4zynvwvrhoaygosftb1.jpg',3);
@@ -69,6 +70,36 @@ INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Sean
 INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Sonali Panda', 'Sonali Panda', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718303847/ta3gf1uxxax7ea9xbf4g.jpg',3);
 INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Melvina Jacobs', 'Melvina Jacobs', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718304357/dtjkfqaiilpjdvfr5brx.jpg',3);
 
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Barrett Cahalen', 'Barrett Cahalen', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718305972/w5dvmlfuglhw3pds9xbk.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Braxton Bertolette', 'Braxton Bertolette', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718306039/o8qy0b3tigmkmnc4pxsb.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Cody Osei', 'Cody Osei', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718306093/y83zcgw6v6lucgz0jisz.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Jennifer Nail', 'Jennifer Nail', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718306155/uhu96giilhkfcqisibgu.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Jeremy McKeever', 'Jeremy McKeever', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718306215/xdyutmhaburkjacleitw.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Koi McCormick', 'Koi McCormick', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718306277/zxbj4y8gxrvkhntlmdij.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Kristi Norris', 'Kristi Norris', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718306332/weiedjgx5zdhbgldumhb.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Karlo Kilgore', 'Karlo Kilgore', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718306398/hklmiylnmqz83cg0izrg.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Lauren Gates', 'Lauren Gates', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718306861/jbrp5s3wvzezx5js4rdo.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Lines Sultzer', 'Lines Sultzer', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718306912/sapzt4iioszykjdtzohj.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Maria Kofinas', 'Maria Kofinas', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718306995/nlhfbofzxzabbbkkn2fj.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Matthew Cable', 'Matthew Cable', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718307049/sq7cvndjpxgvlvgam81x.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Nolan Shay', 'Nolan Shay', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718307213/xaemlojbuje0hium8qm4.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Seth Chesky', 'Seth Chesky', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718307271/yahegvn0qmrv9uieouu3.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Shyee Meng', 'Shyee Meng', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718307324/cm2v2dncgpsw5covac6j.jpg',3);
+
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Andy Chong Sam', 'Andy Chong Sam', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718309852/xgrd8d7ekqtahv7ajtci.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Christopher Guarnera', 'Christopher Guarnera', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718309908/wmzipzvpb5kk1bkfmeoe.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Yoav Morahg', 'Yoav Morahg', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718309962/jngx4k0nykvmagekthge.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Walt Impellicceiri', 'Walt Impellicceiri', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718310019/t9da6b48khxzbd3u0ruh.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Rachel Rysz', 'Rachel Rysz', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718311197/i9bhtbojyqra3e3trygz.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Lisa Sydney', 'Lisa Sydney', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718311343/uqoysiyvomodc8hsnqd1.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Robert Schleper', 'Robert Schleper', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718311419/rhnpp6bemsqulcs3shjb.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('AJ Page', 'AJ Page', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718311460/sj1u4lmwdcuppkh5lmsz.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Zach Snyder', 'Zach Snyder', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718311549/roen0mushqzthgoeyxy5.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('David Evans', 'David Evans', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718311699/qygjosvro5hjx33arwip.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Matthew Cabriales', 'Matthew Cabriales', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718311743/aaq3ihtyf2cxumvi5yeu.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Joseph Peloso', 'Joseph Peloso', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718311921/bcf62awglhzrqsdag0zc.jpg',3);
+INSERT INTO cards (front_question, back_answer, card_img, user_id) VALUES ('Justin Parker', 'Justin Parker', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718311979/dktlwv6uym1lcmfjsnpy.jpg',3);
+
 
 
 INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved) VALUES (2, 'Mitosis Review', 'Review the stages of mitosis', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Major_events_in_mitosis.svg/350px-Major_events_in_mitosis.svg.png',true);
@@ -77,6 +108,8 @@ INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved
 INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved) VALUES (1, 'Lacrosse', 'Lacrosse terms, rules, and history', 'https://t3.ftcdn.net/jpg/02/72/57/60/360_F_272576042_Sf8uuMwjnoUpmrx3s7kBOi72iWKMd6Hv.jpg', true);
 INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved) VALUES (1, 'Software Developer Interview Questions', 'Prepare for your upcoming interview!', 'https://www.techelevator.com/wp-content/uploads/2022/02/Students-Columbus-program_i-scaled.jpeg', true);
 INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved) VALUES (3, 'Tech Elevator NLR-20 Colleagues', 'Graduating Colleagues Spring 2024', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718295581/wkke82bqpehbwr5x4zon.png', true);
+INSERT INTO decks (user_id, deck_title, deck_description, cover_img, is_approved) VALUES (3, 'Tech Elevator NLR-20 Staff', 'NLR-20 Support Staff Spring 2024', 'http://res.cloudinary.com/dvxtx3qq6/image/upload/v1718309165/oktlbgskawmnup4wgwa0.png', true);
+
 
 INSERT INTO cards_to_decks (card_id, deck_id) VALUES (1, 1);
 INSERT INTO cards_to_decks (card_id, deck_id) VALUES (2, 1);
@@ -142,6 +175,36 @@ INSERT INTO cards_to_decks (card_id, deck_id) VALUES (61, 6);
 INSERT INTO cards_to_decks (card_id, deck_id) VALUES (62, 6);
 INSERT INTO cards_to_decks (card_id, deck_id) VALUES (63, 6);
 INSERT INTO cards_to_decks (card_id, deck_id) VALUES (64, 6);
+
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (65, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (66, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (67, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (68, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (69, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (70, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (71, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (72, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (73, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (74, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (75, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (76, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (77, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (78, 6);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (79, 6);
+
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (80, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (81, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (82, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (83, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (84, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (85, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (86, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (87, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (88, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (89, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (90, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (91, 7);
+INSERT INTO cards_to_decks (card_id, deck_id) VALUES (92, 7);
 
 INSERT INTO cards_tags (card_id, tag) VALUES (1, 'biology');
 INSERT INTO cards_tags (card_id, tag) VALUES (1, 'mitosis');
@@ -228,6 +291,7 @@ INSERT INTO cards_tags (card_id, tag) VALUES (50, 'blue');
 INSERT INTO cards_tags (card_id, tag) VALUES (51, 'victor');
 INSERT INTO cards_tags (card_id, tag) VALUES (51, 'victor cushman');
 INSERT INTO cards_tags (card_id, tag) VALUES (51, 'blue');
+
 INSERT INTO cards_tags (card_id, tag) VALUES (52, 'adil');
 INSERT INTO cards_tags (card_id, tag) VALUES (52, 'adil shad');
 INSERT INTO cards_tags (card_id, tag) VALUES (52, 'purple');
@@ -268,15 +332,130 @@ INSERT INTO cards_tags (card_id, tag) VALUES (64, 'melvina');
 INSERT INTO cards_tags (card_id, tag) VALUES (64, 'melvina jacobs');
 INSERT INTO cards_tags (card_id, tag) VALUES (64, 'purple');
 
+INSERT INTO cards_tags (card_id, tag) VALUES (65, 'barrett cahalen');
+INSERT INTO cards_tags (card_id, tag) VALUES (65, 'barrett cahalen');
+INSERT INTO cards_tags (card_id, tag) VALUES (65, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (65, 'meal planner');
 
 
+INSERT INTO cards_tags (card_id, tag) VALUES (66, 'braxton bertolette');
+INSERT INTO cards_tags (card_id, tag) VALUES (66, 'braxton bertolette');
+INSERT INTO cards_tags (card_id, tag) VALUES (66, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (66, 'ranked choice voting');
 
 
+INSERT INTO cards_tags (card_id, tag) VALUES (67, 'cody osei');
+INSERT INTO cards_tags (card_id, tag) VALUES (67, 'cody osei');
+INSERT INTO cards_tags (card_id, tag) VALUES (67, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (67, 'message board');
 
 
+INSERT INTO cards_tags (card_id, tag) VALUES (68, 'jennifer nail');
+INSERT INTO cards_tags (card_id, tag) VALUES (68, 'jennifer nail');
+INSERT INTO cards_tags (card_id, tag) VALUES (68, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (68, 'pizza ordering');
 
 
+INSERT INTO cards_tags (card_id, tag) VALUES (69, 'jeremy mckeever');
+INSERT INTO cards_tags (card_id, tag) VALUES (69, 'jeremy mckeever');
+INSERT INTO cards_tags (card_id, tag) VALUES (69, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (69, 'animal shelter');
 
+INSERT INTO cards_tags (card_id, tag) VALUES (70, 'koi mccormick');
+INSERT INTO cards_tags (card_id, tag) VALUES (70, 'koi mccormick');
+INSERT INTO cards_tags (card_id, tag) VALUES (70, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (70, 'animal shelter');
+
+
+INSERT INTO cards_tags (card_id, tag) VALUES (71, 'kristi norris');
+INSERT INTO cards_tags (card_id, tag) VALUES (71, 'kristi norris');
+INSERT INTO cards_tags (card_id, tag) VALUES (71, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (71, 'kristi norris');
+
+
+INSERT INTO cards_tags (card_id, tag) VALUES (72, 'karlo kilgore');
+INSERT INTO cards_tags (card_id, tag) VALUES (72, 'karlo kilgore');
+INSERT INTO cards_tags (card_id, tag) VALUES (72, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (72, 'message board');
+
+
+INSERT INTO cards_tags (card_id, tag) VALUES (73, 'lauren gates');
+INSERT INTO cards_tags (card_id, tag) VALUES (73, 'lauren gates');
+INSERT INTO cards_tags (card_id, tag) VALUES (73, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (73, 'pizza ordering');
+
+
+INSERT INTO cards_tags (card_id, tag) VALUES (74, 'lines sultzer');
+INSERT INTO cards_tags (card_id, tag) VALUES (74, 'lines sultzer');
+INSERT INTO cards_tags (card_id, tag) VALUES (74, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (74, 'restaurant tinder');
+
+
+INSERT INTO cards_tags (card_id, tag) VALUES (75, 'maria kofinas');
+INSERT INTO cards_tags (card_id, tag) VALUES (75, 'maria kofinas');
+INSERT INTO cards_tags (card_id, tag) VALUES (75, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (75, 'animal shelter');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (76, 'matthew cable');
+INSERT INTO cards_tags (card_id, tag) VALUES (76, 'matthew cable');
+INSERT INTO cards_tags (card_id, tag) VALUES (76, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (76, 'message board');
+
+
+INSERT INTO cards_tags (card_id, tag) VALUES (77, 'nolan shay');
+INSERT INTO cards_tags (card_id, tag) VALUES (77, 'nolan shay');
+INSERT INTO cards_tags (card_id, tag) VALUES (77, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (77, 'meal planner');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (78, 'seth chesky');
+INSERT INTO cards_tags (card_id, tag) VALUES (78, 'seth chesky');
+INSERT INTO cards_tags (card_id, tag) VALUES (78, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (78, 'restaurant tinder');
+
+
+INSERT INTO cards_tags (card_id, tag) VALUES (79, 'shyee meng');
+INSERT INTO cards_tags (card_id, tag) VALUES (79, 'shyee meng');
+INSERT INTO cards_tags (card_id, tag) VALUES (79, 'green');
+INSERT INTO cards_tags (card_id, tag) VALUES (79, 'campaign crowdfunding');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (80, 'andy chong sam');
+INSERT INTO cards_tags (card_id, tag) VALUES (80, 'instructor');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (81, 'christopher guarnera');
+INSERT INTO cards_tags (card_id, tag) VALUES (81, 'instructor');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (82, 'yoav morahg');
+INSERT INTO cards_tags (card_id, tag) VALUES (82, 'instructor');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (83, 'walt impellicceiri');
+INSERT INTO cards_tags (card_id, tag) VALUES (83, 'instructor');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (84, 'rachel rysz');
+INSERT INTO cards_tags (card_id, tag) VALUES (84, 'pathway');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (85, 'lisa sydney');
+INSERT INTO cards_tags (card_id, tag) VALUES (85, 'relationship manager');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (86, 'robert schleper');
+INSERT INTO cards_tags (card_id, tag) VALUES (86, 'pathway');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (87, 'aj page');
+INSERT INTO cards_tags (card_id, tag) VALUES (87, 'academic fellow');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (88, 'zach snyder');
+INSERT INTO cards_tags (card_id, tag) VALUES (88, 'academic fellow');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (89, 'david evans');
+INSERT INTO cards_tags (card_id, tag) VALUES (89, 'academic fellow');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (90, 'matthew cabriales');
+INSERT INTO cards_tags (card_id, tag) VALUES (90, 'academic fellow');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (91, 'joseph peloso');
+INSERT INTO cards_tags (card_id, tag) VALUES (91, 'academic fellow');
+
+INSERT INTO cards_tags (card_id, tag) VALUES (92, 'justin parker');
+INSERT INTO cards_tags (card_id, tag) VALUES (92, 'academic fellow');
 
 
 COMMIT TRANSACTION;
