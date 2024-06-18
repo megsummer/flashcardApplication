@@ -1,5 +1,4 @@
-# Final Capstone
-​
-This directory contains all of the starter projects for the final capstone.
-​
-Each project contains instructions that provides information about the starting code and explains how to get started with the final capstone project.
+Flashcard Application utilizing Java and Vue.js, leveraging Javascript for a user-friendly interface that allows students to create, edit, and study flashcards. 
+Application applies RESTful APIs using Spring Boot for authentication.
+Uses JDBC Templates and SQL for database operations. 
+CSS, Java, Javascript, JDBC, HTML, Spring Boot, SQL, Vue.js.
